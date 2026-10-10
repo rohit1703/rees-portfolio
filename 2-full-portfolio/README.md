@@ -62,7 +62,7 @@ NEXT_PUBLIC_SITE_URL = https://your-domain.com
 ```
 
 It's used for canonical URLs, the sitemap and the social card. Without it they fall back to
-`https://rees-portfolio-deploy.vercel.app`. Redeploy after setting it.
+`https://reethika-chitithoti.vercel.app`. Redeploy after setting it.
 
 ### Custom domain
 

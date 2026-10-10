@@ -1,6 +1,9 @@
 // Site-wide details used for metadata, the sitemap and social cards.
-// Set NEXT_PUBLIC_SITE_URL in Vercel once the custom domain is live (e.g. https://reethika.design).
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://rees-portfolio-deploy.vercel.app").replace(/\/$/, "")
+// The absolute origin matters: social previews fetch /opengraph-image from it, so a stale origin means no card.
+// Order: NEXT_PUBLIC_SITE_URL if set, else the production domain Vercel exposes at build time (follows
+// project renames and custom domains), else the last known vercel.app address.
+const vercelProduction = process.env.VERCEL_PROJECT_PRODUCTION_URL
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || (vercelProduction ? `https://${vercelProduction}` : "https://reethika-chitithoti.vercel.app")).replace(/\/$/, "")
 export const SITE_NAME = "Reethika Chitithoti"
 export const SITE_TITLE = "Reethika Chitithoti — UX Designer"
 export const SITE_DESCRIPTION =
