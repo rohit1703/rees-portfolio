@@ -39,13 +39,13 @@ the Pet Health before/after slider and full-screen viewer; client-side link rout
 
 ## Deploy to Vercel
 
-The Vercel project is `rees-portfolio` in the `rohit1703s-projects` team. The Vercel CLI is a dev dependency, and
+The Vercel project is `rees-portfolio-deploy` in the `rohit1703s-projects` team. The Vercel CLI is a dev dependency, and
 `vercel.json` pins the framework, install and build commands.
 
 ```bash
 npm install
 npx vercel login         # once per computer; opens a browser to sign in
-npm run deploy:link      # once: connects this folder to rees-portfolio
+npm run deploy:link      # once: connects this folder to rees-portfolio-deploy
 npm run deploy           # runs every check, then publishes to production and prints the URL
 ```
 
@@ -62,7 +62,7 @@ NEXT_PUBLIC_SITE_URL = https://your-domain.com
 ```
 
 It's used for canonical URLs, the sitemap and the social card. Without it they fall back to
-`https://rees-portfolio.vercel.app`. Redeploy after setting it.
+`https://rees-portfolio-deploy.vercel.app`. Redeploy after setting it.
 
 ### Custom domain
 

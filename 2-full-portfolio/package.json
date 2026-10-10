@@ -14,7 +14,7 @@
     "fetch-assets": "node scripts/fetch-assets.mjs",
     "verify": "node scripts/verify-build.mjs",
     "check": "npm run typecheck && npm run lint && npm run test && npm run build && npm run verify",
-    "deploy:link": "vercel link --yes --team rohit1703s-projects --project rees-portfolio",
+    "deploy:link": "vercel link --yes --team rohit1703s-projects --project rees-portfolio-deploy",
     "deploy": "npm run check && vercel deploy --prod --yes --scope rohit1703s-projects",
     "deploy:preview": "npm run check && vercel deploy --yes --scope rohit1703s-projects"
   },

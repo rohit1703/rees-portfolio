@@ -3,7 +3,7 @@
   "private": true,
   "description": "Holding page for rees-portfolio. Static: no build step.",
   "scripts": {
-    "deploy:link": "npx -y vercel@63 link --yes --team rohit1703s-projects --project rees-portfolio",
+    "deploy:link": "npx -y vercel@63 link --yes --team rohit1703s-projects --project rees-portfolio-deploy",
     "deploy": "npx -y vercel@63 deploy --prod --yes --scope rohit1703s-projects"
   }
 }

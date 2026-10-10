@@ -5,7 +5,7 @@ One static page ("Ree's Portfolio") with self-hosted fonts. Every path shows thi
 Deploy (needs Node 20+):
 
 ```bash
-npm run deploy:link   # once: connects this folder to the rees-portfolio project
+npm run deploy:link   # once: connects this folder to the rees-portfolio-deploy project
 npm run deploy        # publishes to production
 ```
 

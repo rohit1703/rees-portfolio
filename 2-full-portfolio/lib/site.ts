@@ -1,6 +1,6 @@
 // Site-wide details used for metadata, the sitemap and social cards.
 // Set NEXT_PUBLIC_SITE_URL in Vercel once the custom domain is live (e.g. https://reethika.design).
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://rees-portfolio.vercel.app").replace(/\/$/, "")
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://rees-portfolio-deploy.vercel.app").replace(/\/$/, "")
 export const SITE_NAME = "Reethika Chitithoti"
 export const SITE_TITLE = "Reethika Chitithoti — UX Designer"
 export const SITE_DESCRIPTION =
