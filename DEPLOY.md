@@ -1,7 +1,7 @@
 # Deploying rees-portfolio
 
 Two folders, both aimed at the same Vercel project (`rees-portfolio-deploy` in the `rohit1703s-projects` team, live at
-https://rees-portfolio-deploy.vercel.app):
+https://reethika-chitithoti.vercel.app):
 
 | Folder | What goes live |
 |---|---|
