@@ -9,7 +9,7 @@ fonts, the resume PDF and the social card. The production build makes no request
 | `/` | Home: hero, About, Work, Skills, Experience & Education, crossword, "Let's talk" footer |
 | `/ai-interviewer`, `/sdk-manager`, `/pet-health-scan` | Case studies (layered scroll on desktop, swipe cards on phones) |
 | `/ai-interviewer-poster` | AI Interviewer in the "Poster" theme, for comparison (not indexed) |
-| `/sitemap.xml`, `/robots.txt`, `/opengraph-image`, `/icon.svg` | SEO and social |
+| `/sitemap.xml`, `/robots.txt`, `/opengraph-image`, `/icon.png`, `/apple-icon.png`, `/favicon.ico` | SEO and social |
 
 ## Run it locally
 
