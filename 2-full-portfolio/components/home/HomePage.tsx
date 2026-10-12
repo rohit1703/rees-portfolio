@@ -354,7 +354,8 @@ function ProjectCard({ p, narrow, stack, live, flip }: { p: Project; narrow: boo
                     <h3 style={{ fontFamily: HEADING, fontWeight: 400, fontSize: narrow ? 34 : 48, lineHeight: 1.02, letterSpacing: "0.005em", margin: "0 0 16px", color: T.ink }}>{p.title}</h3>
                     <p style={{ fontSize: narrow ? 16 : 17, lineHeight: 1.6, color: T.body, margin: "0 0 28px", maxWidth: "34em" }}>
                         {p.body[0]}
-                        <span style={{ background: `linear-gradient(transparent 60%, ${T.wasabi} 60%, ${T.wasabi} 94%, transparent 94%)`, color: T.ink, fontWeight: 600, boxDecorationBreak: "clone", WebkitBoxDecorationBreak: "clone" }}>{p.body[1]}</span>
+                        {/* Highlighter band from just above the baseline to the bottom of the descenders (the original's marker look). */}
+                        <span style={{ background: `linear-gradient(transparent 56%, ${T.wasabi} 56%, ${T.wasabi} 82%, transparent 82%)`, color: T.ink, fontWeight: 700, boxDecorationBreak: "clone", WebkitBoxDecorationBreak: "clone" }}>{p.body[1]}</span>
                         {p.body[2]}
                     </p>
                     <span style={{ display: "inline-flex", alignItems: "center", gap: 10, fontSize: 15, fontWeight: 700, letterSpacing: "0.04em", color: T.ink, textDecoration: "underline", textDecorationColor: T.accent, textDecorationThickness: 2, textUnderlineOffset: 6 }}>
@@ -705,7 +706,7 @@ export default function HomePage(props: HomePageProps) {
             n: "01",
             chips: ["Sole Designer", "Internal AI MVP"],
             title: "AI Interviewer",
-            body: ["Engineers were losing hours to first-round technical interviews. ", "I was the only designer", " on the tool that took them over: the candidate test, the dashboards TA works from, and the rebuild after candidates started using AI to pass it."],
+            body: ["Engineers were losing hours to first-round technical interviews. I was the only designer on the tool that took them over: the candidate test, the dashboards TA works from, and ", "rebuilt the product after v1 met reality.", ""],
             image: ai,
             href: aiLink,
         },
@@ -714,7 +715,7 @@ export default function HomePage(props: HomePageProps) {
             n: "02",
             chips: ["Sole Designer", "B2B No-Code Platform"],
             title: "SDK Manager",
-            body: ["A no-code platform the client's brand teams use to build pet health-check tools. ", "I've been its only designer since April 2025", ". I redesigned how branding gets assigned, so screens stopped getting missed, and pushed for reusable components: a header change is now one edit, not one per screen."],
+            body: ["A no-code platform the client's brand teams use to build pet health-check tools. ", "Iterating a live platform from how teams actually used it", ". I redesigned how branding gets assigned, so screens stopped getting missed, and pushed for reusable components: a header change is now one edit, not one per screen."],
             image: sdk,
             href: sdkLink,
         },
@@ -723,7 +724,7 @@ export default function HomePage(props: HomePageProps) {
             n: "03",
             chips: ["UX Designer", "Consumer AI / Mobile Web"],
             title: "Pet Health Scan Suite",
-            body: ["88% of people who opened the dental scan left before uploading a photo, and nobody knew why. ", "I designed the feedback forms to find out", ", turned a ten-outcome result into one readable card, and set up brand libraries that cut re-skinning a tool from about two days to a couple of minutes."],
+            body: ["88% of people who opened the dental scan left before uploading a photo, and nobody knew why. ", "I used funnel data to find where people drop off, then asking why", ", turned a ten-outcome result into one readable card, and set up brand libraries that cut re-skinning a tool from about two days to a couple of minutes."],
             image: pet,
             href: petLink,
         },
