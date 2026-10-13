@@ -35,6 +35,11 @@ const nextConfig: NextConfig = {
                 source: "/(images|fonts)/:path*",
                 headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
             },
+            {
+                // Video file names aren't content-hashed, so cache for a week rather than forever.
+                source: "/video/:path*",
+                headers: [{ key: "Cache-Control", value: "public, max-age=604800" }],
+            },
         ]
     },
     async redirects() {
