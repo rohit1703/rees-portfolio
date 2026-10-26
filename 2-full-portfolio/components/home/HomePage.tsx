@@ -698,7 +698,7 @@ export default function HomePage(props: HomePageProps) {
 
     const label: React.CSSProperties = { fontSize: narrow ? 12.5 : 15, fontWeight: 600, letterSpacing: "0.01em", textTransform: "uppercase", lineHeight: 1.4, color: T.ink }
     const leftLines = ["UX Designer"]
-    const leftLines2 = ["Open to product design roles", "Bangalore / Hyderabad / Remote"]
+    const leftLines2 = ["Open to product design roles", "Bangalore / Remote"]
 
     const projects: Project[] = [
         {
