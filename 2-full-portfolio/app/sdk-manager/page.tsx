@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default function Page() {
     return (
         <main id="main" tabIndex={-1} style={{ outline: "none" }}>
-            <CaseStudy nextLink="/pet-health-scan" theme="pinterest" smoothness={0.05} stackBelow={900} />
+            <CaseStudy nextLink="/pet-health-scan" theme="pinterest" smoothness={0.05} stackBelow={900} inheritedMedia="/video/sdk-01-inherited-flow.mp4" finalMedia="/video/sdk-02-final-branding.mp4" staticMedia="/video/sdk-14-static-components.mp4" />
         </main>
     )
 }
