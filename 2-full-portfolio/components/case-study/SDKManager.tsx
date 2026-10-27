@@ -75,6 +75,12 @@ export default function SDKManagerCaseStudy(props: Props) {
                         ["Team", "1 BA · 3 backend · 4 frontend · 2 QA · 1 DevOps"],
                         ["Platform", "Desktop web app, no-code builder"],
                     ]}
+                    brief={[
+                        ["Problem", "Assigning branding to an SDK took four steps, one of them hidden, so screens were missed before publish. Shared components had to be rebuilt on every screen that used them."],
+                        ["My decision", "Cut branding to two steps and flag missed screens before publish. Propose static components, built once per SDK, and make the case again after QA hit the same problem."],
+                        ["Final design", "A two-step branding flow with a pre-publish check, and static components that every screen reuses."],
+                        ["Result", "The BA's missed-screen reports stopped. A header change is one edit instead of one per screen. Across the platform, an SDK now takes 3–4 days instead of 2–3 weeks, with 44+ published."],
+                    ]}
                     file={props.heroMedia}
                     image={img("hero")}
                     label="SDK-12 · Overview"

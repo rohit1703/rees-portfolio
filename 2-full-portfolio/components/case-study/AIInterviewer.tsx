@@ -67,6 +67,12 @@ export default function AIInterviewerCaseStudy(props: Props) {
                         ["Team", "3 data scientists, 1 front-end, 1 back-end, 1 DevOps, me"],
                         ["Platform", "Internal web app"],
                     ]}
+                    brief={[
+                        ["Problem", "Engineers were losing hours to first-round technical interviews, and the first automated version was beaten by candidates using AI to pass it."],
+                        ["My decision", "Test understanding instead of output: candidates explain and debug AI-written code, then design a system with an AI chatbot that scores how much guidance they need."],
+                        ["Final design", "Two candidate rounds with proctoring, dashboards for TA, recruiters and leadership, and a feedback email to every candidate."],
+                        ["Result", "650+ candidates screened and 400+ engineer hours saved, as reported by TA. Rebuilt in 4 weeks; second interviews found Version 2 passers as capable as their scores."],
+                    ]}
                     image={img("heroImage")}
                     label="AI-05 · Reverse-engineering round"
                 />

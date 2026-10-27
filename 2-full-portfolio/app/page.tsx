@@ -14,7 +14,6 @@ export default function Home() {
                 linkedin="https://www.linkedin.com/in/reethika-c/"
                 behance="https://www.behance.net/reethika104"
                 resume="/Reethika_Chitithoti_Resume.pdf"
-                initials="R—C"
                 badgeText="UX Designer"
                 credit="Crafted by me, assisted by Claude"
                 preloader
