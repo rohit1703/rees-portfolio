@@ -380,8 +380,8 @@ function ProjectCard({ p, narrow, stack, live, flip }: { p: Project; narrow: boo
                             </span>
                         ))}
                     </div>
-                    <h3 style={{ fontFamily: HEADING, fontWeight: 400, fontSize: narrow ? 34 : 48, lineHeight: 1.02, letterSpacing: "0.005em", margin: "0 0 16px", color: T.ink }}>{p.title}</h3>
-                    <p style={{ fontSize: narrow ? 16 : 17, lineHeight: 1.6, color: T.body, margin: "0 0 28px", maxWidth: "34em" }}>
+                    <h3 style={{ fontFamily: HEADING, fontWeight: 400, fontSize: narrow ? 32 : 42, lineHeight: 1.02, letterSpacing: "0.005em", margin: "0 0 16px", color: T.ink }}>{p.title}</h3>
+                    <p style={{ fontSize: narrow ? 15.5 : 16, lineHeight: 1.6, color: T.body, margin: "0 0 28px", maxWidth: "34em" }}>
                         {p.body[0]}
                         {/* Highlighter band from just above the baseline to the bottom of the descenders (the original's marker look). */}
                         <span style={{ background: `linear-gradient(transparent 56%, ${T.wasabi} 56%, ${T.wasabi} 82%, transparent 82%)`, color: T.ink, fontWeight: 700, boxDecorationBreak: "clone", WebkitBoxDecorationBreak: "clone" }}>{p.body[1]}</span>
@@ -553,7 +553,8 @@ export default function HomePage(props: HomePageProps) {
     const onLinks = useInternalLinks()
     const narrow = width < 810
     const tablet = !narrow && width < 1100 // 810–1099px: tablet layout
-    const pad = narrow ? 20 : 30
+    // Side padding: 20px on phones; on wider screens it grows so the content never exceeds ~1180px.
+    const pad = narrow ? 20 : Math.max(40, Math.round((width - 1180) / 2))
 
     // ---- Fit REE [flower] THIKA to the width ----
     const reeRef = useRef<HTMLSpanElement>(null)
@@ -720,7 +721,7 @@ export default function HomePage(props: HomePageProps) {
     const sdk = pick(props.sdkImage, DEFAULTS.sdk)
     const pet = pick(props.petImage, DEFAULTS.pet)
 
-    const label: React.CSSProperties = { fontSize: narrow ? 12.5 : 15, fontWeight: 600, letterSpacing: "0.01em", textTransform: "uppercase", lineHeight: 1.4, color: T.ink }
+    const label: React.CSSProperties = { fontSize: narrow ? 12.5 : 14, fontWeight: 600, letterSpacing: "0.01em", textTransform: "uppercase", lineHeight: 1.4, color: T.ink }
     const leftLines = ["Product Designer"]
     const leftLines2 = ["Open to product design roles", "Bangalore / Remote"]
 
@@ -754,12 +755,12 @@ export default function HomePage(props: HomePageProps) {
         },
     ]
 
-    const sectionTitle = (t: string): React.ReactNode => <h2 style={{ fontFamily: HEADING, fontWeight: 400, fontSize: narrow ? 48 : tablet ? 60 : 72, lineHeight: 0.95, textTransform: "uppercase", letterSpacing: "0.005em", color: T.ink, margin: "0 0 32px" }}>{t}</h2>
+    const sectionTitle = (t: string): React.ReactNode => <h2 style={{ fontFamily: HEADING, fontWeight: 400, fontSize: narrow ? 44 : tablet ? 54 : 64, lineHeight: 0.95, textTransform: "uppercase", letterSpacing: "0.005em", color: T.ink, margin: "0 0 32px" }}>{t}</h2>
     const smallLabel: React.CSSProperties = { fontSize: 13, letterSpacing: "0.12em", textTransform: "uppercase", color: T.muted, fontWeight: 700, marginBottom: 14 }
     const bullet = (items: React.ReactNode[]) => (
         <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 10 }}>
             {items.map((it, i) => (
-                <li key={i} style={{ display: "flex", gap: 12, fontSize: 17, lineHeight: 1.55, color: T.body }}>
+                <li key={i} style={{ display: "flex", gap: 12, fontSize: 16, lineHeight: 1.55, color: T.body }}>
                     <span aria-hidden="true" style={{ width: 6, height: 6, borderRadius: 999, background: T.accent, marginTop: 10, flex: "none" }} />
                     <span>{it}</span>
                 </li>
@@ -928,7 +929,7 @@ export default function HomePage(props: HomePageProps) {
                     ))}
                     <div style={{ height: narrow ? 16 : 22 }} />
                     {valueLine && (
-                        <DropLine live={motionOn} delay={at(3.35)} style={{ fontSize: narrow ? 27 : "clamp(32px, 3.3vw, 48px)", lineHeight: 1.14, fontWeight: 500, letterSpacing: "-0.01em", color: T.ink, textWrap: "balance" } as React.CSSProperties}>
+                        <DropLine live={motionOn} delay={at(3.35)} style={{ fontSize: narrow ? 26 : "clamp(28px, 2.9vw, 42px)", lineHeight: 1.14, fontWeight: 500, letterSpacing: "-0.01em", color: T.ink, textWrap: "balance" } as React.CSSProperties}>
                             {valueLine}
                         </DropLine>
                     )}
@@ -965,7 +966,7 @@ export default function HomePage(props: HomePageProps) {
                             onMouseLeave={() => setCtaHover(false)}
                             onFocus={() => setCtaHover(true)}
                             onBlur={() => setCtaHover(false)}
-                            style={{ display: "inline-flex", alignItems: "center", gap: 12, background: T.ink, color: T.paper, borderRadius: 999, padding: narrow ? "13px 20px 13px 22px" : "15px 22px 15px 26px", fontSize: narrow ? 13.5 : 15, fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", textDecoration: "none" }}
+                            style={{ display: "inline-flex", alignItems: "center", gap: 12, background: T.ink, color: T.paper, borderRadius: 999, padding: narrow ? "13px 20px 13px 22px" : "15px 22px 15px 26px", fontSize: narrow ? 13 : 14, fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", textDecoration: "none" }}
                         >
                             Selected work
                             <motion.span aria-hidden="true" initial={false} animate={{ y: ctaHover ? 4 : 0 }} transition={{ duration: 0.25 }} style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: 26, height: 26, borderRadius: 99, background: T.wasabi, color: T.ink, fontSize: 15, lineHeight: 1 }}>
@@ -981,17 +982,17 @@ export default function HomePage(props: HomePageProps) {
                 <Curve color={T.ink} side="top" live={motionOn} size={curveSize} />
 
                 {/* About */}
-                <section id="about" data-nav="dark" style={{ background: T.ink, color: T.paper, padding: narrow ? "56px 20px 80px" : tablet ? "110px 30px 120px" : "150px 30px 150px" }}>
+                <section id="about" data-nav="dark" style={{ background: T.ink, color: T.paper, padding: narrow ? `56px ${pad}px 80px` : tablet ? `110px ${pad}px 120px` : `150px ${pad}px 150px` }}>
                     <div style={{ maxWidth: 1400, margin: "0 auto", display: "grid", gridTemplateColumns: narrow ? "minmax(0,1fr)" : "minmax(0,1fr) minmax(0,1fr)", gap: narrow ? 56 : tablet ? 56 : 100, alignItems: "center" }}>
                         <div style={{ maxWidth: 400, justifySelf: narrow ? "start" : "center", order: narrow ? 2 : 1 }}>
-                            <Words as="h2" live={motionOn} text="Helloo! I am Reethika" style={{ fontFamily: HEADING, fontWeight: 400, fontSize: narrow ? 30 : 34, lineHeight: 1.05, textTransform: "uppercase", color: T.wasabi, margin: "0 0 26px" }} />
+                            <Words as="h2" live={motionOn} text="Helloo! I am Reethika" style={{ fontFamily: HEADING, fontWeight: 400, fontSize: narrow ? 28 : 31, lineHeight: 1.05, textTransform: "uppercase", color: T.wasabi, margin: "0 0 26px" }} />
                             {[
                                 "I studied electronics engineering before I studied design, so a room full of developers feels familiar. It's probably why I keep ending up on technical products: an AI screening tool, a no-code SDK builder.",
                                 "I'd rather find out why people get stuck than guess. Sometimes that's interviews, sometimes it's funnel data, sometimes it's sitting with QA while they break things.",
                                 "I've been the only designer on a team and one of several. Now I'm looking for a product team where I can take a problem from research to release.",
                                 "Outside work it's puzzles and crosswords. Same habit, really: read the clues, try a guess, don't ink it in until it fits.",
                             ].map((t, i) => (
-                                <Words key={i} live={motionOn} text={t} delay={0.05} style={{ fontSize: narrow ? 16 : 17.5, fontWeight: 500, lineHeight: 1.55, color: T.onDark, margin: "0 0 18px" }} />
+                                <Words key={i} live={motionOn} text={t} delay={0.05} style={{ fontSize: narrow ? 15.5 : 16.5, fontWeight: 500, lineHeight: 1.55, color: T.onDark, margin: "0 0 18px" }} />
                             ))}
                         </div>
                         <div style={{ position: "relative", order: narrow ? 1 : 2, marginRight: narrow ? 0 : "clamp(40px, 6vw, 100px)" }}>
@@ -1005,12 +1006,12 @@ export default function HomePage(props: HomePageProps) {
                 <Curve color={T.ink} bg={T.paper} side="bottom" live={motionOn} size={curveSize} />
 
                 {/* Work */}
-                <section id="work" data-nav="light" style={{ background: T.paper, padding: narrow ? "110px 20px 0" : "220px 30px 0" }}>
+                <section id="work" data-nav="light" style={{ background: T.paper, padding: narrow ? `110px ${pad}px 0` : `220px ${pad}px 0` }}>
                     <div style={{ display: "flex", justifyContent: "center", marginBottom: narrow ? 40 : 80 }}>
                         <div style={{ position: "relative" }}>
                             {/* Sized from the component's own width (not vw), so it never runs off a phone frame. */}
-                            <Words as="h2" live={motionOn} text="Work" style={{ fontFamily: HEADING, fontWeight: 400, fontSize: narrow ? Math.round(width * 0.2) : Math.min(Math.round(width * 0.15), 230), lineHeight: 0.95, textTransform: "uppercase", color: T.ink, margin: 0 }} />
-                            <span style={{ position: "absolute", left: "100%", top: 0, marginLeft: narrow ? 4 : 10, marginTop: narrow ? 2 : 8, fontFamily: HEADING, fontSize: narrow ? 16 : 32, color: T.accentText }}>(03)</span>
+                            <Words as="h2" live={motionOn} text="Work" style={{ fontFamily: HEADING, fontWeight: 400, fontSize: narrow ? Math.round(width * 0.2) : Math.min(Math.round(width * 0.13), 190), lineHeight: 0.95, textTransform: "uppercase", color: T.ink, margin: 0 }} />
+                            <span style={{ position: "absolute", left: "100%", top: 0, marginLeft: narrow ? 4 : 10, marginTop: narrow ? 2 : 8, fontFamily: HEADING, fontSize: narrow ? 16 : 28, color: T.accentText }}>(03)</span>
                         </div>
                     </div>
                     <div style={{ maxWidth: 1380, margin: "0 auto", display: "flex", flexDirection: "column", gap: narrow ? 20 : 28 }}>
@@ -1021,7 +1022,7 @@ export default function HomePage(props: HomePageProps) {
                 </section>
 
                 {/* Skills */}
-                <section data-nav="light" style={{ background: T.paper, padding: narrow ? "96px 20px 0" : "160px 30px 0" }}>
+                <section data-nav="light" style={{ background: T.paper, padding: narrow ? `96px ${pad}px 0` : `160px ${pad}px 0` }}>
                     <div style={{ maxWidth: 1380, margin: "0 auto", borderTop: `1px solid ${T.line}`, paddingTop: narrow ? 56 : 96 }}>
                         <Rise live={motionOn}>
                             {sectionTitle("Skills")}
@@ -1030,7 +1031,7 @@ export default function HomePage(props: HomePageProps) {
                                     <div style={smallLabel}>Tools</div>
                                     <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
                                         {["Figma", "Miro", "Notion", "Claude Design", "Illustrator"].map((s) => (
-                                            <span key={s} style={{ fontSize: 15, color: T.ink, background: "#fff", border: `1px solid ${T.line}`, borderRadius: 999, padding: "6px 14px" }}>
+                                            <span key={s} style={{ fontSize: 14, color: T.ink, background: "#fff", border: `1px solid ${T.line}`, borderRadius: 999, padding: "6px 14px" }}>
                                                 {s}
                                             </span>
                                         ))}
@@ -1050,14 +1051,14 @@ export default function HomePage(props: HomePageProps) {
                 </section>
 
                 {/* Experience + Education: side by side from 1000px, stacked below */}
-                <section data-nav="light" style={{ background: T.paper, padding: narrow ? "64px 20px 0" : "110px 30px 0" }}>
+                <section data-nav="light" style={{ background: T.paper, padding: narrow ? `64px ${pad}px 0` : `110px ${pad}px 0` }}>
                     <div style={{ maxWidth: 1380, margin: "0 auto", borderTop: `1px solid ${T.line}`, paddingTop: narrow ? 56 : 96, display: "grid", gridTemplateColumns: width < 1000 ? "minmax(0,1fr)" : "minmax(0,1.15fr) minmax(0,0.85fr)", gap: width < 1000 ? 56 : 80 }}>
                         <Rise live={motionOn}>
                             {sectionTitle("Experience")}
                             {/* Same titles and dates as the resume */}
                             <div style={{ fontSize: 14, color: T.muted, marginBottom: 6 }}>Jan 2025 – Present · Hyderabad, India</div>
-                            <div style={{ fontFamily: HEADING, fontSize: 32, lineHeight: 1.1, color: T.ink }}>Grid Dynamics</div>
-                            <div style={{ fontSize: 16, color: T.body, margin: "6px 0 20px" }}>UX Designer</div>
+                            <div style={{ fontFamily: HEADING, fontSize: 28, lineHeight: 1.1, color: T.ink }}>Grid Dynamics</div>
+                            <div style={{ fontSize: 15, color: T.body, margin: "6px 0 20px" }}>UX Designer</div>
                             {bullet([
                                 <>
                                     <B>AI Interviewer:</B> sole designer on an internal AI screening tool, from research to MVP in six weeks.
@@ -1071,8 +1072,8 @@ export default function HomePage(props: HomePageProps) {
                             ])}
                             <div style={{ borderTop: `1px solid ${T.line}`, margin: "36px 0 28px" }} />
                             <div style={{ fontSize: 14, color: T.muted, marginBottom: 6 }}>Sep 2022 – May 2023 · Hyderabad, India</div>
-                            <div style={{ fontFamily: HEADING, fontSize: 32, lineHeight: 1.1, color: T.ink }}>Cognizant</div>
-                            <div style={{ fontSize: 16, color: T.body, margin: "6px 0 20px" }}>Software Tester</div>
+                            <div style={{ fontFamily: HEADING, fontSize: 28, lineHeight: 1.1, color: T.ink }}>Cognizant</div>
+                            <div style={{ fontSize: 15, color: T.body, margin: "6px 0 20px" }}>Software Tester</div>
                             {bullet([
                                 "Functional and regression testing; logged UI bugs, broken flows and accessibility defects.",
                                 "Wrote UI automation scripts in Visual Studio.",
@@ -1087,8 +1088,8 @@ export default function HomePage(props: HomePageProps) {
                                 ].map(([y, d, s]) => (
                                     <div key={d} style={{ background: "#fff", border: `1px solid ${T.line}`, borderRadius: 14, padding: narrow ? 20 : 26 }}>
                                         <div style={{ fontSize: 14, color: T.muted, marginBottom: 8 }}>{y}</div>
-                                        <div style={{ fontFamily: HEADING, fontSize: 24, lineHeight: 1.15, color: T.ink, marginBottom: 6 }}>{d}</div>
-                                        <div style={{ fontSize: 16, lineHeight: 1.5, color: T.body }}>{s}</div>
+                                        <div style={{ fontFamily: HEADING, fontSize: 22, lineHeight: 1.15, color: T.ink, marginBottom: 6 }}>{d}</div>
+                                        <div style={{ fontSize: 15, lineHeight: 1.5, color: T.body }}>{s}</div>
                                     </div>
                                 ))}
                             </div>
@@ -1106,7 +1107,7 @@ export default function HomePage(props: HomePageProps) {
                 </section>
 
                 {/* Crossword, just above the footer */}
-                <section data-nav="light" style={{ background: T.paper, padding: narrow ? "88px 20px 72px" : "150px 30px 140px" }}>
+                <section data-nav="light" style={{ background: T.paper, padding: narrow ? `88px ${pad}px 72px` : `150px ${pad}px 140px` }}>
                     <Rise live={motionOn} style={{ maxWidth: 750, margin: "0 auto" }}>
                         <Crossword />
                     </Rise>
@@ -1114,7 +1115,7 @@ export default function HomePage(props: HomePageProps) {
 
                 {/* Footer */}
                 <Curve color={T.ink} bg={T.paper} side="top" live={motionOn} size={curveSize} />
-                <Footer id="contact" email={email} linkedin={linkedin} behance={behance} credit={credit} narrow={narrow} live={motionOn} onTop={() => go("top")} />
+                <Footer id="contact" email={email} linkedin={linkedin} behance={behance} credit={credit} narrow={narrow} pad={pad} live={motionOn} onTop={() => go("top")} />
             </div>
         </div>
     )
@@ -1146,7 +1147,7 @@ function AboutImage({ image, live, narrow, zoom = 1, focusY = 30 }: { image: Img
 const footLink: React.CSSProperties = { color: T.paper, textDecoration: "underline", textDecorationColor: T.accent, textUnderlineOffset: 5, textDecorationThickness: 2 }
 
 /** Footer: "Let's talk" stacked in blurred, clipped layers that close up as the footer scrolls in (template footer). */
-function Footer({ id, email, linkedin, behance, credit, narrow, live, onTop }: { id: string; email: string; linkedin: string; behance: string; credit: string; narrow: boolean; live: boolean; onTop: () => void }) {
+function Footer({ id, email, linkedin, behance, credit, narrow, pad, live, onTop }: { id: string; email: string; linkedin: string; behance: string; credit: string; narrow: boolean; pad: number; live: boolean; onTop: () => void }) {
     const ref = useRef<HTMLElement>(null)
     const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end end"] })
     const spread = useTransform(scrollYProgress, [0, 1], [1, 0])
@@ -1177,7 +1178,7 @@ function Footer({ id, email, linkedin, behance, credit, narrow, live, onTop }: {
         }
     }, [narrow])
     return (
-        <footer ref={ref} id={id} data-nav="dark" style={{ background: T.ink, color: T.paper, padding: narrow ? "40px 20px 28px" : "40px 30px 36px", overflow: "hidden" }}>
+        <footer ref={ref} id={id} data-nav="dark" style={{ background: T.ink, color: T.paper, padding: narrow ? `40px ${pad}px 28px` : `40px ${pad}px 36px`, overflow: "hidden" }}>
             <a href={`mailto:${email}`} aria-label={`Let's talk: email ${email}`} style={{ display: "block", textDecoration: "none", color: T.paper, position: "relative", fontSize: fsz }}>
                 <span ref={measure} aria-hidden="true" style={{ position: "absolute", visibility: "hidden", whiteSpace: "nowrap", fontFamily: HEADING, textTransform: "uppercase", letterSpacing: "-0.005em" }}>
                     Let's talk
@@ -1191,11 +1192,11 @@ function Footer({ id, email, linkedin, behance, credit, narrow, live, onTop }: {
                     <path d="M6 6c4 14 14 22 28 24" stroke={T.wasabi} strokeWidth="1.6" strokeLinecap="round" />
                     <path d="M28 24l6 6-7 4" stroke={T.wasabi} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-                <span style={{ fontFamily: SCRIPT, fontSize: narrow ? 26 : 32, lineHeight: 1 }}>(send a mail)</span>
+                <span style={{ fontFamily: SCRIPT, fontSize: narrow ? 26 : 28, lineHeight: 1 }}>(send a mail)</span>
             </div>
             <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: 16, fontSize: 14, letterSpacing: "0.06em", textTransform: "uppercase", color: T.onDarkMuted }}>
                 <span>© {new Date().getFullYear()} Reethika Chitithoti</span>
-                <span style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "10px 28px", textTransform: "none", letterSpacing: 0, fontSize: 16 }}>
+                <span style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "10px 28px", textTransform: "none", letterSpacing: 0, fontSize: 15 }}>
                     <a href={`mailto:${email}`} style={footLink}>
                         {email}
                     </a>
