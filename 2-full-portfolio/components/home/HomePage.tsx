@@ -992,7 +992,7 @@ export default function HomePage(props: HomePageProps) {
                                 "I've been the only designer on a team and one of several. Now I'm looking for a product team where I can take a problem from research to release.",
                                 "Outside work it's puzzles and crosswords. Same habit, really: read the clues, try a guess, don't ink it in until it fits.",
                             ].map((t, i) => (
-                                <Words key={i} live={motionOn} text={t} delay={0.05} style={{ fontSize: narrow ? 15.5 : 16.5, fontWeight: 500, lineHeight: 1.55, color: T.onDark, margin: "0 0 18px" }} />
+                                <Words key={i} live={motionOn} text={t} delay={0.05} style={{ fontSize: narrow ? 15.5 : 16.5, fontWeight: 400, lineHeight: 1.55, color: T.onDark, margin: "0 0 18px" }} />
                             ))}
                         </div>
                         <div style={{ position: "relative", order: narrow ? 1 : 2, marginRight: narrow ? 0 : "clamp(40px, 6vw, 100px)" }}>
