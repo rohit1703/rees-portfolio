@@ -425,7 +425,34 @@ const noOrphan = (t: string) => t.replace(/\s+(\S+)\s*$/, " $1")
 /** Width of the hero visual on desktop (it keeps a 16:10 image). */
 const VIS_W = "min(480px, 40%)"
 
-export function Hero({ m, eyebrow, tags, title, subtitle, cells, image, file, label, caption }: { m: Mode; eyebrow?: string; tags?: string[]; title: string; subtitle: string; cells: [string, string][]; image?: ImageValue; file?: string; label: string; caption?: string }) {
+/** The case study in four cells (problem, decision, final design, result), read before anything else. */
+export function Brief({ m, items }: { m: Mode; items: [string, string][] }) {
+    return (
+        <section aria-label="In short" style={{ marginTop: m.narrow ? 28 : 36 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 14 }}>
+                <span style={{ fontSize: 12.5, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: C.muted, whiteSpace: "nowrap" }}>In short</span>
+                <span aria-hidden="true" style={{ flex: 1, height: 1, background: C.line }} />
+            </div>
+            <div style={{ display: "grid", gridTemplateColumns: m.narrow ? "minmax(0,1fr)" : "repeat(4, minmax(0,1fr))", gap: m.narrow ? 12 : 16 }}>
+                {items.map(([k, v], i) => {
+                    // The result cell is the highlighted one; the rest match the fact file above.
+                    const last = i === items.length - 1
+                    return (
+                        <div key={k} style={{ background: last ? C.chip : C.paper, color: last ? C.onChip : C.ink, border: `1px solid ${last ? C.chip : C.line}`, borderRadius: 14, padding: m.narrow ? "16px 18px" : "18px 20px" }}>
+                            <div style={{ fontSize: 12.5, fontWeight: 700, letterSpacing: "0.02em", marginBottom: 8, display: "flex", alignItems: "baseline", gap: 8 }}>
+                                <span style={{ fontFamily: HEADING_FONT, fontWeight: 400, fontSize: 15, color: C.accent2 }}>{String(i + 1).padStart(2, "0")}</span>
+                                {k}
+                            </div>
+                            <div style={{ fontSize: 15, lineHeight: 1.5 }}>{v}</div>
+                        </div>
+                    )
+                })}
+            </div>
+        </section>
+    )
+}
+
+export function Hero({ m, eyebrow, tags, title, subtitle, cells, brief, image, file, label, caption }: { m: Mode; eyebrow?: string; tags?: string[]; title: string; subtitle: string; cells: [string, string][]; brief?: [string, string][]; image?: ImageValue; file?: string; label: string; caption?: string }) {
     const d = useDisplay()
     // The title area sits on a full-bleed colour block; the hero visual hangs over its bottom edge.
     // The fact file (role, timeline, team, platform) spans the full width below, clear of the visual.
@@ -481,6 +508,7 @@ export function Hero({ m, eyebrow, tags, title, subtitle, cells, image, file, la
                         </div>
                     ))}
                 </div>
+                {brief && <Brief m={m} items={brief} />}
             </div>
         </header>
     )

@@ -246,6 +246,12 @@ export default function PetHealthCaseStudy(props: Props) {
                         ["Team", "1 senior designer · 5 frontend · 2 backend · 2 QA · 1 DevOps"],
                         ["Platform", "Mobile first, also used on tablet and desktop"],
                     ]}
+                    brief={[
+                        ["Problem", "88% of people who opened the dental scan left before uploading a photo, and nobody knew why. The immunity check's 10-outcome result ran across three pages."],
+                        ["My decision", "Use funnel data to find where people drop off, then ask why with short feedback forms at those points. Rebuild the result as one readable card."],
+                        ["Final design", "Feedback forms at the drop-off points, a single-card result for the immunity check, and brand libraries so a tool can be re-skinned in minutes."],
+                        ["Result", "Drop-off reasons are now captured in the flow. The result went from 3 pages to 1. Re-skinning a tool fell from about two days to under two minutes, across 12–13 tools."],
+                    ]}
                     image={img("hero")}
                     label="PH-01 · Hero"
                     caption="Several tools across brands"

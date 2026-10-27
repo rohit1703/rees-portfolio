@@ -1,14 +1,14 @@
 "use client"
 // Reethika's home page, built on the Fox X template's layout and motion, in the portfolio design system.
-// Motion follows the template's own settings:
-//   preloader photo (scale 1.2 → 1, then shrinks and tilts into the card), REE and THIKA rise 580px on a spring
-//   (stiffness 450, damping 60) at 1.6s / 1.8s, label lines drop in from above at 2.6s, the navbar and the top blur strip
-//   arrive at 3.0s, the "(contact me)" note at 3.2s. Curved section edges flatten on scroll, intro copy rises word by word
-//   (25px + fade), the about photo sharpens out of a blur behind a colour wipe, the badge turns with the scroll, work images
-//   drift gently on a parallax and zoom slightly on hover with a round arrow button, the menu slides in from the right with a curved
-//   leading edge over a blurred page, the footer's "Let's talk" layers close up as it scrolls in, and wheel scrolling is eased.
-// Without a hero photo, a slowly turning hand-painted-style sunflower sits between REE and THIKA (no card behind it);
-// a hero photo brings back the tilted card and the preloader.
+// Intro: REE and THIKA rise on a spring (stiffness 450, damping 60) with a slowly turning hand-painted-style sunflower
+//   between them; the navbar and its blur strip drop in; then the whole name travels and shrinks into the navbar's top-left,
+//   where it stays as the site mark. The hero copy then drops in on the left: the role, the value statement, the lines
+//   about roles / location / email with the "(contact me)" note, and a "Selected work" button that jumps to the Work section.
+//   Curved section edges flatten on scroll, intro copy rises word by word (25px + fade), the about photo sharpens out of a
+//   blur behind a colour wipe, the badge turns with the scroll, work images drift gently on a parallax and zoom slightly on
+//   hover with a round arrow button, the menu slides in from the right with a curved leading edge over a blurred page, the
+//   footer's "Let's talk" layers close up as it scrolls in, and wheel scrolling is eased.
+// Reduced motion, or arriving on a #section link from a case study, skips the intro and shows the settled page.
 // Layout: desktop ≥ 1100px, tablet 810–1099px (work cards stack image-over-text), phone < 810px.
 // Each work card is one link, with an id (#ai-interviewer, #sdk-manager, #pet-health-scan) so a case study's "Back" link lands on it.
 // Work images are shown whole (no crop); the middle card puts its image on the left.
@@ -268,6 +268,35 @@ function Sunflower({ live }: { live: boolean }) {
     )
 }
 
+/** Width of the flower slot between REE and THIKA, as a share of the font size (the template card's tilted footprint). */
+const NAME_GAP = 0.669
+
+/**
+ * REE [sunflower] THIKA at a given size. The hero shows it big for the intro; the navbar shows it small as the site mark.
+ * Both are the same proportions, so the big one can scale straight down onto the small one.
+ * `rise` gives the intro delays for REE and THIKA rising from below (template: 580px at 260px type).
+ */
+function NameMark({ fs, live, rootRef, reeRef, thikaRef, rise }: { fs: number; live: boolean; rootRef?: React.Ref<HTMLSpanElement>; reeRef?: React.Ref<HTMLSpanElement>; thikaRef?: React.Ref<HTMLSpanElement>; rise?: [number, number] }) {
+    const cardH = fs * 0.76
+    const cardW = cardH * 0.866
+    const part = (text: string, ref: React.Ref<HTMLSpanElement> | undefined, delay?: number) => (
+        <motion.span ref={ref} initial={live && delay !== undefined ? { y: fs * 2.2 } : false} animate={{ y: 0 }} transition={{ ...SPRING, delay: delay ?? 0 }} style={{ position: "relative", zIndex: 1, display: "block" }}>
+            {text}
+        </motion.span>
+    )
+    return (
+        <span ref={rootRef} aria-hidden="true" style={{ display: "flex", alignItems: "center", fontFamily: HEADING, fontWeight: 400, fontSize: fs, lineHeight: 0.8, letterSpacing: 0, textTransform: "uppercase", whiteSpace: "nowrap", color: "inherit" }}>
+            {part("Ree", reeRef, rise?.[0])}
+            <span style={{ position: "relative", flex: "none", width: fs * NAME_GAP, alignSelf: "stretch" }}>
+                <span style={{ position: "absolute", left: "50%", top: "50%", width: cardW, height: cardH, marginLeft: -cardW / 2, marginTop: -cardH / 2, zIndex: 2, display: "block", transform: "rotate(8deg)" }}>
+                    <Sunflower live={live} />
+                </span>
+            </span>
+            {part("Thika", thikaRef, rise?.[1])}
+        </span>
+    )
+}
+
 /** Image with an empty-state placeholder (also shown if the image fails to load). */
 function Photo({ image, label, fit = "cover", style, dark, sizes = "(max-width: 810px) 100vw, 50vw", eager }: { image: Img; label: string; fit?: "cover" | "contain"; style?: React.CSSProperties; dark?: boolean; sizes?: string; eager?: boolean }) {
     const [failed, setFailed] = useState(false)
@@ -483,10 +512,10 @@ type HomePageProps = {
     linkedin?: string
     resume?: string
     behance?: string
-    initials?: string
     badgeText?: string
     credit?: string
     valueLine?: string
+    /** Kept for older callers; the intro no longer has a photo preloader. */
     preloader?: boolean
     smoothScroll?: boolean
     style?: React.CSSProperties
@@ -502,13 +531,11 @@ export default function HomePage(props: HomePageProps) {
         linkedin = "https://www.linkedin.com/in/reethika-c/",
         resume = "",
         behance = "https://www.behance.net/reethika104",
-        initials = "R—C",
         badgeText = "UX Designer",
         credit = "Crafted by me, assisted by Claude",
         valueLine = VALUE_DEFAULT,
         aboutZoom = 1.4,
         aboutFocus = 25,
-        preloader = true,
         smoothScroll = true,
         style,
     } = props
@@ -528,16 +555,10 @@ export default function HomePage(props: HomePageProps) {
     const tablet = !narrow && width < 1100 // 810–1099px: tablet layout
     const pad = narrow ? 20 : 30
 
-    // ---- Fit REE [flower or card] THIKA to the width (template proportions: card ≈ the letters' height, tilted 8°) ----
+    // ---- Fit REE [flower] THIKA to the width ----
     const reeRef = useRef<HTMLSpanElement>(null)
     const thikaRef = useRef<HTMLSpanElement>(null)
     const [fs, setFs] = useState(260)
-    const cardH = fs * 0.76
-    const cardW = cardH * 0.866
-    const tiltW = cardW * Math.cos(Math.PI / 22.5) + cardH * Math.sin(Math.PI / 22.5) // card width once tilted 8°
-    // Space between REE and THIKA: with a photo, the tilted card plus a small margin each side;
-    // with the sunflower (no card behind it), just the flower's width plus a small margin.
-    const GAP = props.heroImage?.src ? (tiltW + fs * 0.07) / fs : (cardW * 0.94 + fs * 0.05) / fs
     useIso(() => {
         const fit = () => {
             const a = reeRef.current
@@ -546,64 +567,67 @@ export default function HomePage(props: HomePageProps) {
             const base = parseFloat(getComputedStyle(a).fontSize) || 100
             const ratio = (a.offsetWidth + b.offsetWidth) / base
             const avail = width - pad * 2
-            if (ratio > 0 && avail > 0) setFs(Math.max(48, Math.floor((avail / (ratio + GAP)) * 0.99)))
+            if (ratio > 0 && avail > 0) setFs(Math.max(48, Math.floor((avail / (ratio + NAME_GAP)) * 0.99)))
         }
         fit()
         if (typeof document !== "undefined" && (document as any).fonts?.ready) (document as any).fonts.ready.then(fit)
-    }, [width, pad, GAP])
+    }, [width, pad])
 
-    // ---- Intro timeline (template timings). Without a photo the preloader is skipped and everything starts 1.2s sooner. ----
-    const runPre = motionOn && preloader && !!props.heroImage?.src
-    const off = runPre ? 0 : 1.2
-    const at = (s: number) => Math.max(0, s - off)
+    // ---- Intro timeline: the template's timings, less the 1.2s its photo preloader took (there is no photo here) ----
+    const at = (s: number) => Math.max(0, s - 1.2)
+    const navFs = narrow ? 20 : 24
 
-    // ---- Preloader: full-screen photo zooms out, then shrinks and tilts into the card slot ----
-    const slotRef = useRef<HTMLDivElement>(null)
-    const controls = useAnimation()
-    const [preDone, setPreDone] = useState(!runPre)
+    // ---- The big name rises, then travels and shrinks onto the navbar mark, which takes over once it lands ----
+    const bigRef = useRef<HTMLDivElement>(null) // the moving layer
+    const nameRef = useRef<HTMLSpanElement>(null) // the name inside it (what gets measured)
+    const markRef = useRef<HTMLHeadingElement>(null) // the navbar mark it lands on
+    const brand = useAnimation()
+    const [fixedRect, setFixedRect] = useState<{ top: number; left: number; width: number; height: number } | null>(null)
+    const [brandDone, setBrandDone] = useState(false)
     useEffect(() => {
-        // Arriving from a case study's "Back to portfolio" (a #section link) skips the preloader and lands on that card.
+        // Arriving from a case study's "Back to portfolio" (a #section link) skips the intro and lands on that card.
         let want = typeof window !== "undefined" ? decodeURIComponent(window.location.hash.slice(1)) : ""
         try {
             want = want || sessionStorage.getItem(SCROLL_KEY) || ""
             sessionStorage.removeItem(SCROLL_KEY)
         } catch {}
         const target = want ? document.getElementById(want) : null
-        if (!runPre || target) {
-            setPreDone(true)
+        if (!motionOn || target) {
+            setBrandDone(true)
             if (target) [120, 600].forEach((ms) => setTimeout(() => target.scrollIntoView({ block: "start" }), ms))
             return
         }
         let cancelled = false
-        const html = document.documentElement
-        html.style.overflow = "hidden"
-        window.scrollTo(0, 0)
-        const run = async () => {
-            controls.set({ top: 0, left: 0, width: window.innerWidth, height: window.innerHeight, scale: 1.2, rotate: 0, borderRadius: 0, opacity: 1 })
-            await controls.start({ scale: 1, transition: { duration: 0.9, ease: IN_OUT } })
-            const r = slotRef.current?.getBoundingClientRect()
-            if (r && !cancelled) await controls.start({ top: r.top, left: r.left, width: r.width, height: r.height, rotate: 8, borderRadius: 12, transition: { duration: 0.8, ease: IN_OUT } })
-            if (!cancelled) {
-                setPreDone(true)
-                html.style.overflow = ""
-            }
-        }
-        run()
+        const t = setTimeout(() => {
+            const from = nameRef.current?.getBoundingClientRect()
+            const to = markRef.current?.getBoundingClientRect()
+            if (!from || !to || !from.height) return setBrandDone(true)
+            // Pin the layer where the name is now, then slide and scale it (from its top-left corner) onto the mark.
+            setFixedRect({ top: from.top, left: from.left, width: from.width, height: from.height })
+            requestAnimationFrame(() => {
+                if (cancelled) return
+                brand.start({ x: to.left - from.left, y: to.top - from.top, scale: to.height / from.height, transition: { duration: 0.9, ease: IN_OUT } }).then(() => {
+                    if (!cancelled) setBrandDone(true)
+                })
+            })
+        }, at(3.0) * 1000)
         return () => {
             cancelled = true
-            html.style.overflow = ""
+            clearTimeout(t)
         }
-    }, [runPre])
+    }, [motionOn])
+
+    const [ctaHover, setCtaHover] = useState(false)
 
     // ---- Menu ----
     const [open, setOpen] = useState(false)
     useEffect(() => {
         if (typeof document === "undefined" || !live) return
-        document.documentElement.style.overflow = open || !preDone ? "hidden" : ""
+        document.documentElement.style.overflow = open ? "hidden" : ""
         const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false)
         window.addEventListener("keydown", onKey)
         return () => window.removeEventListener("keydown", onKey)
-    }, [open, preDone, live])
+    }, [open, live])
     const go = (id: string) => {
         setOpen(false)
         const el = typeof document !== "undefined" ? document.getElementById(id) : null
@@ -755,10 +779,19 @@ export default function HomePage(props: HomePageProps) {
     return (
         <div ref={rootRef} id="top" onClick={onLinks} style={{ ...style, position: "relative", width: "100%", overflowX: "clip", background: T.paper, color: T.ink, fontFamily: BODY, WebkitFontSmoothing: "antialiased" }}>
 
-            {/* Preloader photo */}
-            {runPre && !preDone && (
-                <motion.div animate={controls} initial={{ opacity: 0 }} style={{ position: "fixed", zIndex: 200, overflow: "hidden", transformOrigin: "50% 50%", background: T.soft }}>
-                    <Photo image={props.heroImage} label="Your photo" />
+            {/* The big name: rises into the middle of the hero, then travels into the navbar (see the brand effect above). */}
+            {!brandDone && (
+                <motion.div
+                    ref={bigRef}
+                    animate={brand}
+                    aria-hidden="true"
+                    style={
+                        fixedRect
+                            ? { position: "fixed", ...fixedRect, zIndex: 130, transformOrigin: "0 0", pointerEvents: "none" }
+                            : { position: "absolute", left: pad, width: `calc(100% - ${pad * 2}px)`, top: narrow ? "44svh" : "50svh", marginTop: -fs * 0.46, padding: `${fs * 0.06}px 0`, overflow: "hidden", zIndex: 130, pointerEvents: "none" }
+                    }
+                >
+                    <NameMark fs={fs} live={motionOn} rootRef={nameRef} reeRef={reeRef} thikaRef={thikaRef} rise={[at(1.6), at(1.8)]} />
                 </motion.div>
             )}
 
@@ -767,7 +800,7 @@ export default function HomePage(props: HomePageProps) {
                 aria-hidden="true"
                 initial={motionOn ? { opacity: 0 } : false}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0, delay: at(3) }}
+                transition={{ duration: 0, delay: at(2) }}
                 style={{ position: "fixed", top: 0, left: 0, right: 0, height: narrow ? 80 : 110, zIndex: 115, pointerEvents: "none", backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)", WebkitMaskImage: "linear-gradient(#000 0%, #000 30%, rgba(0,0,0,0) 100%)", maskImage: "linear-gradient(#000 0%, #000 30%, rgba(0,0,0,0) 100%)" }}
             />
 
@@ -775,9 +808,10 @@ export default function HomePage(props: HomePageProps) {
             <motion.header
                 initial={motionOn ? { y: -100 } : false}
                 animate={{ y: 0 }}
-                transition={{ ...SPRING, delay: at(3) }}
+                transition={{ ...SPRING, delay: at(2) }}
                 style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 120, display: "flex", alignItems: "center", justifyContent: "space-between", padding: narrow ? "18px 20px" : "20px 30px", pointerEvents: "none" }}
             >
+                {/* Site mark: the name and flower, shown once the big name has landed on it */}
                 <motion.a
                     href="#top"
                     onClick={(e) => {
@@ -785,12 +819,13 @@ export default function HomePage(props: HomePageProps) {
                         go("top")
                     }}
                     initial={false}
-                    animate={{ color: logoColor }}
-                    transition={{ duration: 0.4 }}
-                    style={{ pointerEvents: "auto", fontFamily: HEADING, fontSize: narrow ? 20 : 22.4, letterSpacing: "0.04em", textDecoration: "none", lineHeight: "25px" }}
+                    animate={{ color: logoColor, opacity: brandDone ? 1 : 0 }}
+                    transition={{ color: { duration: 0.4 }, opacity: { duration: 0 } }}
+                    style={{ pointerEvents: brandDone ? "auto" : "none", display: "block", textDecoration: "none" }}
                 >
-                    {initials}
-                    <sup style={{ fontSize: "0.5em", marginLeft: 2 }}>®</sup>
+                    <h1 ref={markRef} aria-label="Reethika" style={{ margin: 0, fontWeight: 400, lineHeight: 0.8 }}>
+                        <NameMark fs={navFs} live={motionOn} />
+                    </h1>
                 </motion.a>
                 <div style={{ display: "flex", alignItems: "center", gap: narrow ? 22 : 36 }}>
                     {/* Resume: downloads the PDF set in the "Resume (PDF)" control */}
@@ -883,54 +918,60 @@ export default function HomePage(props: HomePageProps) {
             </AnimatePresence>
 
             {/* ---------------- Hero ---------------- */}
-            <section data-nav="light" style={{ position: "relative", zIndex: 0, height: narrow ? "88svh" : "100svh", minHeight: narrow ? 560 : 640, display: "flex", flexDirection: "column", justifyContent: "center", padding: `${narrow ? 80 : 96}px ${pad}px ${narrow ? 32 : 48}px`, boxSizing: "border-box", overflow: "hidden" }}>
-                <h1 aria-label="Reethika" style={{ margin: 0, display: "flex", alignItems: "center", justifyContent: "space-between", fontFamily: HEADING, fontWeight: 400, fontSize: fs, lineHeight: 0.8, letterSpacing: "0", textTransform: "uppercase", color: T.ink, whiteSpace: "nowrap", position: "relative" }}>
-                    <motion.span ref={reeRef} aria-hidden="true" initial={motionOn ? { y: 580 } : false} animate={{ y: 0 }} transition={{ ...SPRING, delay: at(1.6) }} style={{ position: "relative", zIndex: 1, display: "block" }}>
-                        Ree
-                    </motion.span>
-                    <span aria-hidden="true" style={{ position: "relative", flex: "none", width: fs * GAP, alignSelf: "stretch" }}>
-                        <div ref={slotRef} style={{ position: "absolute", left: "50%", top: "50%", width: cardW, height: cardH, marginLeft: -cardW / 2, marginTop: -cardH / 2, zIndex: 2 }}>
-                            <div style={{ position: "relative", width: "100%", height: "100%", transform: "rotate(8deg)", borderRadius: 12, overflow: props.heroImage?.src ? "hidden" : "visible", opacity: preDone ? 1 : 0 }}>
-                                {props.heroImage?.src ? <Photo image={props.heroImage} label="Your photo" /> : <Sunflower live={motionOn} />}
-                            </div>
-                        </div>
-                    </span>
-                    <motion.span ref={thikaRef} aria-hidden="true" initial={motionOn ? { y: 580 } : false} animate={{ y: 0 }} transition={{ ...SPRING, delay: at(1.8) }} style={{ position: "relative", zIndex: 1, display: "block" }}>
-                        Thika
-                    </motion.span>
-                </h1>
-
-                <div style={{ display: "flex", flexDirection: narrow ? "column" : "row", justifyContent: "space-between", alignItems: "flex-start", gap: narrow ? 20 : 24, marginTop: narrow ? 28 : "clamp(28px, 4.5vh, 44px)" }}>
-                    <div style={{ position: "relative" }}>
-                        {leftLines.map((t) => (
-                            <DropLine key={t} live={motionOn} delay={at(2.6)} style={label}>
-                                {t}
-                            </DropLine>
-                        ))}
-                        <div style={{ height: narrow ? 14 : 20 }} />
+            <section data-nav="light" style={{ position: "relative", zIndex: 0, height: narrow ? "88svh" : "100svh", minHeight: narrow ? 560 : 640, display: "flex", flexDirection: "column", justifyContent: "center", padding: `${narrow ? 96 : 120}px ${pad}px ${narrow ? 40 : 56}px`, boxSizing: "border-box" }}>
+                {/* Hero copy, dropping in on the left once the name has moved up into the navbar */}
+                <div style={{ maxWidth: narrow ? "none" : 780 }}>
+                    {leftLines.map((t) => (
+                        <DropLine key={t} live={motionOn} delay={at(3.3)} style={label}>
+                            {t}
+                        </DropLine>
+                    ))}
+                    <div style={{ height: narrow ? 16 : 22 }} />
+                    {valueLine && (
+                        <DropLine live={motionOn} delay={at(3.35)} style={{ fontSize: narrow ? 27 : "clamp(32px, 3.3vw, 48px)", lineHeight: 1.14, fontWeight: 500, letterSpacing: "-0.01em", color: T.ink, textWrap: "balance" } as React.CSSProperties}>
+                            {valueLine}
+                        </DropLine>
+                    )}
+                    <div style={{ height: narrow ? 24 : 32 }} />
+                    <div style={{ position: "relative", width: "max-content", maxWidth: "100%" }}>
                         {leftLines2.map((t) => (
-                            <DropLine key={t} live={motionOn} delay={at(2.6)} style={label}>
+                            <DropLine key={t} live={motionOn} delay={at(3.45)} style={label}>
                                 {t}
                             </DropLine>
                         ))}
-                        <DropLine live={motionOn} delay={at(2.6)} style={label}>
+                        <DropLine live={motionOn} delay={at(3.45)} style={label}>
                             <a href={`mailto:${email}`} style={{ color: T.ink, textDecoration: "underline", textDecorationColor: T.accent, textUnderlineOffset: 4, textDecorationThickness: 2, textTransform: "none", fontSize: narrow ? 13 : 15 }}>
                                 {email}
                             </a>
                         </DropLine>
                         {!narrow && (
-                            <motion.div initial={motionOn ? { opacity: 0 } : false} animate={{ opacity: 1 }} transition={{ ...SPRING, delay: at(3.2) }} style={{ position: "absolute", left: "calc(100% + 14px)", bottom: 4, display: "flex", alignItems: "center", gap: 8, color: T.accentText, whiteSpace: "nowrap" }}>
+                            <motion.div initial={motionOn ? { opacity: 0 } : false} animate={{ opacity: 1 }} transition={{ ...SPRING, delay: at(3.9) }} style={{ position: "absolute", left: "calc(100% + 14px)", bottom: 4, display: "flex", alignItems: "center", gap: 8, color: T.accentText, whiteSpace: "nowrap" }}>
                                 <PointLeft color={T.accentText} />
                                 <span style={{ fontFamily: SCRIPT, fontSize: 24, lineHeight: 1, marginTop: -14 }}>(contact me)</span>
                             </motion.div>
                         )}
                     </div>
-                    {/* Value statement (editable in the panel) */}
-                    {valueLine && (
-                        <DropLine live={motionOn} delay={at(2.6)} style={{ maxWidth: narrow ? "none" : 380, textAlign: narrow ? "left" : "right", fontSize: narrow ? 17 : 20, lineHeight: 1.35, fontWeight: 500, color: T.ink, textWrap: "balance" } as React.CSSProperties}>
-                            {valueLine}
-                        </DropLine>
-                    )}
+                    <div style={{ height: narrow ? 28 : 36 }} />
+                    {/* Jump to the work: the page's first call to action */}
+                    <DropLine live={motionOn} delay={at(3.6)} style={{ paddingBottom: 2 }}>
+                        <a
+                            href="#work"
+                            onClick={(e) => {
+                                e.preventDefault()
+                                go("work")
+                            }}
+                            onMouseEnter={() => setCtaHover(true)}
+                            onMouseLeave={() => setCtaHover(false)}
+                            onFocus={() => setCtaHover(true)}
+                            onBlur={() => setCtaHover(false)}
+                            style={{ display: "inline-flex", alignItems: "center", gap: 12, background: T.ink, color: T.paper, borderRadius: 999, padding: narrow ? "13px 20px 13px 22px" : "15px 22px 15px 26px", fontSize: narrow ? 13.5 : 15, fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", textDecoration: "none" }}
+                        >
+                            Selected work
+                            <motion.span aria-hidden="true" initial={false} animate={{ y: ctaHover ? 4 : 0 }} transition={{ duration: 0.25 }} style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: 26, height: 26, borderRadius: 99, background: T.wasabi, color: T.ink, fontSize: 15, lineHeight: 1 }}>
+                                ↓
+                            </motion.span>
+                        </a>
+                    </DropLine>
                 </div>
             </section>
 
