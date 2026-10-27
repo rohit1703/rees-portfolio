@@ -748,7 +748,7 @@ export default function HomePage(props: HomePageProps) {
             n: "03",
             chips: ["UX Designer", "Consumer AI / Mobile Web"],
             title: "Pet Health Scan Suite",
-            body: ["88% of people who opened the dental scan left before uploading a photo, and nobody knew why. ", "I used funnel data to find where people drop off, then asking why", ", turned a ten-outcome result into one readable card, and set up brand libraries that cut re-skinning a tool from about two days to a couple of minutes."],
+            body: ["88% of people who opened the dental scan left before uploading a photo, and nobody knew why. ", "I used funnel data to find where people drop off, then asked why", ", turned a ten-outcome result into one readable card, and set up brand libraries that cut re-skinning a tool from about two days to a couple of minutes."],
             image: pet,
             href: petLink,
         },
