@@ -919,8 +919,8 @@ export default function HomePage(props: HomePageProps) {
 
             {/* ---------------- Hero ---------------- */}
             <section data-nav="light" style={{ position: "relative", zIndex: 0, height: narrow ? "88svh" : "100svh", minHeight: narrow ? 560 : 640, display: "flex", flexDirection: "column", justifyContent: "center", padding: `${narrow ? 96 : 120}px ${pad}px ${narrow ? 40 : 56}px`, boxSizing: "border-box" }}>
-                {/* Hero copy, dropping in on the left once the name has moved up into the navbar */}
-                <div style={{ maxWidth: narrow ? "none" : 780 }}>
+                {/* Hero copy, centred, dropping in once the name has moved up into the navbar */}
+                <div style={{ maxWidth: narrow ? "none" : 820, margin: "0 auto", textAlign: "center" }}>
                     {leftLines.map((t) => (
                         <DropLine key={t} live={motionOn} delay={at(3.3)} style={label}>
                             {t}
@@ -933,7 +933,7 @@ export default function HomePage(props: HomePageProps) {
                         </DropLine>
                     )}
                     <div style={{ height: narrow ? 24 : 32 }} />
-                    <div style={{ position: "relative", width: "max-content", maxWidth: "100%" }}>
+                    <div style={{ position: "relative", width: "max-content", maxWidth: "100%", margin: "0 auto" }}>
                         {leftLines2.map((t) => (
                             <DropLine key={t} live={motionOn} delay={at(3.45)} style={label}>
                                 {t}
