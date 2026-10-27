@@ -14,7 +14,7 @@ export default function Home() {
                 linkedin="https://www.linkedin.com/in/reethika-c/"
                 behance="https://www.behance.net/reethika104"
                 resume="/Reethika_Chitithoti_Resume.pdf"
-                badgeText="UX Designer"
+                badgeText="Product Designer"
                 credit="Crafted by me, assisted by Claude"
                 preloader
                 smoothScroll
