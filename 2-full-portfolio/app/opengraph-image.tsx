@@ -14,7 +14,7 @@ export default async function OpengraphImage() {
         (
             <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between", background: "#351E28", color: "#F7F6F1", padding: "72px 80px", fontFamily: "Instrument Sans" }}>
                 <div style={{ display: "flex", gap: 12 }}>
-                    {["UX Designer", "Bangalore / Remote"].map((t) => (
+                    {["Product Designer", "Bangalore / Remote"].map((t) => (
                         <div key={t} style={{ display: "flex", background: "#E9F056", color: "#351E28", borderRadius: 999, padding: "10px 22px", fontSize: 26 }}>
                             {t}
                         </div>

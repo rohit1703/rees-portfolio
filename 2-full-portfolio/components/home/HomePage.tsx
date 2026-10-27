@@ -531,7 +531,7 @@ export default function HomePage(props: HomePageProps) {
         linkedin = "https://www.linkedin.com/in/reethika-c/",
         resume = "",
         behance = "https://www.behance.net/reethika104",
-        badgeText = "UX Designer",
+        badgeText = "Product Designer",
         credit = "Crafted by me, assisted by Claude",
         valueLine = VALUE_DEFAULT,
         aboutZoom = 1.4,
@@ -721,7 +721,7 @@ export default function HomePage(props: HomePageProps) {
     const pet = pick(props.petImage, DEFAULTS.pet)
 
     const label: React.CSSProperties = { fontSize: narrow ? 12.5 : 15, fontWeight: 600, letterSpacing: "0.01em", textTransform: "uppercase", lineHeight: 1.4, color: T.ink }
-    const leftLines = ["UX Designer"]
+    const leftLines = ["Product Designer"]
     const leftLines2 = ["Open to product design roles", "Bangalore / Remote"]
 
     const projects: Project[] = [
@@ -933,7 +933,7 @@ export default function HomePage(props: HomePageProps) {
                         </DropLine>
                     )}
                     <div style={{ height: narrow ? 24 : 32 }} />
-                    <div style={{ position: "relative", width: "max-content", maxWidth: "100%", margin: "0 auto" }}>
+                    <div style={{ position: "relative", width: "max-content", maxWidth: "100%", margin: "0 auto", display: "flex", flexDirection: "column", gap: narrow ? 8 : 10 }}>
                         {leftLines2.map((t) => (
                             <DropLine key={t} live={motionOn} delay={at(3.45)} style={label}>
                                 {t}
@@ -944,10 +944,11 @@ export default function HomePage(props: HomePageProps) {
                                 {email}
                             </a>
                         </DropLine>
+                        {/* "(contact me)" sits level with the email line, so the arrow points at the address */}
                         {!narrow && (
-                            <motion.div initial={motionOn ? { opacity: 0 } : false} animate={{ opacity: 1 }} transition={{ ...SPRING, delay: at(3.9) }} style={{ position: "absolute", left: "calc(100% + 14px)", bottom: 4, display: "flex", alignItems: "center", gap: 8, color: T.accentText, whiteSpace: "nowrap" }}>
+                            <motion.div initial={motionOn ? { opacity: 0 } : false} animate={{ opacity: 1 }} transition={{ ...SPRING, delay: at(3.9) }} style={{ position: "absolute", left: "calc(100% + 14px)", bottom: -4, height: 30, display: "flex", alignItems: "center", gap: 8, color: T.accentText, whiteSpace: "nowrap" }}>
                                 <PointLeft color={T.accentText} />
-                                <span style={{ fontFamily: SCRIPT, fontSize: 24, lineHeight: 1, marginTop: -14 }}>(contact me)</span>
+                                <span style={{ fontFamily: SCRIPT, fontSize: 24, lineHeight: 1, marginTop: -16 }}>(contact me)</span>
                             </motion.div>
                         )}
                     </div>
@@ -990,7 +991,7 @@ export default function HomePage(props: HomePageProps) {
                                 "I've been the only designer on a team and one of several. Now I'm looking for a product team where I can take a problem from research to release.",
                                 "Outside work it's puzzles and crosswords. Same habit, really: read the clues, try a guess, don't ink it in until it fits.",
                             ].map((t, i) => (
-                                <Words key={i} live={motionOn} text={t} delay={0.05} style={{ fontSize: narrow ? 14 : 15, fontWeight: 600, lineHeight: 1.45, textTransform: "uppercase", letterSpacing: "0.01em", color: T.onDark, margin: "0 0 16px" }} />
+                                <Words key={i} live={motionOn} text={t} delay={0.05} style={{ fontSize: narrow ? 16 : 17.5, fontWeight: 500, lineHeight: 1.55, color: T.onDark, margin: "0 0 18px" }} />
                             ))}
                         </div>
                         <div style={{ position: "relative", order: narrow ? 1 : 2, marginRight: narrow ? 0 : "clamp(40px, 6vw, 100px)" }}>
