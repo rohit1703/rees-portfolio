@@ -248,9 +248,9 @@ export default function PetHealthCaseStudy(props: Props) {
                     ]}
                     brief={[
                         ["Problem", "88% of people who opened the dental scan left before uploading a photo, and nobody knew why. The immunity check's 10-outcome result ran across three pages."],
-                        ["My decision", "Use funnel data to find where people drop off, then ask why with short feedback forms at those points. Rebuild the result as one readable card."],
+                        ["My decision", "Use funnel data to find where people drop off, then ask why with short feedback forms at those points. Rebuild the result into labelled sections, vet advice first."],
                         ["Final design", "Feedback forms at the drop-off points, a single-card result for the immunity check, and brand libraries so a tool can be re-skinned in minutes."],
-                        ["Result", "Drop-off reasons are now captured in the flow. The result went from 3 pages to 1. Re-skinning a tool fell from about two days to under two minutes, across 12–13 tools."],
+                        ["Result", "Drop-off reasons are now captured in the flow. Every result now has the same six labelled sections, most on two cards instead of three. Re-skinning a tool fell from about two days to under two minutes, across 12–13 tools."],
                     ]}
                     image={img("hero")}
                     label="PH-01 · Hero"
@@ -289,7 +289,7 @@ export default function PetHealthCaseStudy(props: Props) {
                                     m={m}
                                     items={[
                                         ["88%", "left before even uploading a photo. I designed a way to find out why."],
-                                        ["3 → 1", "pages for a 10-outcome result, now readable on one card."],
+                                        ["6 sections", "a 10-outcome result, now split into the same labelled sections every time, vet advice first."],
                                         ["< 2 min", "to re-skin a tool for a new brand, down from about two days by my estimate. I re-skinned 12–13 tools this way."],
                                     ]}
                                 />
@@ -552,12 +552,15 @@ export default function PetHealthCaseStudy(props: Props) {
                             <>
                                 <Eyebrow>05</Eyebrow>
                                 <H2 m={m}>Making a 10-outcome result readable</H2>
-                                <P>Most scan tools follow one path. The immunity check's result depends on several answers: sex, neutered or spayed, pregnancy or breeding plans, and existing symptoms.</P>
                                 <P>
-                                    Those combine into <B>ten possible results</B>. The result is where an owner learns what's going on with their pet, what to do about it, and whether to see a vet. Each result was written as long paragraphs spread across three swipeable pages. Nothing stood out, and anything on pages two and three was easy to miss.
+                                    Most scan tools follow one path. The immunity check's result depends on several answers: sex, neutered or spayed, pregnancy or breeding plans, and existing symptoms. Those combine into <B>ten possible results</B>.
+                                </P>
+                                <P>The result is where an owner learns what's going on with their pet, what to do about it, and whether to see a vet. Two things had to work: each result needed the right content, and an owner needed to find the answer quickly.</P>
+                                <P>
+                                    <B>Mapped the logic.</B> I drew the full decision tree, every combination of answers and the result it leads to. From it I worked out which category each result belongs to, which label it gets, and what shows under it. That made the branching explicit for developers and QA.
                                 </P>
                                 <P>
-                                    <B>Mapped the logic.</B> I drew the full decision tree, every combination of answers and the result it leads to, so the branching was explicit for developers and QA.
+                                    <B>What was wrong with the result.</B> Each result ran across two or three swipeable pages. The pet's category label and a dog icon repeated at the top of every page, taking up space without adding anything. Below them sat one long paragraph. It was hard to read, and hard to tell what the result was actually saying.
                                 </P>
                             </>
                         }
@@ -576,8 +579,8 @@ export default function PetHealthCaseStudy(props: Props) {
                         <div style={{ display: "flex", flexDirection: "column", height: m.linear ? "auto" : "100%", gap: 14 }}>
                             <div>
                                 <Eyebrow>Try 1</Eyebrow>
-                                <H3>Labels, still across three pages</H3>
-                                <P style={{ marginBottom: 0 }}>Bold labels on each tip (Consultation, Vaccines, Diet) made points easier to find, but owners still had to swipe through three pages.</P>
+                                <H3>Label and icon on the first page only</H3>
+                                <P style={{ marginBottom: 0 }}>Removing the repeated label and icon from the later pages cut the repetition and freed up space. But the content was still one long paragraph, so finding anything in it was no easier.</P>
                             </div>
                             <ZoomVisual m={m} image={img("tryOne")} label="PH-16 · Three pages with labels" size={m.linear ? { aspectRatio: "4 / 3" } : { flex: 1 }} />
                         </div>
@@ -589,8 +592,8 @@ export default function PetHealthCaseStudy(props: Props) {
                         <div style={{ display: "flex", flexDirection: "column", height: m.linear ? "auto" : "100%", gap: 14 }}>
                             <div>
                                 <Eyebrow>Try 2</Eyebrow>
-                                <H3>One card per tip, one scrolling page</H3>
-                                <P style={{ marginBottom: 0 }}>No more swiping, but the client didn't want scrolling on result screens. Every other tool shows results as carousel cards, and they wanted this one to feel the same.</P>
+                                <H3>Subheadings on one scrolling page</H3>
+                                <P style={{ marginBottom: 0 }}>I dropped the dog icon, kept the label, and split the paragraph into sections under subheadings, so an owner could see what was where. It was one page to scroll through. The client turned it down: every other tool shows results as swipeable cards, and they wanted this one to match.</P>
                             </div>
                             <div style={{ ...pair(m), flex: 1, minHeight: 0 }}>
                                 <ZoomVisual m={m} image={img("tryTwoList")} label="PH-14 · Single list" caption="Single list" size={m.linear ? { aspectRatio: "3 / 4" } : { height: "100%" }} />
@@ -605,11 +608,11 @@ export default function PetHealthCaseStudy(props: Props) {
                         <div style={{ display: "flex", flexDirection: "column", height: m.linear ? "auto" : "100%", gap: 14 }}>
                             <div>
                                 <Eyebrow>Final</Eyebrow>
-                                <H3>Everything on one card, no scrolling</H3>
-                                <P style={{ marginBottom: 0 }}>The content had to fit one card. I kept the key tips with bold labels, put the vet consultation tip first, and linked the full list of tips on the brand's website. Drag to compare.</P>
+                                <H3>Subheadings in a swipeable carousel</H3>
+                                <P style={{ marginBottom: 0 }}>I kept the subheadings from Try 2 and moved them into the carousel format the other tools use. Every result now has the same six labelled sections, with the vet consultation first, so the most important advice is the first thing an owner reads. The label appears once and the icon is gone. Most results went from three cards to two; the few that still need three no longer fill each one with text. Drag to compare.</P>
                             </div>
                             <div style={{ flex: m.linear ? undefined : 1, minHeight: 0 }}>
-                                <BeforeAfter m={m} before={img("before")} after={img("after")} beforeLabel="Before · 3 pages" afterLabel="After · 1 card" />
+                                <BeforeAfter m={m} before={img("before")} after={img("after")} beforeLabel="Before · 3 pages" afterLabel="After · 2 cards" />
                             </div>
                         </div>
                     ),
@@ -617,8 +620,8 @@ export default function PetHealthCaseStudy(props: Props) {
                 {
                     w: 0.55,
                     render: (m) => (
-                        <BigNumber m={m} n="3 → 1" label="pages per result">
-                            <P>Shipped. Each of the ten results now fits on one card instead of three pages. The layout was chosen with the client, within the client's carousel format.</P>
+                        <BigNumber m={m} n="6" label="labelled sections in every result, most on two cards instead of three">
+                            <P>Shipped. All ten results now use the same six labelled sections, in the same carousel format as the other tools, and most fit on two cards instead of three.</P>
                             <Note>It wasn't tested with pet owners.</Note>
                         </BigNumber>
                     ),
