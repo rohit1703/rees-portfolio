@@ -1005,14 +1005,26 @@ export default function HomePage(props: HomePageProps) {
                     <div style={{ maxWidth: 1400, margin: "0 auto", display: "grid", gridTemplateColumns: narrow ? "minmax(0,1fr)" : "minmax(0,1fr) minmax(0,1fr)", gap: narrow ? 56 : tablet ? 56 : 100, alignItems: "center" }}>
                         <div style={{ maxWidth: 400, justifySelf: narrow ? "start" : "center", order: narrow ? 2 : 1 }}>
                             <Words as="h2" live={motionOn} text="Helloo! I am Reethika" style={{ fontFamily: HEADING, fontWeight: 400, fontSize: narrow ? 28 : 31, lineHeight: 1.05, textTransform: "uppercase", color: T.wasabi, margin: "0 0 26px" }} />
-                            {[
-                                "I studied electronics engineering before I studied design, so a room full of developers feels familiar. It's probably why I keep ending up on technical products: an AI screening tool, a no-code SDK builder.",
-                                "I'd rather find out why people get stuck than guess. Sometimes that's interviews, sometimes it's funnel data, sometimes it's sitting with QA while they break things.",
-                                "I've been the only designer on a team and one of several. Now I'm looking for a product team where I can take a problem from research to release.",
-                                "Outside work it's puzzles and crosswords. Same habit, really: read the clues, try a guess, don't ink it in until it fits.",
-                            ].map((t, i) => (
-                                <Words key={i} live={motionOn} text={t} delay={0.05} style={{ fontSize: narrow ? 15.5 : 16.5, fontWeight: 400, lineHeight: 1.55, color: T.onDark, margin: "0 0 18px" }} />
-                            ))}
+                            <Words live={motionOn} text="Looking for a product team where I can take a problem from research to release." delay={0.05} style={{ fontSize: narrow ? 16.5 : 18, fontWeight: 500, lineHeight: 1.5, color: T.paper, margin: "0 0 22px" }} />
+                            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 14 }}>
+                                {(
+                                    [
+                                        ["Engineer first.", "I studied electronics engineering before design, so a room full of developers feels familiar. It's probably why I keep ending up on technical products: an AI screening tool, a no-code SDK builder."],
+                                        ["I find out instead of guessing.", "Why people get stuck comes from interviews, funnel data, or sitting with QA while they break things."],
+                                        ["Solo or on a team.", "I've been the only designer on a team, and one of several."],
+                                        ["Outside work: puzzles and crosswords.", "Same habit, really: read the clues, try a guess, don't ink it in until it fits."],
+                                    ] as [string, string][]
+                                ).map(([lead, body], i) => (
+                                    <Rise key={lead} live={motionOn} delay={i * 0.08} y={24}>
+                                        <li style={{ display: "flex", gap: 12, fontSize: narrow ? 15.5 : 16.5, fontWeight: 400, lineHeight: 1.55, color: T.onDark }}>
+                                            <span aria-hidden="true" style={{ flex: "none", width: 6, height: 6, borderRadius: 99, background: T.wasabi, marginTop: narrow ? 9 : 10 }} />
+                                            <span>
+                                                <strong style={{ color: T.paper, fontWeight: 600 }}>{lead}</strong> {body}
+                                            </span>
+                                        </li>
+                                    </Rise>
+                                ))}
+                            </ul>
                         </div>
                         <div style={{ position: "relative", order: narrow ? 1 : 2, marginRight: narrow ? 0 : "clamp(40px, 6vw, 100px)" }}>
                             <AboutImage image={pick(props.aboutImage, DEFAULTS.about)} live={motionOn} narrow={narrow} zoom={aboutZoom} focusY={aboutFocus} />
