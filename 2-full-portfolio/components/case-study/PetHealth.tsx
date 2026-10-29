@@ -603,7 +603,7 @@ export default function PetHealthCaseStudy(props: Props) {
                     ),
                 },
                 {
-                    w: 0.5,
+                    w: 0.6,
                     render: (m) => (
                         <div style={{ display: "flex", flexDirection: "column", height: m.linear ? "auto" : "100%", gap: 14 }}>
                             <div>
@@ -622,7 +622,6 @@ export default function PetHealthCaseStudy(props: Props) {
                     render: (m) => (
                         <BigNumber m={m} n="6" label="labelled sections in every result, most on two cards instead of three">
                             <P>Shipped. All ten results now use the same six labelled sections, in the same carousel format as the other tools, and most fit on two cards instead of three.</P>
-                            <Note>It wasn't tested with pet owners.</Note>
                         </BigNumber>
                     ),
                 },
