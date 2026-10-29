@@ -2,7 +2,7 @@
 // Trust Desk case study page. Layout, scroll behaviour, type and colour come from CaseStudyKit.
 // Images are not in yet: every visual slot shows its labelled placeholder until the file is added to IMG.
 import * as React from "react"
-import { CaseStudyShell, C, pickImage, Visual, vis, Eyebrow, H2, H3, P, B, Note, Bullets, Stats, Cards, Table, Split, Hero, Rail, Fit, Footer } from "./kit"
+import { CaseStudyShell, C, pickImage, Visual, Eyebrow, H2, H3, P, B, Note, Bullets, Stats, Cards, Table, Split, Column, Hero, Rail, Footer } from "./kit"
 import { asset } from "@/lib/images"
 import { useInternalLinks } from "@/lib/useInternalLinks"
 import type { KitProps, Scene, ImageValue, Mode } from "./kit"
@@ -134,9 +134,8 @@ export default function TrustDeskCaseStudy(props: Props) {
         {
             kind: "flow",
             nav: 1,
-            fit: true,
             node: (m) => (
-                <Fit m={m}>
+                <div style={{ padding: m.linear ? "64px 0" : "12vh 0 10vh" }}>
                     <Split
                         m={m}
                         left={
@@ -152,9 +151,9 @@ export default function TrustDeskCaseStudy(props: Props) {
                                 </P>
                             </>
                         }
-                        right={<Visual image={img("firstDraft")} label="TD-02 · First draft" caption="The first draft: a control canvas, one card per agent" style={vis(m, "4 / 3")} />}
+                        right={<Visual image={img("firstDraft")} label="TD-02 · First draft" caption="The first draft: a control canvas, one card per agent" style={{ aspectRatio: "4 / 3" }} />}
                     />
-                </Fit>
+                </div>
             ),
         },
         {
@@ -227,42 +226,51 @@ export default function TrustDeskCaseStudy(props: Props) {
             ),
         },
         {
-            kind: "flow",
+            kind: "h",
             nav: 3,
-            fit: true,
-            node: (m) => (
-                <Fit m={m}>
-                    <Split
-                        m={m}
-                        left={
-                            <>
-                                <Eyebrow>03</Eyebrow>
-                                <H2 m={m}>One record behind every moment</H2>
-                                <P>
-                                    The concept became a trust layer. Each agent keeps one evidence record for each type of task. Every screen reads from that record, and everything the person does (approve, fix, undo, spot-check) is written back to it.
-                                </P>
-                                <Table
-                                    small
-                                    widths="minmax(0,0.6fr) minmax(0,2.4fr)"
-                                    rows={[
-                                        ["Moment", "What the person sees"],
-                                        ["Delegate", "The plan, each agent's record, its guesses, what's missing, and whether each action can be undone"],
-                                        ["Away", "Nothing, unless a decision is needed"],
-                                        ["Return", "What needs you first, then what's done with caveats, then routine work collapsed"],
-                                        ["Inspect", "An agent's record by task type, its weak spots, and corrections that stuck"],
-                                        ["Failure", "What went wrong, where it started, what can still be undone, and what changes next"],
-                                    ]}
-                                />
-                                <P>
-                                    The core flow is the <B>pre-response check</B>. Before the agents act, they show how likely this is to go well, what they're guessing, what information is missing, and how proven each agent is for this task. Likelihood comes from past runs, never from the agent itself.
-                                </P>
-                                <P>For work an agent hasn't done before, it borrows evidence from similar tasks and labels it “similar.” If there's nothing similar, it says so.</P>
-                            </>
-                        }
-                        right={<Visual image={img("trustLayer")} label="TD-03 · Trust layer" caption="Every moment reads from the record, and every action writes back." style={vis(m, "4 / 3")} />}
-                    />
-                </Fit>
-            ),
+            panels: [
+                {
+                    w: 0.75,
+                    render: (m) => (
+                        <Column m={m}>
+                            <Eyebrow>03</Eyebrow>
+                            <H2 m={m}>One record behind every moment</H2>
+                            <P>
+                                The concept became a trust layer. Each agent keeps one evidence record for each type of task. Every screen reads from that record, and everything the person does (approve, fix, undo, spot-check) is written back to it.
+                            </P>
+                            <P>
+                                The core flow is the <B>pre-response check</B>. Before the agents act, they show how likely this is to go well, what they're guessing, what information is missing, and how proven each agent is for this task. Likelihood comes from past runs, never from the agent itself.
+                            </P>
+                            <P>For work an agent hasn't done before, it borrows evidence from similar tasks and labels it “similar.” If there's nothing similar, it says so.</P>
+                        </Column>
+                    ),
+                },
+                {
+                    w: 0.85,
+                    render: (m) => (
+                        <Column m={m} maxWidth={820}>
+                            <H3>What the person sees at each moment</H3>
+                            <Table
+                                small
+                                maxWidth={820}
+                                widths="minmax(0,0.6fr) minmax(0,2.4fr)"
+                                rows={[
+                                    ["Moment", "What the person sees"],
+                                    ["Delegate", "The plan, each agent's record, its guesses, what's missing, and whether each action can be undone"],
+                                    ["Away", "Nothing, unless a decision is needed"],
+                                    ["Return", "What needs you first, then what's done with caveats, then routine work collapsed"],
+                                    ["Inspect", "An agent's record by task type, its weak spots, and corrections that stuck"],
+                                    ["Failure", "What went wrong, where it started, what can still be undone, and what changes next"],
+                                ]}
+                            />
+                        </Column>
+                    ),
+                },
+                {
+                    w: 0.8,
+                    render: (m) => <Visual image={img("trustLayer")} label="TD-03 · Trust layer" caption="Every moment reads from the record, and every action writes back." style={m.linear ? { aspectRatio: "4 / 3" } : { height: "100%" }} />,
+                },
+            ],
         },
         {
             kind: "flow",
@@ -310,9 +318,9 @@ export default function TrustDeskCaseStudy(props: Props) {
                     ),
                 },
                 {
-                    w: 1.0,
+                    w: 0.85,
                     render: (m) => (
-                        <Screen m={m} title="Before you start" image={img("beforeStart")} label="TD-05 · Before you start" caption="Same layout; only what's required changes.">
+                        <Screen m={m} title="Before you start">
                             <P>Start stays locked until the person has reviewed the “done right” rules and opened every agent's questions. Answering is optional, but the questions have to be seen.</P>
                             <P>At first this check only existed for standard stakes. I designed low and high stakes as a separate flow so the existing screens stayed intact:</P>
                             <Table
@@ -325,6 +333,13 @@ export default function TrustDeskCaseStudy(props: Props) {
                                     ["High (money, legal)", "Confirm each rule, answer every question. Every agent asks first, and “Try 1 first” is on by default"],
                                 ]}
                             />
+                        </Screen>
+                    ),
+                },
+                {
+                    w: 0.85,
+                    render: (m) => (
+                        <Screen m={m} title="Review rounds on Before you start" image={img("beforeStart")} label="TD-05 · Before you start" caption="Same layout; only what's required changes.">
                             <P style={{ marginBottom: 0 }}>
                                 In the first version, Start sat in a different place on the two screens, so I moved it to the same spot. The request and its stakes chip went into one card at the bottom, and hovering the chip explains why the task is low or high stakes. Likelihood, the rules, the safety settings and Start went into a “Before you start” card at the top left. The guess and missing-info tiles became clickable and highlight the agents they belong to. New agents got a callout saying not to rely on them heavily until they build a record. Rules people accept are saved for that type of task and reused the next time.
                             </P>
@@ -380,38 +395,45 @@ export default function TrustDeskCaseStudy(props: Props) {
             ],
         },
         {
-            kind: "flow",
+            kind: "h",
             nav: 6,
-            fit: true,
-            node: (m) => (
-                <Fit m={m}>
-                    <Split
-                        m={m}
-                        left={
-                            <>
-                                <Eyebrow>06</Eyebrow>
-                                <H2 m={m}>Who checks the checker</H2>
-                                <P>The checker reviews every result against the rules. It's an agent too, so it needed a track record of its own, with people as the final reference.</P>
-                                <P>
-                                    Its record comes from three places. Every human spot-check also scores the checker. Known-wrong results are slipped in now and then to see whether it catches them. These tests run in the background, and people only see the results. It also runs on a different model from the agents, so the two don't share the same blind spots.
-                                </P>
-                                <P>Its authority is limited. It can flag and pause, but it can never approve anything that can't be undone. When it disagrees with an agent, the item goes to the person.</P>
-                                <P>A few rules came out of the review:</P>
-                                <Bullets
-                                    items={[
-                                        "Every agent checks its own work against its rules first, so a miss counts against both the agent and the checker.",
-                                        "The agent's self-check only appears in the failure timeline. Day to day, it isn't information the person needs.",
-                                        "When the checker is weak on a rule, that rule gets more spot-checks, sent as notifications.",
-                                        "When no rule covered a mistake, it appears as a note with a “Set a rule” button, not as a requirement.",
-                                    ]}
-                                />
-                                <P>The checker profile uses the same visual style as the agent profile.</P>
-                            </>
-                        }
-                        right={<Visual image={img("checker")} label="TD-08 · Checker profile" caption="Agreement with your spot-checks, planted-test results and misses." style={vis(m, "4 / 3")} />}
-                    />
-                </Fit>
-            ),
+            panels: [
+                {
+                    w: 0.75,
+                    render: (m) => (
+                        <Column m={m}>
+                            <Eyebrow>06</Eyebrow>
+                            <H2 m={m}>Who checks the checker</H2>
+                            <P>The checker reviews every result against the rules. It's an agent too, so it needed a track record of its own, with people as the final reference.</P>
+                            <P>
+                                Its record comes from three places. Every human spot-check also scores the checker. Known-wrong results are slipped in now and then to see whether it catches them. These tests run in the background, and people only see the results. It also runs on a different model from the agents, so the two don't share the same blind spots.
+                            </P>
+                            <P>Its authority is limited. It can flag and pause, but it can never approve anything that can't be undone. When it disagrees with an agent, the item goes to the person.</P>
+                        </Column>
+                    ),
+                },
+                {
+                    w: 0.75,
+                    render: (m) => (
+                        <Column m={m}>
+                            <H3>Rules that came out of the review</H3>
+                            <Bullets
+                                items={[
+                                    "Every agent checks its own work against its rules first, so a miss counts against both the agent and the checker.",
+                                    "The agent's self-check only appears in the failure timeline. Day to day, it isn't information the person needs.",
+                                    "When the checker is weak on a rule, that rule gets more spot-checks, sent as notifications.",
+                                    "When no rule covered a mistake, it appears as a note with a “Set a rule” button, not as a requirement.",
+                                ]}
+                            />
+                            <P>The checker profile uses the same visual style as the agent profile.</P>
+                        </Column>
+                    ),
+                },
+                {
+                    w: 0.8,
+                    render: (m) => <Visual image={img("checker")} label="TD-08 · Checker profile" caption="Agreement with your spot-checks, planted-test results and misses." style={m.linear ? { aspectRatio: "4 / 3" } : { height: "100%" }} />,
+                },
+            ],
         },
         {
             kind: "flow",
@@ -446,9 +468,8 @@ export default function TrustDeskCaseStudy(props: Props) {
         {
             kind: "flow",
             nav: 8,
-            fit: true,
             node: (m) => (
-                <Fit m={m}>
+                <div style={{ padding: m.linear ? "64px 0" : "12vh 0 6vh" }}>
                     <Split
                         m={m}
                         left={
@@ -465,9 +486,9 @@ export default function TrustDeskCaseStudy(props: Props) {
                                 <P>The app runs locally. It has a test mode with stand-in agents, so it can be shown without connecting any accounts.</P>
                             </>
                         }
-                        right={<Visual image={img("app")} label="TD-09 · The working app" caption="The return view in the built app" style={vis(m, "4 / 3")} />}
+                        right={<Visual image={img("app")} label="TD-09 · The working app" caption="The return view in the built app" style={{ aspectRatio: "4 / 3" }} />}
                     />
-                </Fit>
+                </div>
             ),
         },
         {
