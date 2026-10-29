@@ -575,15 +575,20 @@ export default function PetHealthCaseStudy(props: Props) {
                                 <P>
                                     <B>Why it matters.</B> The result is where an owner learns what's going on with their pet, what to do about it, and whether to see a vet. Each result needed the right content, and an owner needed to find the answer quickly.
                                 </P>
+                            </>
+                        }
+                        right={
+                            <>
+                                <ZoomVisual m={m} image={img("decisionTree")} label="PH-06 · Decision tree" caption="Immunity-check decision tree" size={{ aspectRatio: "4 / 3" }} />
+                                <div style={{ height: 8 }} />
                                 <P>
                                     <B>What was wrong.</B> Each result ran across two or three swipeable pages. The category label and a dog icon repeated at the top of every page, taking up space without adding anything. Below them sat one long paragraph: hard to read, and hard to tell what the result was saying.
                                 </P>
-                                <P>
+                                <P style={{ marginBottom: 0 }}>
                                     <B>Mapped the logic.</B> I drew the full decision tree, every combination of answers and the result it leads to. From it I worked out each result's category, its label, and what shows under it. That made the branching explicit for developers and QA.
                                 </P>
                             </>
                         }
-                        right={<ZoomVisual m={m} image={img("decisionTree")} label="PH-06 · Decision tree" caption="Immunity-check decision tree" size={{ aspectRatio: "4 / 3" }} />}
                     />
                 </div>
             ),
