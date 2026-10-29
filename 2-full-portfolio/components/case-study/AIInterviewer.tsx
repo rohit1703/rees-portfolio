@@ -152,7 +152,12 @@ export default function AIInterviewerCaseStudy(props: Props) {
                         { t: "Build time", b: "Engineering said a full AI interviewer couldn't be built in the time we had. This settled it." },
                         {
                             t: "POC testing",
-                            b: "I'd put junior employees through an early proof of concept, and what I saw backed the call. Their confidence dropped as they went: they couldn't tell whether the AI understood them, the voice felt strange to talk to, and people less comfortable in English struggled to explain out loud.",
+                            b: (
+                                <>
+                                    I'd put junior employees through an early proof of concept, and what I saw backed the call. Their confidence dropped as they went:
+                                    <Bullets items={["they couldn't tell whether the AI understood them", "the voice felt strange to talk to", "people less comfortable in English struggled to explain out loud"]} />
+                                </>
+                            ),
                         },
                         { t: "TA interviews", b: "TA raised the same worry: if candidates don't trust the process, the results aren't useful." },
                     ]}
