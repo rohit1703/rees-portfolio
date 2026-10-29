@@ -289,6 +289,20 @@
       }
     ]
   },
+  "immunity-after-two-cards": {
+    "width": 988,
+    "height": 1009,
+    "files": [
+      {
+        "w": 800,
+        "src": "/images/immunity-after-two-cards-800.webp"
+      },
+      {
+        "w": 988,
+        "src": "/images/immunity-after-two-cards-988.webp"
+      }
+    ]
+  },
   "J21M6RvyQtb5SIdWuH0MuDudoc": {
     "width": 573,
     "height": 387,
