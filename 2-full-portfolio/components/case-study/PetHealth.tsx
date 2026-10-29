@@ -22,11 +22,11 @@ const IMG = {
     landingRedesign: asset("RGktINVEMv4S6ya1sFkFX8bSFLs.png", "Dropped: landing page redesign"),
     forms: asset("0ru6vpxpsAhmFZMdvU3dZEKvmmU.jpg", "Exit form and completion form"),
     decisionTree: asset("SfEDnB6FEXDBIrdcEoR3iMQAuo.png", "Immunity-check decision tree"),
-    tryOne: asset("hGDPHfq5Gw7GKpQMHypHHwb8sa4.png", "Considered: three swipeable pages with labels"),
-    tryTwoList: asset("8NWirisCFriDKt4yDGRJyxhIaVs.png", "Considered: single list"),
-    tryTwoCards: asset("d8mjwiSV5tXJMnzQA6J4emHjDlU.png", "Considered: separate cards"),
-    before: asset("D6Oypxw0AMHbP4BdNtX1FTPeiRc.png", "Before: three swipeable pages"),
-    after: asset("ki7Sk3KEuCVdYWk5kFPQxX8a35Q.png", "After: one card"),
+    tryOne: asset("D6Oypxw0AMHbP4BdNtX1FTPeiRc.png", "Try 1: three swipeable pages, with the label and icon on the first page only"),
+    tryTwoList: asset("8NWirisCFriDKt4yDGRJyxhIaVs.png", "Try 2: one scrolling page, sections under subheadings divided by lines"),
+    tryTwoCards: asset("d8mjwiSV5tXJMnzQA6J4emHjDlU.png", "Try 2: one scrolling page, each section as its own tile"),
+    before: asset("hGDPHfq5Gw7GKpQMHypHHwb8sa4.png", "Before: three swipeable pages, with the label and icon repeated on every page"),
+    after: asset("ki7Sk3KEuCVdYWk5kFPQxX8a35Q.png", "After: a carousel card with the label once and labelled sections, vet consultation first"),
     brandLibrary: asset("lMhVd4dmhlddDB6G0Khalmn8Qtc.png", "Brand library: type and colour"),
     brandA: asset("eUCcvgZQi0yqvq0Mk0bj8VKAAoM.png", "Brand A"),
     brandB: asset("XT24sv6Obcm3DPDg6J4iMx4p4Ms.png", "Brand B, same tool after a library swap"),
@@ -249,7 +249,7 @@ export default function PetHealthCaseStudy(props: Props) {
                     brief={[
                         ["Problem", "88% of people who opened the dental scan left before uploading a photo, and nobody knew why. The immunity check's 10-outcome result ran across three pages."],
                         ["My decision", "Use funnel data to find where people drop off, then ask why with short feedback forms at those points. Rebuild the result into labelled sections, vet advice first."],
-                        ["Final design", "Feedback forms at the drop-off points, a single-card result for the immunity check, and brand libraries so a tool can be re-skinned in minutes."],
+                        ["Final design", "Feedback forms at the drop-off points, a sectioned carousel result for the immunity check, and brand libraries so a tool can be re-skinned in minutes."],
                         ["Result", "Drop-off reasons are now captured in the flow. Every result now has the same six labelled sections, most on two cards instead of three. Re-skinning a tool fell from about two days to under two minutes, across 12–13 tools."],
                     ]}
                     image={img("hero")}
@@ -582,7 +582,7 @@ export default function PetHealthCaseStudy(props: Props) {
                                 <H3>Label and icon on the first page only</H3>
                                 <P style={{ marginBottom: 0 }}>Removing the repeated label and icon from the later pages cut the repetition and freed up space. But the content was still one long paragraph, so finding anything in it was no easier.</P>
                             </div>
-                            <ZoomVisual m={m} image={img("tryOne")} label="PH-16 · Three pages with labels" size={m.linear ? { aspectRatio: "4 / 3" } : { flex: 1 }} />
+                            <ZoomVisual m={m} image={img("tryOne")} label="PH-16 · Try 1" caption="Label and icon on the first page only, paragraphs on all three" size={m.linear ? { aspectRatio: "4 / 3" } : { flex: 1 }} />
                         </div>
                     ),
                 },
@@ -596,8 +596,8 @@ export default function PetHealthCaseStudy(props: Props) {
                                 <P style={{ marginBottom: 0 }}>I dropped the dog icon, kept the label, and split the paragraph into sections under subheadings, so an owner could see what was where. It was one page to scroll through. The client turned it down: every other tool shows results as swipeable cards, and they wanted this one to match.</P>
                             </div>
                             <div style={{ ...pair(m), flex: 1, minHeight: 0 }}>
-                                <ZoomVisual m={m} image={img("tryTwoList")} label="PH-14 · Single list" caption="Single list" size={m.linear ? { aspectRatio: "3 / 4" } : { height: "100%" }} />
-                                <ZoomVisual m={m} image={img("tryTwoCards")} label="PH-15 · Separate cards" caption="Separate cards" size={m.linear ? { aspectRatio: "3 / 4" } : { height: "100%" }} />
+                                <ZoomVisual m={m} image={img("tryTwoList")} label="PH-14 · Try 2, divided list" caption="Subheadings divided by lines" size={m.linear ? { aspectRatio: "3 / 4" } : { height: "100%" }} />
+                                <ZoomVisual m={m} image={img("tryTwoCards")} label="PH-15 · Try 2, tiles" caption="Each section as a tile" size={m.linear ? { aspectRatio: "3 / 4" } : { height: "100%" }} />
                             </div>
                         </div>
                     ),
