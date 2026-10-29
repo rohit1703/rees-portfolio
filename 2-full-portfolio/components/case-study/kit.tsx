@@ -676,6 +676,9 @@ function HCarousel({ panels, m }: { panels: Panel[]; m: Mode }) {
 
 // ---------- Stage: sections are stacked layers; the next one rises over the current ----------
 type Seg = { S: number; E: number; enter: number; peek: number; hold: number; over: number }
+/** Scroll pacing on desktop: screens of scrolling per section change, and the pause (in screens) after a section before the next rises. */
+const ENTER_K = 1.5
+const REST = 0.25
 
 function Stage({ title, nav, scenes, smoothness, phone, homeHref }: { title: string; nav: string[]; scenes: Scene[]; smoothness: number; phone: boolean; homeHref: string }) {
     const [steps, setSteps] = useState<number[]>([])
@@ -805,12 +808,15 @@ function Stage({ title, nav, scenes, smoothness, phone, homeHref }: { title: str
             const prevH = j > 0 ? heights[j - 1] : wh
             // Phones: every section rises from the bottom edge (no half-height peek, so no faded text sitting under the next section).
             const peek = j === 0 ? 0 : !phone && prevH < wh * 0.8 ? clamp(prevH + 24, wh * 0.5, wh) : wh
-            const enter = j === 0 ? 0 : Math.max(peek, 240)
+            // Desktop: a section takes 1.5 screens of scrolling to slide over the one before it (1:1 felt too quick),
+            // and each section rests for a quarter screen once it's fully read before the next one starts to rise.
+            const enter = j === 0 ? 0 : Math.max(Math.round(peek * (phone ? 1 : ENTER_K)), 240)
             const over = natural(s) ? Math.max(0, heights[j] - wh) : 0
             const hold = phone ? over : s.kind === "steps" ? wh * 0.55 * s.count : s.kind === "h" ? dists[j] : over
+            const rest = !phone && j < scenes.length - 1 ? Math.round(wh * REST) : 0
             const S = cursor
             const E = S + enter
-            cursor = E + hold
+            cursor = E + hold + rest
             list.push({ S, E, enter, peek, hold, over })
         })
         segs.current = { wh, total: cursor, list, dists }
