@@ -239,18 +239,18 @@ export default function PetHealthCaseStudy(props: Props) {
                     m={m}
                     tags={["UX Designer", "Consumer AI / Mobile Web"]}
                     title="Pet Health Scan Suite"
-                    subtitle="Finding out why pet owners abandon an AI dental scan, across around 15 white-label health-check tools on around 10 pet-brand websites."
+                    subtitle="Finding out why pet owners abandon an AI dental scan, across ~15 white-label health-check tools on ~10 pet-brand websites."
                     cells={[
-                        ["Role", "UX Designer, working alongside a senior designer"],
-                        ["Timeline", "May 2025 to September 2026, part-time alongside other projects"],
+                        ["Role", "UX Designer, alongside a senior designer"],
+                        ["Timeline", "May 2025 – Sep 2026, part-time alongside other projects"],
                         ["Team", "1 senior designer · 5 frontend · 2 backend · 2 QA · 1 DevOps"],
-                        ["Platform", "Mobile first, also used on tablet and desktop"],
+                        ["Platform", "Mobile first, also tablet and desktop"],
                     ]}
                     brief={[
-                        ["Problem", "88% of people who opened the dental scan left before uploading a photo, and nobody knew why. The immunity check's 10-outcome result ran across three pages."],
-                        ["My decision", "Use funnel data to find where people drop off, then ask why with short feedback forms at those points. Rebuild the result into labelled sections, vet advice first."],
-                        ["Final design", "Feedback forms at the drop-off points, a sectioned carousel result for the immunity check, and brand libraries so a tool can be re-skinned in minutes."],
-                        ["Result", "Drop-off reasons are now captured in the flow. Every result now has the same seven labelled sections, most on two cards instead of three. Re-skinning a tool fell from about two days to under two minutes, across 12–13 tools."],
+                        ["Problem", "88% of people who opened the dental scan left before uploading a photo. Nobody knew why. The immunity check's 10-outcome result ran across 3 pages."],
+                        ["My decision", "Use funnel data to find where people leave, then ask why with short forms at those points. Rebuild the result into labelled sections, vet advice first."],
+                        ["Final design", "Feedback forms at the drop-off points, a sectioned carousel result for the immunity check, and brand libraries that re-skin a tool in minutes."],
+                        ["Result", "Drop-off reasons are now captured in the flow (I left before responses came in). Every result now has the same seven labelled sections, most on two cards instead of three. Re-skinning: ~2 days → under 2 minutes, across 12–13 tools."],
                     ]}
                     image={img("hero")}
                     label="PH-01 · Hero"
@@ -269,16 +269,16 @@ export default function PetHealthCaseStudy(props: Props) {
                             "Context",
                             <>
                                 <P>
-                                    <B>What it is.</B> A white-label suite of AI health-check tools that pet brands embed on their own websites. There are tools for teeth, skin, weight, fleas and more. A pet owner takes a photo of their dog or cat, answers a few questions, and gets a plain-language result with next steps.
+                                    <B>What it is.</B> A white-label suite of AI health-check tools (teeth, skin, weight, fleas and more) that pet brands embed on their sites. An owner takes a photo, answers a few questions, and gets a plain-language result with next steps.
                                 </P>
                                 <P>
-                                    <B>What it's for.</B> Guidance, not diagnosis. The tools help owners spot problems early and decide whether to see a vet. They don't replace one. For most people the flow ends at the result. Signing up and chatting with a live vet are there, but secondary.
+                                    <B>What it's for.</B> Guidance, not diagnosis. It helps owners spot problems early and decide whether to see a vet. Sign-up and live vet chat exist but are secondary.
                                 </P>
                                 <P>
-                                    <B>Who uses it.</B> Pet owners who find a tool on a brand's website, mostly on their phones.
+                                    <B>Who uses it.</B> Pet owners who find a tool on a brand's website, mostly on phones.
                                 </P>
                                 <P>
-                                    <B>Where it's built.</B> The tools are built and branded in SDK Manager, the internal no-code platform in my other case study. The tool is ours to change. The brand's website around it is not.
+                                    <B>Where it's built.</B> In SDK Manager, the no-code platform in my other case study. <B>The tool is ours to change. The brand's website around it is not.</B>
                                 </P>
                             </>,
                         ],
@@ -288,27 +288,27 @@ export default function PetHealthCaseStudy(props: Props) {
                                 <Stats
                                     m={m}
                                     items={[
-                                        ["88%", "left before even uploading a photo. I designed a way to find out why."],
+                                        ["88%", "left before uploading a photo. I designed a way to find out why."],
                                         ["7 sections", "a 10-outcome result, now split into the same labelled sections every time, vet advice first."],
-                                        ["< 2 min", "to re-skin a tool for a new brand, down from about two days by my estimate. I re-skinned 12–13 tools this way."],
+                                        ["< 2 min", "to re-skin a tool for a new brand, down from ~2 days (my estimate). Used on 12–13 tools."],
                                     ]}
                                 />
                                 <div style={{ fontSize: 13, color: C.muted, margin: "28px 0 8px" }}>How a scan works</div>
                                 <Flow items={["Landing page", "Start", "Take or upload a photo", "Answer questions", "Result"]} highlight={[2]} />
-                                <P>A tool only helps if someone gets to the end. An owner who leaves partway gets no result and no guidance.</P>
+                                <P>Leave partway and you get no guidance.</P>
                             </>,
                         ],
                         [
                             "My role",
                             <>
-                                <P>The senior designer owned the client relationship, the research, and the base flow every tool shares. I worked within that flow. My own work was:</P>
+                                <P>The senior designer owned the client relationship, the research and the base flow every tool shares. I worked within that flow. Mine:</P>
                                 <Bullets
                                     items={[
-                                        "the drop-off investigation, from hypotheses to shipped feedback forms",
-                                        "the immunity check's decision tree and results redesign",
+                                        "The drop-off investigation, from hypotheses to shipped feedback forms",
+                                        "The immunity check's decision tree and result redesign",
                                         "UI changes across tools, and one new tool",
-                                        "developer specs",
-                                        "font naming and brand libraries for theming",
+                                        "Developer specs",
+                                        "Font naming and brand libraries for theming",
                                     ]}
                                 />
                             </>,
@@ -329,6 +329,9 @@ export default function PetHealthCaseStudy(props: Props) {
                             <>
                                 <Eyebrow>01 · Why people left the dental scan</Eyebrow>
                                 <H2 m={m}>What the data showed</H2>
+                                <P style={{ color: C.ink }}>
+                                    <B>88% of starters left before trying to upload. That drop happens inside the tool, and it's the one this work focused on.</B>
+                                </P>
                                 <Table
                                     small
                                     maxWidth={520}
@@ -342,7 +345,9 @@ export default function PetHealthCaseStudy(props: Props) {
                                         ["Reached the last tracked step", "583", "93%"],
                                     ]}
                                 />
-                                <P>The 189 uploads that failed (23%) were photos the AI rejected, because they didn't follow the photo instructions or weren't the right kind of image. Once a photo was in, almost everyone finished. The analytics showed where people left, but not why.</P>
+                                <P>
+                                    <B>189 uploads failed (23%).</B> The AI rejected photos that didn't follow the instructions or weren't the right kind of image. Once a photo was in, almost everyone finished. The analytics showed where people left, not why.
+                                </P>
                             </>
                         }
                         right={
@@ -350,10 +355,10 @@ export default function PetHealthCaseStudy(props: Props) {
                                 <ZoomVisual m={m} image={img("funnel")} label="PH-12 · Funnel" caption="Funnel from the analytics dashboard" size={vis(m)} />
                                 <div style={{ display: "grid", gridTemplateColumns: "repeat(2, minmax(0,1fr))", gap: 12 }}>
                                     <Note style={{ margin: 0 }}>
-                                        <B>85%</B> of visitors never started. This happens on the landing page, before the tool.
+                                        <B>85% never started.</B> That's the landing page, before the tool. Owned by the brand.
                                     </Note>
                                     <Note style={{ margin: 0, background: C.soft }}>
-                                        <B>88%</B> of people who started left before trying to upload a photo. This happens inside the tool, and it's the one this work focused on.
+                                        <B>88% of starters left before trying to upload.</B> Inside the tool. This work's focus.
                                     </Note>
                                 </div>
                             </>
@@ -371,14 +376,14 @@ export default function PetHealthCaseStudy(props: Props) {
                     m={m}
                     eyebrow="02"
                     title="Six assumptions"
-                    intro={<P>Every reason I could think of for the drop.</P>}
+                    intro={<P>Every reason I could think of for the 88%: six guesses.</P>}
                     points={[
-                        { t: "The dog isn't there", b: "The owner opens the tool when their pet isn't around." },
-                        { t: "Hesitation to share a photo", b: "Owners aren't sure about sending a picture of their pet to an AI." },
-                        { t: "The benefit isn't clear", b: "Owners don't see what they'd get out of the scan." },
-                        { t: "The purpose isn't clear", b: "The page explains what the tool does, not why it matters." },
-                        { t: "It doesn't feel necessary", b: "Owners think they can check their dog's teeth themselves." },
-                        { t: "The Start button is hard to find", b: "On the landing page, disclaimers and secondary text push Start below the fold." },
+                        { t: "The dog isn't there", b: "The owner opens the tool when the pet isn't around." },
+                        { t: "Hesitation to share a photo", b: "Unsure about sending a pet's picture to an AI." },
+                        { t: "The benefit isn't clear", b: "Owners don't see what they'd get." },
+                        { t: "The purpose isn't clear", b: "The page says what the tool does, not why it matters." },
+                        { t: "It doesn't feel necessary", b: "Owners think they can check teeth themselves." },
+                        { t: "Start is hard to find", b: "Disclaimers push Start below the fold on the landing page." },
                     ]}
                 />
             ),
@@ -393,7 +398,9 @@ export default function PetHealthCaseStudy(props: Props) {
                         <Column m={m}>
                             <Eyebrow>03</Eyebrow>
                             <H2 m={m}>Four ideas, one kept</H2>
-                            <P>I designed a fix for each group of guesses. Three were mocked up and set aside: one parked, two dropped.</P>
+                            <P style={{ color: C.ink }}>
+                                <B>Three fixes each bet on one guess and needed new backend work or every brand's sign-off. So the fourth idea was to ask first.</B>
+                            </P>
                         </Column>
                     ),
                 },
@@ -405,7 +412,7 @@ export default function PetHealthCaseStudy(props: Props) {
                             status="Parked"
                             title="A reminder email"
                             aimed="The dog isn't there, the owner is busy, or they were only exploring."
-                            why="When someone leaves at the photo step, let them enter an email and a time to be reminded to finish. Storing emails needed a new backend database, connected to every brand. Too much build for a guess."
+                            why="Needed a new backend database connected to every brand. Too much build for a guess."
                             image={img("reminderEmail")}
                             label="PH-02 · Reminder email"
                         />
@@ -417,9 +424,9 @@ export default function PetHealthCaseStudy(props: Props) {
                         <Idea
                             m={m}
                             status="Dropped"
-                            title="Banner redesign"
-                            aimed="Benefit and purpose of the tool unclear."
-                            why={'A problem-led headline ("Is your dog one of the 8 out of 10 with oral health issues?"), a clear Start button, and a supporting stat from the brand\'s own site. The banner belongs to the brand, and we couldn\'t change it.'}
+                            title="Banner redesign (problem-led headline, clear Start, brand stat)"
+                            aimed="Benefit and purpose unclear."
+                            why="The banner belongs to the brand."
                             image={img("bannerRedesign")}
                             label="PH-03 · Banner redesign"
                         />
@@ -431,9 +438,9 @@ export default function PetHealthCaseStudy(props: Props) {
                         <Idea
                             m={m}
                             status="Dropped"
-                            title="Landing page redesign"
-                            aimed="Tool not necessary, Start hard to find."
-                            why="Start moved into the first screen, copy reframed around catching problems early, disclaimer moved lower. Each brand owns its landing page. It couldn't be changed from the tool's side, and 10 brands wouldn't all agree to the same change."
+                            title="Landing page redesign (Start on first screen, disclaimer lower)"
+                            aimed="Not necessary, Start hard to find."
+                            why="Each brand owns its page. 10 brands wouldn't agree to one change."
                             image={img("landingRedesign")}
                             label="PH-04 · Landing page redesign"
                         />
@@ -443,10 +450,12 @@ export default function PetHealthCaseStudy(props: Props) {
                     w: 0.7,
                     render: (m) => (
                         <Column m={m}>
-                            <H3>So the fourth idea was to ask first</H3>
-                            <P>Each of these bet on one guess being right, and each needed either new backend work or sign-off from every brand. So the fourth idea was to find out which guess was true first, with something that fit inside the tool.</P>
+                            <H3>Kept: ask first</H3>
+                            <P>
+                                <B>Aimed at:</B> finding out which guess is true. Fits inside the tool. No brand sign-off.
+                            </P>
                             <Note>
-                                <B>Why ask instead of fixing the screens?</B> Reviewing the existing pages did turn up a visible problem: the buried Start button. But that sits on the landing page, before the tool. The drop inside the tool could be practical, like the dog not being nearby, or about trust, like unease with an AI reading a photo. Looking at screens can't tell those apart. A one-question form inside the tool could, and it didn't need any brand's sign-off.
+                                <B>Why ask instead of fixing the screens?</B> The one visible problem, the buried Start button, sits on the landing page, before the tool. The drop inside the tool could be practical (the dog isn't nearby) or about trust (unease with an AI reading a photo). Reviewing screens can't tell those apart. A one-question form inside the tool can.
                             </Note>
                         </Column>
                     ),
@@ -463,12 +472,17 @@ export default function PetHealthCaseStudy(props: Props) {
                         <Column m={m}>
                             <Eyebrow>04</Eyebrow>
                             <H2 m={m}>What I designed</H2>
-                            <P>Two short forms: one when someone leaves partway through, and one when they finish.</P>
-                            <P>
-                                <B>When they appear.</B> The leaving form appears when someone taps the tool's close button, navigates away, or closes the browser tab on desktop. The finishing form appears after a scan is submitted, on selected result screens, or while browsing Additional Resources.
+                            <P style={{ color: C.ink }}>
+                                <B>Two short forms: one when someone leaves, one when they finish.</B>
                             </P>
                             <P>
-                                <B>Not asking twice.</B> Each person sees the form once per session. It only returns if their cookies are cleared or expire, and the cookie duration can be configured per brand.
+                                <B>Leaving:</B> tapping the tool's close button, navigating away, or closing the browser tab on desktop.
+                            </P>
+                            <P>
+                                <B>Finishing:</B> after a scan is submitted, on selected result screens, or while browsing Additional Resources.
+                            </P>
+                            <P>
+                                <B>Never twice:</B> once per session. It returns only if cookies are cleared or expire. Cookie duration is configurable per brand.
                             </P>
                         </Column>
                     ),
@@ -479,7 +493,7 @@ export default function PetHealthCaseStudy(props: Props) {
                     render: (m) => (
                         <Column m={m}>
                             <H3>Leaving partway: one question, seven one-tap reasons</H3>
-                            <P>The same form appears wherever someone leaves. The client's legal team set the seven reasons, so the wording isn't mine. I designed the form around them and mapped each reason to the guess it tests.</P>
+                            <P>The client's legal team set the seven reasons, so the wording isn't mine. I designed the form around them and mapped each to the guess it tests.</P>
                             <Table
                                 small
                                 maxWidth={620}
@@ -496,7 +510,7 @@ export default function PetHealthCaseStudy(props: Props) {
                                 ]}
                             />
                             <Note>
-                                <B>Not a perfect match.</B> Three of my guesses aren't on the list: the benefit isn't clear, it doesn't feel necessary, and Start is hard to find. Those mostly play out on the brand's landing page, before anyone reaches the form. Legal's list added three reasons I hadn't considered, which widened what the form could learn.
+                                <B>Not a perfect match.</B> Three guesses aren't on the list (benefit, necessity, Start). They play out on the landing page, before anyone reaches the form. Legal added three reasons I hadn't considered.
                             </Note>
                         </Column>
                     ),
@@ -506,9 +520,9 @@ export default function PetHealthCaseStudy(props: Props) {
                     render: (m) => (
                         <Column m={m}>
                             <H3>Finishing</H3>
-                            <P>A star rating, then one question whose options depend on the rating: short statements for 1 to 3 stars, more detailed ones for 4 to 5. The comment box is optional.</P>
+                            <P>A star rating, then one question whose options depend on it: short statements for 1–3 stars, more detailed ones for 4–5. Optional comment box.</P>
                             <H3>Cheap to answer, easy to leave</H3>
-                            <Bullets items={["One question, one tap, no answer selected by default.", "Skip & Exit sits next to Submit.", "The form closes in one click."]} />
+                            <Bullets items={["One question, one tap, nothing pre-selected.", "Skip & Exit sits next to Submit.", "Closes in one click."]} />
                         </Column>
                     ),
                 },
@@ -516,25 +530,26 @@ export default function PetHealthCaseStudy(props: Props) {
                     w: 0.78,
                     render: (m) => (
                         <Column m={m}>
-                            <H3>Result</H3>
-                            <P>The forms shipped in August 2026. I moved off the project the following month, before enough responses had come in, so I don't have the results. Success was to be measured by how many people answer instead of skipping, and by which reasons come up most. Before I left, I set out what each leading reason should lead to, in some cases back to an idea that was dropped:</P>
+                            <H3>Result: a handover plan, not an outcome</H3>
+                            <P>
+                                <B>The forms shipped Aug 2026. I moved off the project the following month, before enough responses came in.</B> Success was to be measured by answer rate vs skips, and which reasons come up most. What each leading reason should lead to:
+                            </P>
                             <Bullets
                                 items={[
                                     <>
-                                        <B>"My dog isn't available right now" or "I'll try this again later"</B> → the parked reminder email, this time with evidence to justify the backend work
+                                        <B>"My dog isn't available" or "I'll try again later"</B> → the parked reminder email, now with evidence for the backend work
                                     </>,
                                     <>
-                                        <B>"It's too difficult to take a clear photo"</B> → better photo guidance before the upload step, which would also cut the 23% of uploads that get rejected
+                                        <B>"Too difficult to take a clear photo"</B> → better photo guidance before upload, which would also cut the 23% rejected uploads
                                     </>,
                                     <>
-                                        <B>"This isn't what I was looking for"</B> → the banner and landing page copy
+                                        <B>"Not what I was looking for"</B> → the banner and landing page copy
                                     </>,
                                     <>
-                                        <B>AI accuracy or comfort</B> → clearer explanation of how the AI works and what it's for
+                                        <B>AI accuracy or comfort</B> → a clearer explanation of how the AI works and what it's for
                                     </>,
                                 ]}
                             />
-                            <Note>This is the plan I handed over, not an outcome.</Note>
                         </Column>
                     ),
                 },
@@ -543,30 +558,34 @@ export default function PetHealthCaseStudy(props: Props) {
         {
             kind: "flow",
             nav: 5,
-            fit: true,
             node: (m) => (
-                <Fit m={m}>
+                <div style={{ padding: m.linear ? "64px 0" : "12vh 0 10vh" }}>
                     <Split
                         m={m}
                         left={
                             <>
                                 <Eyebrow>05</Eyebrow>
                                 <H2 m={m}>Making a 10-outcome result readable</H2>
-                                <P>
-                                    Most scan tools follow one path. The immunity check's result depends on several answers: sex, neutered or spayed, pregnancy or breeding plans, and existing symptoms. Those combine into <B>ten possible results</B>.
-                                </P>
-                                <P>The result is where an owner learns what's going on with their pet, what to do about it, and whether to see a vet. Two things had to work: each result needed the right content, and an owner needed to find the answer quickly.</P>
-                                <P>
-                                    <B>Mapped the logic.</B> I drew the full decision tree, every combination of answers and the result it leads to. From it I worked out which category each result belongs to, which label it gets, and what shows under it. That made the branching explicit for developers and QA.
+                                <P style={{ color: C.ink }}>
+                                    <B>Ten possible results, each one long paragraph across swipeable pages. Every result now has the same seven labelled sections, vet consultation first.</B>
                                 </P>
                                 <P>
-                                    <B>What was wrong with the result.</B> Each result ran across two or three swipeable pages. The pet's category label and a dog icon repeated at the top of every page, taking up space without adding anything. Below them sat one long paragraph. It was hard to read, and hard to tell what the result was actually saying.
+                                    <B>Why ten.</B> Most scan tools follow one path. The immunity check's result depends on several answers: sex, neutered or spayed, pregnancy or breeding plans, and existing symptoms.
+                                </P>
+                                <P>
+                                    <B>Why it matters.</B> The result is where an owner learns what's going on with their pet, what to do about it, and whether to see a vet. Each result needed the right content, and an owner needed to find the answer quickly.
+                                </P>
+                                <P>
+                                    <B>What was wrong.</B> Each result ran across two or three swipeable pages. The category label and a dog icon repeated at the top of every page, taking up space without adding anything. Below them sat one long paragraph: hard to read, and hard to tell what the result was saying.
+                                </P>
+                                <P>
+                                    <B>Mapped the logic.</B> I drew the full decision tree, every combination of answers and the result it leads to. From it I worked out each result's category, its label, and what shows under it. That made the branching explicit for developers and QA.
                                 </P>
                             </>
                         }
-                        right={<ZoomVisual m={m} image={img("decisionTree")} label="PH-06 · Decision tree" caption="Immunity-check decision tree" size={vis(m, "4 / 3")} />}
+                        right={<ZoomVisual m={m} image={img("decisionTree")} label="PH-06 · Decision tree" caption="Immunity-check decision tree" size={{ aspectRatio: "4 / 3" }} />}
                     />
-                </Fit>
+                </div>
             ),
         },
         {
@@ -580,7 +599,7 @@ export default function PetHealthCaseStudy(props: Props) {
                             <div>
                                 <Eyebrow>Try 1</Eyebrow>
                                 <H3>Label and icon on the first page only</H3>
-                                <P style={{ marginBottom: 0 }}>Removing the repeated label and icon from the later pages cut the repetition and freed up space. But the content was still one long paragraph, so finding anything in it was no easier.</P>
+                                <P style={{ marginBottom: 0 }}>Cut the repetition and freed up space. But the content was still one long paragraph, so finding anything was no easier.</P>
                             </div>
                             <ZoomVisual m={m} image={img("tryOne")} label="PH-16 · Try 1" caption="Label and icon on the first page only, paragraphs on all three" size={m.linear ? { aspectRatio: "4 / 3" } : { flex: 1 }} />
                         </div>
@@ -593,7 +612,7 @@ export default function PetHealthCaseStudy(props: Props) {
                             <div>
                                 <Eyebrow>Try 2</Eyebrow>
                                 <H3>Subheadings on one scrolling page</H3>
-                                <P style={{ marginBottom: 0 }}>I dropped the dog icon, kept the label, and split the paragraph into sections under subheadings, so an owner could see what was where. It was one page to scroll through. The client turned it down: every other tool shows results as swipeable cards, and they wanted this one to match.</P>
+                                <P style={{ marginBottom: 0 }}>I dropped the dog icon, kept the label, and split the paragraph into sections under subheadings. The client turned it down: every other tool shows results as swipeable cards, and they wanted this one to match.</P>
                             </div>
                             <div style={{ ...pair(m), flex: 1, minHeight: 0 }}>
                                 <ZoomVisual m={m} image={img("tryTwoList")} label="PH-14 · Try 2, divided list" caption="Subheadings divided by lines" size={m.linear ? { aspectRatio: "3 / 4" } : { height: "100%" }} />
@@ -609,7 +628,7 @@ export default function PetHealthCaseStudy(props: Props) {
                             <div>
                                 <Eyebrow>Final</Eyebrow>
                                 <H3>Subheadings in a swipeable carousel</H3>
-                                <P style={{ marginBottom: 0 }}>I kept the subheadings from Try 2 and moved them into the carousel format the other tools use. Every result now has the same seven labelled sections, with the vet consultation first, so the most important advice is the first thing an owner reads. The label appears once and the icon is gone. Most results went from three cards to two; the few that still need three no longer fill each one with text. Drag to compare.</P>
+                                <P style={{ marginBottom: 0 }}>Try 2's subheadings in the carousel format the other tools use. The label appears once and the icon is gone. Drag to compare.</P>
                             </div>
                             <div style={{ flex: m.linear ? undefined : 1, minHeight: 0 }}>
                                 <BeforeAfter m={m} before={img("before")} after={img("after")} beforeLabel="Before · 3 pages" afterLabel="After · 2 cards" />
@@ -621,7 +640,7 @@ export default function PetHealthCaseStudy(props: Props) {
                     w: 0.8,
                     render: (m) => (
                         <BigNumber m={m} n="7" label="labelled sections in every result, most on two cards instead of three">
-                            <P>Shipped. All ten results now use the same seven labelled sections, in the same carousel format as the other tools, and most fit on two cards instead of three.</P>
+                            <P>Shipped. All ten results use the same seven labelled sections, vet consultation first, in the same carousel format as the other tools. Most went from three cards to two. The few that still need three no longer fill each one with text.</P>
                         </BigNumber>
                     ),
                 },
@@ -640,14 +659,17 @@ export default function PetHealthCaseStudy(props: Props) {
                                 <>
                                     <Eyebrow>06</Eyebrow>
                                     <H2 m={m}>Re-skinning a tool for a new brand</H2>
-                                    <P>Each tool runs on around 10 brands, each with its own colours and fonts. Re-skinning a tool's design files for another brand meant changing colours and text styles by hand, which I estimate took about two days per tool.</P>
+                                    <P style={{ color: C.ink }}>
+                                        <B>~2 days → under 2 minutes per tool (the "before" is my estimate).</B>
+                                    </P>
+                                    <P>Each tool runs on ~10 brands, each with its own colours and fonts, changed by hand.</P>
                                     <Bullets
                                         items={[
                                             <>
                                                 <B>Consistent names.</B> Colour roles follow the client's fixed mapping. I named the font styles so every tool uses the same names for the same roles.
                                             </>,
                                             <>
-                                                <B>One library per brand.</B> Each brand's colours and fonts live in one Figma library. Swapping the library re-skins a whole tool at once, because the names match across brands.
+                                                <B>One Figma library per brand.</B> Swapping the library re-skins a whole tool, because names match across brands.
                                             </>,
                                         ]}
                                     />
@@ -674,14 +696,13 @@ export default function PetHealthCaseStudy(props: Props) {
                             cols="minmax(0,0.8fr) minmax(0,1.2fr)"
                             left={
                                 <>
-                                    <H3>Brands with one colour</H3>
-                                    <P>Some brands supplied a single colour. I generated a full set of tints from it with a plugin, so every colour role in the tool was still filled.</P>
+                                    <H3>Single-colour brands</H3>
+                                    <P>I generated a full tint set from one colour with a plugin, so every colour role was filled.</P>
                                     <div style={{ marginTop: 24 }}>
                                         <Big m={m}>{"< 2 min"}</Big>
                                     </div>
-                                    <P>Setting up a new brand's library takes 10–15 minutes, to define its font styles and colours. After that, re-skinning a tool's design takes a minute or two instead of about two days, and the same library re-skins every tool.</P>
                                     <P>
-                                        <B>Used for real.</B> I re-skinned 12–13 tools this way, across 3–4 brands.
+                                        <B>Numbers:</B> 10–15 min to set up a new brand's library, once. Then 1–2 min to re-skin any tool. Used on 12–13 tools across 3–4 brands.
                                     </P>
                                 </>
                             }
@@ -700,7 +721,7 @@ export default function PetHealthCaseStudy(props: Props) {
                     <Bullets
                         items={[
                             <>
-                                <B>Multi-photo errors.</B> One tool needs three photos from different angles, so I designed an error for each photo that points to the one that failed.
+                                <B>Multi-photo errors.</B> One tool needs three photos from different angles. I designed an error for each that points to the one that failed.
                             </>,
                             <>
                                 <B>Developer specs.</B> For my screens, and one new tool built on the existing flow.
