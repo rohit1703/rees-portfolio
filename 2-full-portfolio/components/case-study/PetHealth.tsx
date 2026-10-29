@@ -26,7 +26,7 @@ const IMG = {
     tryTwoList: asset("8NWirisCFriDKt4yDGRJyxhIaVs.png", "Try 2: one scrolling page, sections under subheadings divided by lines"),
     tryTwoCards: asset("d8mjwiSV5tXJMnzQA6J4emHjDlU.png", "Try 2: one scrolling page, each section as its own tile"),
     before: asset("hGDPHfq5Gw7GKpQMHypHHwb8sa4.png", "Before: three swipeable pages, with the label and icon repeated on every page"),
-    after: asset("ki7Sk3KEuCVdYWk5kFPQxX8a35Q.png", "After: a carousel card with the label once and labelled sections, vet consultation first"),
+    after: asset("immunity-after-two-cards.png", "After: the two carousel cards, with the label once and seven labelled sections, vet consultation first"),
     brandLibrary: asset("lMhVd4dmhlddDB6G0Khalmn8Qtc.png", "Brand library: type and colour"),
     brandA: asset("eUCcvgZQi0yqvq0Mk0bj8VKAAoM.png", "Brand A"),
     brandB: asset("XT24sv6Obcm3DPDg6J4iMx4p4Ms.png", "Brand B, same tool after a library swap"),
@@ -250,7 +250,7 @@ export default function PetHealthCaseStudy(props: Props) {
                         ["Problem", "88% of people who opened the dental scan left before uploading a photo, and nobody knew why. The immunity check's 10-outcome result ran across three pages."],
                         ["My decision", "Use funnel data to find where people drop off, then ask why with short feedback forms at those points. Rebuild the result into labelled sections, vet advice first."],
                         ["Final design", "Feedback forms at the drop-off points, a sectioned carousel result for the immunity check, and brand libraries so a tool can be re-skinned in minutes."],
-                        ["Result", "Drop-off reasons are now captured in the flow. Every result now has the same six labelled sections, most on two cards instead of three. Re-skinning a tool fell from about two days to under two minutes, across 12–13 tools."],
+                        ["Result", "Drop-off reasons are now captured in the flow. Every result now has the same seven labelled sections, most on two cards instead of three. Re-skinning a tool fell from about two days to under two minutes, across 12–13 tools."],
                     ]}
                     image={img("hero")}
                     label="PH-01 · Hero"
@@ -289,7 +289,7 @@ export default function PetHealthCaseStudy(props: Props) {
                                     m={m}
                                     items={[
                                         ["88%", "left before even uploading a photo. I designed a way to find out why."],
-                                        ["6 sections", "a 10-outcome result, now split into the same labelled sections every time, vet advice first."],
+                                        ["7 sections", "a 10-outcome result, now split into the same labelled sections every time, vet advice first."],
                                         ["< 2 min", "to re-skin a tool for a new brand, down from about two days by my estimate. I re-skinned 12–13 tools this way."],
                                     ]}
                                 />
@@ -574,7 +574,7 @@ export default function PetHealthCaseStudy(props: Props) {
             nav: 5,
             panels: [
                 {
-                    w: 0.95,
+                    w: 0.8,
                     render: (m) => (
                         <div style={{ display: "flex", flexDirection: "column", height: m.linear ? "auto" : "100%", gap: 14 }}>
                             <div>
@@ -587,7 +587,7 @@ export default function PetHealthCaseStudy(props: Props) {
                     ),
                 },
                 {
-                    w: 1.15,
+                    w: 0.8,
                     render: (m) => (
                         <div style={{ display: "flex", flexDirection: "column", height: m.linear ? "auto" : "100%", gap: 14 }}>
                             <div>
@@ -603,13 +603,13 @@ export default function PetHealthCaseStudy(props: Props) {
                     ),
                 },
                 {
-                    w: 0.6,
+                    w: 0.8,
                     render: (m) => (
                         <div style={{ display: "flex", flexDirection: "column", height: m.linear ? "auto" : "100%", gap: 14 }}>
                             <div>
                                 <Eyebrow>Final</Eyebrow>
                                 <H3>Subheadings in a swipeable carousel</H3>
-                                <P style={{ marginBottom: 0 }}>I kept the subheadings from Try 2 and moved them into the carousel format the other tools use. Every result now has the same six labelled sections, with the vet consultation first, so the most important advice is the first thing an owner reads. The label appears once and the icon is gone. Most results went from three cards to two; the few that still need three no longer fill each one with text. Drag to compare.</P>
+                                <P style={{ marginBottom: 0 }}>I kept the subheadings from Try 2 and moved them into the carousel format the other tools use. Every result now has the same seven labelled sections, with the vet consultation first, so the most important advice is the first thing an owner reads. The label appears once and the icon is gone. Most results went from three cards to two; the few that still need three no longer fill each one with text. Drag to compare.</P>
                             </div>
                             <div style={{ flex: m.linear ? undefined : 1, minHeight: 0 }}>
                                 <BeforeAfter m={m} before={img("before")} after={img("after")} beforeLabel="Before · 3 pages" afterLabel="After · 2 cards" />
@@ -618,10 +618,10 @@ export default function PetHealthCaseStudy(props: Props) {
                     ),
                 },
                 {
-                    w: 0.55,
+                    w: 0.8,
                     render: (m) => (
-                        <BigNumber m={m} n="6" label="labelled sections in every result, most on two cards instead of three">
-                            <P>Shipped. All ten results now use the same six labelled sections, in the same carousel format as the other tools, and most fit on two cards instead of three.</P>
+                        <BigNumber m={m} n="7" label="labelled sections in every result, most on two cards instead of three">
+                            <P>Shipped. All ten results now use the same seven labelled sections, in the same carousel format as the other tools, and most fit on two cards instead of three.</P>
                         </BigNumber>
                     ),
                 },
