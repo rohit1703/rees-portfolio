@@ -603,7 +603,7 @@ export default function PetHealthCaseStudy(props: Props) {
                     ),
                 },
                 {
-                    w: 1.05,
+                    w: 0.5,
                     render: (m) => (
                         <div style={{ display: "flex", flexDirection: "column", height: m.linear ? "auto" : "100%", gap: 14 }}>
                             <div>
