@@ -76,10 +76,10 @@ export default function SDKManagerCaseStudy(props: Props) {
                         ["Platform", "Desktop web app, no-code builder"],
                     ]}
                     brief={[
-                        ["Problem", "Assigning branding to an SDK took four steps, one of them hidden, so screens were missed before publish. Shared components had to be rebuilt on every screen that used them."],
-                        ["My decision", "Cut branding to two steps and flag missed screens before publish. Propose static components, built once per SDK, and make the case again after QA hit the same problem."],
-                        ["Final design", "A two-step branding flow with a pre-publish check, and static components that every screen reuses."],
-                        ["Result", "The BA's missed-screen reports stopped. A header change is one edit instead of one per screen. Across the platform, an SDK now takes 3–4 days instead of 2–3 weeks, with 44+ published."],
+                        ["Problem", "Choosing a brand took four steps, one hidden, and screens were missed before publish. Shared components were rebuilt on every screen."],
+                        ["My decision", "Cut branding to two steps and flag missed screens before publish. Propose static components, built once per SDK, and pitch again after QA hit the same problem."],
+                        ["Final design", "A two-step branding flow with a pre-publish check, and static components every screen reuses."],
+                        ["Result", "The BA's missed-screen reports stopped. A header change is one edit, not one per screen. Platform-wide, an SDK takes 3–4 days instead of 2–3 weeks."],
                     ]}
                     file={props.heroMedia}
                     image={img("hero")}
@@ -98,18 +98,22 @@ export default function SDKManagerCaseStudy(props: Props) {
                         [
                             "Context",
                             <>
-                                <P>
-                                    SDK Manager is a no-code platform a global pet-care company uses to build branded SDKs for its brands. An SDK here is the set of screens behind a tool like a pet health scan, typically 23 to 28 screens. The scan and check tools in my Pet Health Scan Suite case study are built here.
-                                </P>
-                                <P>
-                                    <B>Who uses it.</B> The company's brand and technology teams, who create, brand and publish SDKs for each of their brands.
-                                </P>
-                                <P>
-                                    <B>The problem.</B> Before the platform, every SDK was designed and built by hand. It took 2–3 weeks each time, and only 7–8 were ever shipped.
-                                </P>
-                                <P>
-                                    <B>Where I came in.</B> Another designer set the direction and designed the early flows, then handed the product over to me two months after I joined. Since April 2025 I've been the only designer, working with a BA and the engineering team through the Phase 1 launch and into Phase 2.
-                                </P>
+                                <Bullets
+                                    items={[
+                                        <>
+                                            <B>What it is.</B> A no-code platform a global pet-care company uses to build branded SDKs. An SDK here is the 23–28 screens behind a tool like a pet health scan. My Pet Health Scan Suite tools are built here.
+                                        </>,
+                                        <>
+                                            <B>Who uses it.</B> The company's brand and technology teams, who create, brand and publish SDKs for each brand.
+                                        </>,
+                                        <>
+                                            <B>Before the platform.</B> Every SDK was built by hand: 2–3 weeks each, and only 7–8 ever shipped.
+                                        </>,
+                                        <>
+                                            <B>Where I came in.</B> Another designer set the direction and early flows, then handed over two months after I joined. Since April 2025 I've been the only designer, working with a BA (business analyst) and engineering through Phase 1 into Phase 2.
+                                        </>,
+                                    ]}
+                                />
                             </>,
                         ],
                         [
@@ -118,12 +122,14 @@ export default function SDKManagerCaseStudy(props: Props) {
                                 <Stats
                                     m={m}
                                     items={[
-                                        ["4 → 2", "steps to choose a brand. The BA's missed-screen reports stopped after it shipped."],
+                                        ["Stopped", "the BA's missed-screen reports, after my branding redesign shipped (4 → 2 steps to choose a brand)."],
                                         ["1 edit", "to change a header across a whole SDK, instead of one on each of 18–24 screens."],
                                         ["3–4 days", "to build an SDK on the platform, down from 2–3 weeks, with 44+ SDKs published since July 2025."],
                                     ]}
                                 />
-                                <Note>The first two are the results of my changes. The last is the platform as a whole, not just my work.</Note>
+                                <Note>
+                                    <B>The first two are mine.</B> The last is the platform as a whole.
+                                </Note>
                             </>,
                         ],
                         [
@@ -160,11 +166,13 @@ export default function SDKManagerCaseStudy(props: Props) {
                             <>
                                 <Eyebrow>01</Eyebrow>
                                 <H2 m={m}>What I worked from</H2>
-                                <P>There was no direct user research on this project.</P>
+                                <P style={{ color: C.ink }}>
+                                    <B>No direct user research. I worked from three secondhand sources:</B>
+                                </P>
                                 <Bullets
                                     items={[
                                         <>
-                                            <B>Journey maps.</B> Created before I joined, covering scenarios like building a new SDK and editing an existing one.
+                                            <B>Journey maps.</B> Made before I joined: building a new SDK, editing an existing one.
                                         </>,
                                         <>
                                             <B>BA reports.</B> From the teams using the platform, including screens being missed during branding.
@@ -193,15 +201,20 @@ export default function SDKManagerCaseStudy(props: Props) {
                             <>
                                 <Eyebrow>02 · Assigning branding to an SDK version</Eyebrow>
                                 <H2 m={m}>What I inherited</H2>
-                                <P>Every SDK version gets one brand, which sets its images, colours, and fonts. In the flow I inherited, this took two screens.</P>
+                                <P style={{ color: C.ink }}>
+                                    <B>Two problems: a four-step brand choice with a hidden step, and one long page where screens got missed.</B>
+                                </P>
+                                <P>Every SDK version gets one brand, which sets its images, colours and fonts.</P>
                                 <P>
-                                    <B>Choosing the brand.</B> Each brand card had a toggle, and the copy said to "individually enable brands," which suggested several could be on at once.
+                                    <B>1 · Choosing the brand.</B> Each card had a toggle, and the copy said to "individually enable brands," which suggested several could be on at once.
                                 </P>
                                 <Flow items={["Toggle", "Hidden menu", "Apply", "Save"]} highlight={[1]} />
                                 <P>
-                                    <B>Assigning images.</B> Every screen that needed a brand image sat on one long page, each with its own upload box.
+                                    <B>2 · Assigning images.</B> Every screen needing a brand image sat on one long page, each with its own upload box.
                                 </P>
-                                <P>The BA reported that users were missing screens. I traced it to page length: on one long scrolling page, some upload boxes were easy to scroll past, and the gap only showed up later as an error.</P>
+                                <P>
+                                    <B>Diagnosis:</B> the BA reported missed screens. I traced it to page length: upload boxes were easy to scroll past, and the gap only showed up later as an error.
+                                </P>
                             </>
                         }
                         right={<Visual file={props.inheritedMedia} label="SDK-01 · Inherited flow video" caption="The flow I inherited: four steps, one of them hidden" style={vis(m)} />}
@@ -249,7 +262,10 @@ export default function SDKManagerCaseStudy(props: Props) {
                         <Column m={m}>
                             <Eyebrow>03</Eyebrow>
                             <H2 m={m}>What I tried and dropped</H2>
-                            <P>Five versions in total. Four didn't make it, and each one taught me something about what the final design had to do.</P>
+                            <P style={{ color: C.ink }}>
+                                <B>Five versions, four dropped.</B>
+                            </P>
+                            <P>Each one ruled something out of the final design.</P>
                         </Column>
                     ),
                 },
@@ -316,7 +332,7 @@ export default function SDKManagerCaseStudy(props: Props) {
                     title="Build once, use on every screen"
                     intro={
                         <P>
-                            A handful of components appear on nearly every screen: brand header, tool header, feedback forms, result components. The builder had no way to reuse a component, so users rebuilt each of these on every screen that needed it, 18 to 24 of an SDK's 23 to 28 screens. It was slow, and every rebuild was a chance for one screen to drift from the rest.
+                            <B>The problem:</B> brand header, tool header, feedback forms and result components appear on 18–24 of an SDK's 23–28 screens. The builder couldn't reuse a component, so users rebuilt each one every time. Slow, and every rebuild risked one screen drifting from the rest.
                         </P>
                     }
                     points={[
@@ -337,7 +353,9 @@ export default function SDKManagerCaseStudy(props: Props) {
                 <div style={{ padding: m.linear ? "64px 0" : "16vh 0 8vh", maxWidth: 760 }}>
                     <Eyebrow>04 · Static components</Eyebrow>
                     <H2 m={m}>It took two pitches to get them built</H2>
-                    <P>Static components were my idea, and they didn't get built the first time I proposed them.</P>
+                    <P style={{ color: C.ink }}>
+                        <B>Static components were my idea. They were turned down first, then approved once the team felt the problem.</B>
+                    </P>
                     <Table
                         rows={[
                             ["First pitch", "During QA", "Second pitch"],
@@ -355,7 +373,7 @@ export default function SDKManagerCaseStudy(props: Props) {
                         ]}
                     />
                     <H3>Result: one edit instead of one per screen</H3>
-                    <P>Shipped after the Phase 1 release. Each SDK now has 3 to 5 static components, each built once instead of on 18 to 24 screens. Changing a header is now one edit instead of one per screen.</P>
+                    <P>Shipped after the Phase 1 release. Each SDK now has 3–5 static components, each built once instead of on 18–24 screens.</P>
                 </div>
             ),
         },
@@ -366,11 +384,11 @@ export default function SDKManagerCaseStudy(props: Props) {
                 <div style={{ padding: m.narrow ? "64px 0 80px" : "14vh 0 14vh", maxWidth: 900 }}>
                     <H2 m={m}>What I'd change</H2>
                     <P>
-                        <B>Measure my own changes from the start.</B> The build-time numbers at the top are for the platform as a whole. For my two changes, I have no tracked time data: the BA's reports told us missed screens stopped, but I can't say how much time the redesign or static components saved. Next time I'd agree one or two metrics with the BA before release.
+                        <B>Measure my own changes from the start.</B> The build-time numbers are for the whole platform. For my two changes I have no tracked time data: the BA's reports say missed screens stopped, but I can't say how much time was saved. Next time I'd agree one or two metrics with the BA before release.
                     </P>
                     <div style={{ height: 32 }} />
                     <H3>Other parts of the platform I designed</H3>
-                    <P>Template creation (including import from JSON), the catalogs, configurations and validation across flows, and configuration history with restore.</P>
+                    <Bullets items={["Template creation, including import from JSON", "Catalogs", "Configurations and validation across flows", "Configuration history with restore"]} />
                     <div style={{ display: "grid", gridTemplateColumns: m.narrow ? "minmax(0,1fr)" : "repeat(2, minmax(0,1fr))", gap: 24, marginTop: 16 }}>
                         <Visual image={img("catalogs")} label="SDK-03 · Catalogs" caption="Catalogs" style={{ aspectRatio: "16 / 10" }} />
                         <Visual image={img("configurations")} label="SDK-04 · Configurations" caption="Configurations" style={{ aspectRatio: "16 / 10" }} />
