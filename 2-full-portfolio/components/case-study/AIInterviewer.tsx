@@ -68,10 +68,10 @@ export default function AIInterviewerCaseStudy(props: Props) {
                         ["Platform", "Internal web app"],
                     ]}
                     brief={[
-                        ["Problem", "Engineers were losing hours to first-round technical interviews, and the first automated version was beaten by candidates using AI to pass it."],
-                        ["My decision", "Test understanding instead of output: candidates explain and debug AI-written code, then design a system with an AI chatbot that scores how much guidance they need."],
-                        ["Final design", "Two candidate rounds with proctoring, dashboards for TA, recruiters and leadership, and a feedback email to every candidate."],
-                        ["Result", "650+ candidates screened and 400+ engineer hours saved, as reported by TA. Rebuilt in 4 weeks; second interviews found Version 2 passers as capable as their scores."],
+                        ["Problem", "Engineers lost hours to first-round technical interviews. Version 1 was beaten by candidates using AI."],
+                        ["My decision", "Test understanding, not output. Candidates explain and debug AI-written code, then design a system with an AI chatbot."],
+                        ["Final design", "Two proctored candidate rounds, dashboards for TA, recruiters and leadership, and a feedback email to every candidate."],
+                        ["Result", "650+ candidates screened, 400+ engineer hours saved (TA's figures). Rebuilt in 4 weeks."],
                     ]}
                     image={img("heroImage")}
                     label="AI-05 · Reverse-engineering round"
@@ -86,38 +86,44 @@ export default function AIInterviewerCaseStudy(props: Props) {
                     m={m}
                     items={[
                         [
-                            "Story",
-                            <P>
-                                I was the only designer on a seven-person team and designed the full platform: the candidate assessment and the dashboards for TA, recruiters and leadership. I also ran the early POC testing and the TA interviews and synthesised the findings. The tool is used in real hiring, and the version described here is the second one, rebuilt after launch.
-                            </P>,
-                        ],
-                        [
                             "Outcome",
                             <Stats
                                 m={m}
                                 items={[
-                                    ["650+", "candidates screened since launch, as reported by the TA team"],
-                                    ["400+", "engineer hours saved on first-round interviews, as reported by the TA team"],
-                                    ["4 weeks", "to rebuild after candidates used AI to pass the automated rounds"],
+                                    ["650+", "candidates screened since launch (TA team's figure)"],
+                                    ["400+", "engineer hours saved on first-round interviews (TA team's figure)"],
+                                    ["4 weeks", "to rebuild after candidates used AI to pass"],
                                 ]}
                             />,
                         ],
                         [
-                            "What it is today",
+                            "My role",
+                            <Bullets
+                                items={[
+                                    "Only designer on a seven-person team.",
+                                    "Designed the full platform: the candidate assessment, plus dashboards for TA (Talent Acquisition), recruiters and leadership.",
+                                    "Ran the early POC (proof of concept) testing and the TA interviews, and synthesised the findings.",
+                                    "The tool is used in real hiring. This is Version 2, rebuilt after launch.",
+                                ]}
+                            />,
+                        ],
+                        [
+                            "How it works today",
                             <>
-                                <P>Candidates complete two rounds:</P>
+                                <P>
+                                    <B>Two rounds, then review.</B>
+                                </P>
                                 <Cards
                                     m={m}
                                     items={[
-                                        ["1 · Reverse engineering", "Candidates are given code written by AI and have to explain what the code does, how it works and find errors in it."],
-                                        ["2 · System design", "A system design problem with an AI chatbot. The AI scores candidates partly on how much guidance they need to solve."],
+                                        ["1 · Reverse engineering", "Candidates get AI-written code. They explain what it does, how it works, and find its errors."],
+                                        ["2 · System design", "Candidates solve a design problem with an AI chatbot. The AI scores them partly on how much guidance they need."],
+                                        ["3 · Review", "TA, recruiters and leadership see results, proctoring flags and each candidate's hiring status on their own dashboards."],
+                                        ["4 · Feedback", "Every candidate gets an email on how they performed (not the final result)."],
                                     ]}
                                 />
-                                <P>
-                                    TA, recruiters and leadership review the results, proctoring flags, and each candidate's hiring status on their own dashboards. After the assessment, candidates get an email with feedback on how they performed, but not the final result.
-                                </P>
                                 <Note>
-                                    <B>Early signal.</B> Delivery managers ran a second interview with a few of the candidates who passed Version 2, and found them as capable as their results suggested. Candidates who passed Version 1 had shown clear gaps in the very concepts they'd scored full marks on. It's a small sample, but it's the first sign the new rounds measure real understanding. The rest of this case study covers how it got here.
+                                    <B>Early signal.</B> Delivery managers re-interviewed a few Version 2 passers and found them as capable as their scores. Version 1 passers had shown clear gaps in concepts they'd scored full marks on. Small sample, but the first sign the new rounds measure real understanding.
                                 </Note>
                             </>,
                         ],
@@ -135,23 +141,21 @@ export default function AIInterviewerCaseStudy(props: Props) {
                     eyebrow="01"
                     title="Where AI belonged"
                     intro={
-                        <P>
-                            The product was a technical screening platform to replace the manual first round. Early on, the most ambitious idea was an AI voice that would run the whole interview. Here's what decided it, in order:
-                        </P>
+                        <>
+                            <P style={{ color: C.ink }}>
+                                <B>Decision: AI only in the system design round. Everything else stays a familiar assessment.</B>
+                            </P>
+                            <P>The most ambitious idea was an AI voice running the whole interview. Here's what decided it, in order:</P>
+                        </>
                     }
                     points={[
-                        { t: "Build time", b: "Engineering said a full AI interviewer couldn't be built in the time we had. That settled it." },
+                        { t: "Build time", b: "Engineering said a full AI interviewer couldn't be built in the time we had. This settled it." },
                         {
                             t: "POC testing",
-                            b: "I'd already put junior employees through an early proof-of-concept, and what I saw backed the call. Their confidence dropped as they went. They couldn't tell whether the AI had understood their answers, the voice felt strange to talk to, and people less comfortable in English struggled to explain their thinking out loud.",
+                            b: "I'd put junior employees through an early proof of concept, and what I saw backed the call. Their confidence dropped as they went: they couldn't tell whether the AI understood them, the voice felt strange to talk to, and people less comfortable in English struggled to explain out loud.",
                         },
                         { t: "TA interviews", b: "TA raised the same worry: if candidates don't trust the process, the results aren't useful." },
                     ]}
-                    outro={
-                        <P style={{ color: C.ink }}>
-                            <B>So Version 1 became a familiar technical assessment, with the AI chatbot only in the system design round.</B>
-                        </P>
-                    }
                 />
             ),
         },
@@ -167,13 +171,27 @@ export default function AIInterviewerCaseStudy(props: Props) {
                             left={
                                 <>
                                     <Eyebrow>02</Eyebrow>
-                                    <H2 m={m}>Version 1: a three-round assessment</H2>
+                                    <H2 m={m}>Version 1: three rounds</H2>
                                     <P>
-                                        Before any design, I built the research foundation: a TA and recruiter persona from primary research (the TA interviews), a candidate persona from secondary research, a user journey map, and a Kano prioritisation run with the team to decide what the MVP included.
+                                        <B>Shipped in about six weeks: Technical MCQ → Coding → System design (AI here).</B>
                                     </P>
-                                    <P>
-                                        <B>I built the candidate persona around a deliberate worst case:</B> the least experienced candidate, on their most stressful day. If the assessment worked for them, it would work for everyone else.
-                                    </P>
+                                    <P>Research I built before any design:</P>
+                                    <Bullets
+                                        items={[
+                                            <>
+                                                <B>TA and recruiter persona</B>, from the TA interviews.
+                                            </>,
+                                            <>
+                                                <B>Candidate persona</B>, from secondary research. A deliberate worst case: the least experienced candidate on their most stressful day. If it worked for them, it would work for everyone.
+                                            </>,
+                                            <>
+                                                <B>User journey map.</B>
+                                            </>,
+                                            <>
+                                                <B>Kano prioritisation</B>, run with the team to set the MVP scope.
+                                            </>,
+                                        ]}
+                                    />
                                 </>
                             }
                             right={
@@ -202,12 +220,9 @@ export default function AIInterviewerCaseStudy(props: Props) {
                             left={
                                 <>
                                     <P>
-                                        The first version had three rounds: technical MCQ, coding, and system design. I based the format on familiar coding-test platforms, which most candidates already know, so they wouldn't have to learn a new interface under time pressure. The AI chatbot only appeared in system design.
+                                        <B>Why a familiar format:</B> I based it on coding-test platforms candidates already know, so nobody had to learn a new interface under time pressure. The AI chatbot only appeared in system design.
                                     </P>
                                     <Flow items={["Technical MCQ", "Coding", "System design · AI here"]} highlight={[2]} />
-                                    <P>
-                                        <B>It shipped in about six weeks.</B>
-                                    </P>
                                 </>
                             }
                             right={<Visual file={props.v1Media} label="AI-03 · Version 1 video" caption="Version 1: three rounds" style={vis(m)} />}
@@ -220,10 +235,11 @@ export default function AIInterviewerCaseStudy(props: Props) {
             kind: "flow",
             nav: 3,
             node: (m) => (
-                <Short m={m} eyebrow="03" title="What launch showed us">
-                    <P style={{ fontSize: 19, lineHeight: 1.6 }}>
-                        Soon after launch, TA noticed candidates getting full marks on MCQ and coding and then doing badly in system design. The gap was too consistent to be chance. Candidates were using AI tools to answer the two automated rounds.
+                <Short m={m} eyebrow="03" title="What launch showed">
+                    <P style={{ fontSize: 19, lineHeight: 1.6, color: C.ink }}>
+                        <B>Candidates were using AI to pass the two automated rounds.</B>
                     </P>
+                    <P style={{ fontSize: 19, lineHeight: 1.6 }}>TA saw a pattern: full marks on MCQ and coding, then poor results in system design. Too consistent to be chance.</P>
                 </Short>
             ),
         },
@@ -239,14 +255,17 @@ export default function AIInterviewerCaseStudy(props: Props) {
                             <>
                                 <Eyebrow>04</Eyebrow>
                                 <H2 m={m}>Version 2: testing understanding</H2>
-                                <P>The team decided to drop the MCQ round. I redesigned the coding round into the reverse-engineering task: rather than writing code, candidates explain AI-written code.</P>
-                                <P>We couldn't stop candidates from using AI, so the round now checks whether they understand what it produces. System design stayed, because it was the one round that had held up.</P>
+                                <P style={{ color: C.ink }}>
+                                    <B>We couldn't stop candidates using AI. So the round now checks whether they understand what AI produces.</B>
+                                </P>
                                 <Table
                                     small
                                     maxWidth={560}
                                     rows={[
-                                        [<s style={{ opacity: 0.6 }}>MCQ</s>, "Coding → Reverse engineering", "System design"],
-                                        ["Dropped", "Explain AI-written code", "Stayed"],
+                                        ["Round", "Change", "Note"],
+                                        ["MCQ", "Dropped", "The team's decision"],
+                                        ["Coding", "Became reverse engineering: explain AI-written code", "My redesign"],
+                                        ["System design", "Stayed", "The one round that had held up"],
                                     ]}
                                 />
                             </>
@@ -266,22 +285,26 @@ export default function AIInterviewerCaseStudy(props: Props) {
                         <Column m={m}>
                             <Eyebrow>05</Eyebrow>
                             <H2 m={m}>Designing for nervous candidates</H2>
-                            <P>A job assessment is stressful, and a nervous candidate performs below their level, which makes the results less accurate.</P>
-                            <P>My first candidate interface had all the right information but was cluttered. I simplified the layout and added:</P>
+                            <P style={{ color: C.ink }}>
+                                <B>A nervous candidate scores below their level, which makes results less accurate.</B>
+                            </P>
+                            <P>My first candidate interface had the right information but was cluttered. I simplified the layout and added:</P>
                             <Bullets
                                 items={[
                                     <>
-                                        <B>A pre-test screen</B> with instructions and the timer, so candidates know what's coming before the clock starts
+                                        <B>A pre-test screen</B> with instructions and the timer, so candidates know what's coming before the clock starts.
                                     </>,
                                     <>
-                                        <B>Tooltips</B> that explain each part of the interface before the test begins
+                                        <B>Tooltips</B> explaining each part of the interface before the test begins.
                                     </>,
                                     <>
-                                        <B>A feedback email</B> after the assessment, which I suggested so candidates know how they performed and what happens next instead of waiting without hearing anything
+                                        <B>A feedback email</B> after the assessment (my suggestion), so candidates aren't left waiting without hearing anything.
                                     </>,
                                 ]}
                             />
-                            <Note>The idea that these reduce anxiety is a hypothesis. We haven't measured it.</Note>
+                            <Note>
+                                <B>Hypothesis, not measured.</B> We haven't tested whether these reduce anxiety.
+                            </Note>
                         </Column>
                     ),
                 },
@@ -296,8 +319,19 @@ export default function AIInterviewerCaseStudy(props: Props) {
                             left={
                                 <>
                                     <H3>Proctoring</H3>
-                                    <P>Before starting, candidates accept permissions for full-screen recording and camera access. During the test, the system detects multiple faces in the frame and switching between tabs, and flags the affected responses.</P>
-                                    <P>Flags appear on the reviewer side, where TA decides what to do with them, rather than as warnings that interrupt the candidate during the test.</P>
+                                    <Bullets
+                                        items={[
+                                            <>
+                                                <B>Before the test:</B> candidates allow full-screen recording and camera access.
+                                            </>,
+                                            <>
+                                                <B>During:</B> the system flags responses when it detects multiple faces or tab switching.
+                                            </>,
+                                            <>
+                                                <B>Where flags go:</B> to reviewers, where TA decides. They never interrupt the candidate mid-test.
+                                            </>,
+                                        ]}
+                                    />
                                 </>
                             }
                             right={<Visual file={props.proctoringMedia} label="AI-11 · Proctoring video" caption="Permissions and proctoring" style={vis(m)} />}
@@ -313,7 +347,7 @@ export default function AIInterviewerCaseStudy(props: Props) {
                             left={
                                 <>
                                     <H3>Dashboards</H3>
-                                    <P>TA, recruiters and leadership each see assessment results, proctoring flags and where each candidate is in the hiring process.</P>
+                                    <P>TA, recruiters and leadership each see results, proctoring flags and each candidate's place in the hiring process.</P>
                                 </>
                             }
                             right={<Visual image={img("dashboardImage")} label="AI-10 · Dashboard" caption="Interview analysis report dashboard" style={vis(m)} />}
@@ -327,20 +361,20 @@ export default function AIInterviewerCaseStudy(props: Props) {
             nav: 6,
             node: (m) => (
                 <div style={{ padding: m.narrow ? "64px 0 80px" : "14vh 0 18vh", maxWidth: 760 }}>
-                    <H2 m={m}>What didn't get built, and what I'd push for</H2>
+                    <H2 m={m}>What didn't get built</H2>
                     <P>
-                        <B>Closing the proctoring gaps.</B> The current system is easy to get around. Someone off-camera can help, or a candidate can read from a second screen without switching tabs. I proposed detecting other voices and tracking eye movement. Both were cut for technical reasons. If they were added, I'd make sure flags still go to a human reviewer and never reject a candidate automatically, since eye tracking in particular produces false flags.
+                        <B>Closing proctoring gaps.</B> The system is easy to get around: someone off-camera can help, or a candidate can read from a second screen without switching tabs. I proposed detecting other voices and tracking eye movement. Both were cut for technical reasons. If they were added, I'd make sure flags still go to a human reviewer and never reject a candidate automatically, since eye tracking in particular produces false flags.
                     </P>
                     <P>
-                        <B>Help during the test.</B> If a candidate's connection drops or something breaks mid-test, there's nobody they can contact. I wanted a built-in way to reach support immediately, so a technical problem doesn't turn into panic about their result. It wasn't built.
+                        <B>Help during the test.</B> If a connection drops mid-test, there's nobody to contact. I wanted built-in support so a technical problem doesn't become panic about the result. Not built.
                     </P>
                     <div style={{ height: 32 }} />
                     <H2 m={m}>What I learned</H2>
                     <P>
-                        The biggest early decision, how much of the product AI should run, was settled by build time. My part was testing it with people, and the POC showed the constraint pointed the right way: a fully AI-run interview would have cost candidates' trust. Keeping the rest a familiar assessment is also what made the tool shippable in six weeks.
+                        <B>Build time settled the biggest decision. My part was testing it with people.</B> The POC showed the constraint pointed the right way: a fully AI-run interview would have cost candidates' trust. Keeping the rest familiar is what made a 6-week ship possible.
                     </P>
                     <P>
-                        The second lesson came from launch: candidates will bring AI to an AI assessment. The first version tried to test skills the AI could fake. The second version assumes they'll use AI and tests whether they understand the output.
+                        <B>Candidates will bring AI to an AI assessment.</B> Version 1 tested skills AI could fake. Version 2 assumes candidates use AI, and tests whether they understand the output.
                     </P>
                     <Footer m={m} nextLabel="SDK Manager" nextHref={nextLink} backHref={backLink} />
                 </div>
