@@ -749,7 +749,7 @@ export default function HomePage(props: HomePageProps) {
             n: "03",
             chips: ["UX Designer", "Consumer AI / Mobile Web"],
             title: "Pet Health Scan Suite",
-            body: ["88% of people who opened the dental scan left before uploading a photo, and nobody knew why. ", "I used funnel data to find where people drop off, then asked why", ", split a ten-outcome result into six labelled sections, with vet advice first, and set up brand libraries that cut re-skinning a tool from about two days to a couple of minutes."],
+            body: ["88% of people who opened the dental scan left before uploading a photo, and nobody knew why. ", "I used funnel data to find where people drop off, then asked why", ", split a ten-outcome result into seven labelled sections, with vet advice first, and set up brand libraries that cut re-skinning a tool from about two days to a couple of minutes."],
             image: pet,
             href: petLink,
         },
@@ -934,24 +934,12 @@ export default function HomePage(props: HomePageProps) {
                         </DropLine>
                     )}
                     <div style={{ height: narrow ? 24 : 32 }} />
-                    <div style={{ position: "relative", width: "max-content", maxWidth: "100%", margin: "0 auto", display: "flex", flexDirection: "column", gap: narrow ? 8 : 10 }}>
+                    <div style={{ display: "flex", flexDirection: "column", gap: narrow ? 8 : 10 }}>
                         {leftLines2.map((t) => (
                             <DropLine key={t} live={motionOn} delay={at(3.45)} style={label}>
                                 {t}
                             </DropLine>
                         ))}
-                        <DropLine live={motionOn} delay={at(3.45)} style={label}>
-                            <a href={`mailto:${email}`} style={{ color: T.ink, textDecoration: "underline", textDecorationColor: T.accent, textUnderlineOffset: 4, textDecorationThickness: 2, textTransform: "none", fontSize: narrow ? 13 : 15 }}>
-                                {email}
-                            </a>
-                        </DropLine>
-                        {/* "(contact me)" sits level with the email line, so the arrow points at the address */}
-                        {!narrow && (
-                            <motion.div initial={motionOn ? { opacity: 0 } : false} animate={{ opacity: 1 }} transition={{ ...SPRING, delay: at(3.9) }} style={{ position: "absolute", left: "calc(100% + 14px)", bottom: -4, height: 30, display: "flex", alignItems: "center", gap: 8, color: T.accentText, whiteSpace: "nowrap" }}>
-                                <PointLeft color={T.accentText} />
-                                <span style={{ fontFamily: SCRIPT, fontSize: 24, lineHeight: 1, marginTop: -16 }}>(contact me)</span>
-                            </motion.div>
-                        )}
                     </div>
                     <div style={{ height: narrow ? 28 : 36 }} />
                     {/* Jump to the work: the page's first call to action */}
@@ -974,6 +962,21 @@ export default function HomePage(props: HomePageProps) {
                             </motion.span>
                         </a>
                     </DropLine>
+                    <div style={{ height: narrow ? 26 : 32 }} />
+                    {/* Email, with the "(contact me)" note level with it so the arrow points at the address */}
+                    <div style={{ position: "relative", width: "max-content", maxWidth: "100%", margin: "0 auto" }}>
+                        <DropLine live={motionOn} delay={at(3.7)} style={label}>
+                            <a href={`mailto:${email}`} style={{ color: T.ink, textDecoration: "underline", textDecorationColor: T.accent, textUnderlineOffset: 4, textDecorationThickness: 2, textTransform: "none", fontSize: narrow ? 13 : 15 }}>
+                                {email}
+                            </a>
+                        </DropLine>
+                        {!narrow && (
+                            <motion.div initial={motionOn ? { opacity: 0 } : false} animate={{ opacity: 1 }} transition={{ ...SPRING, delay: at(3.9) }} style={{ position: "absolute", left: "calc(100% + 14px)", top: "50%", marginTop: -15, height: 30, display: "flex", alignItems: "center", gap: 8, color: T.accentText, whiteSpace: "nowrap" }}>
+                                <PointLeft color={T.accentText} />
+                                <span style={{ fontFamily: SCRIPT, fontSize: 24, lineHeight: 1, marginTop: -16 }}>(contact me)</span>
+                            </motion.div>
+                        )}
+                    </div>
                 </div>
             </section>
 
