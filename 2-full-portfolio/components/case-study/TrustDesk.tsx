@@ -1,6 +1,6 @@
 "use client"
 // Trust Desk case study page. Layout, scroll behaviour, type and colour come from CaseStudyKit.
-// Images are not in yet: every visual slot shows its labelled placeholder until the file is added to IMG.
+// Slots whose screenshot is not in yet have an empty file name and show their labelled placeholder.
 import * as React from "react"
 import { CaseStudyShell, C, pickImage, Visual, Eyebrow, H2, H3, P, B, Note, Bullets, Stats, Table, Split, Column, Hero, Rail, Footer } from "./kit"
 import { asset } from "@/lib/images"
@@ -12,22 +12,21 @@ const bodyFontOr = (v: KitProps["bodyFont"]) => (v?.fontFamily && !/^\W*Inter\b/
 // "Back to portfolio" lands on this project's card on the home page. An old "/" value counts as unset.
 const homeLink = (v: string | undefined) => (!v || v === "/" ? "/#trust-desk" : v)
 
-// Add the file names here once the screenshots exist; until then each slot renders its placeholder.
 // Slot numbers follow the order the images appear in the write-up.
 const IMG = {
-    hero: asset("", "Trust Desk after a run: the Run finished card, agent nodes with their badges, the checker pill, and Needs you in the side panel"),
-    ratingNode: asset("", "Email assistant node: three bars, Well proven, and a hover popover with its autonomy and record"),
-    editPrompt: asset("", "Edit prompt asking “Why are you changing it?” with two choices"),
+    hero: asset("trust-desk-run-finished.png", "Trust Desk after a run: the Run finished card, agent nodes with their badges, the checker pill, and Needs you in the side panel"),
+    ratingNode: asset("trust-desk-agent-node.png", "Email assistant node: three bars, Well proven, and a hover popover with its autonomy and record"),
+    editPrompt: asset("trust-desk-edit-prompt.png", "Edit prompt asking “Why are you changing it?” with two choices"),
     delegateBefore: asset("", "The first Delegate screen as one long list"),
     delegateAfter: asset("", "Questions pinned to each agent, and a Before you start card that keeps Start locked"),
-    stakes: asset("", "Before you start at low stakes (left) and high stakes (right)"),
-    returnView: asset("", "Return view after the Needs you item is handled: counts in the Run finished card and a spot-check card in the side panel"),
+    stakes: asset("trust-desk-before-you-start-stakes.png", "Before you start at low stakes (left) and high stakes (right)"),
+    returnView: asset("trust-desk-return-spot-check.png", "Return view after the Needs you item is handled: counts in the Run finished card and a spot-check card in the side panel"),
     notifications: asset("", "Five phone notification screens"),
     profileBefore: asset("", "The first agent profile, a full page of tables"),
-    profileAfter: asset("", "Agent profile drawer: autonomy meter, three numbers, reliability by task, autonomy history"),
-    checker: asset("", "Checker profile drawer: agreement with spot-checks, test mistakes caught, misses, and reliability by rule"),
+    profileAfter: asset("trust-desk-agent-profile.png", "Agent profile drawer: autonomy meter, three numbers, reliability by task, autonomy history"),
+    checker: asset("trust-desk-checker-profile.png", "Checker profile drawer: agreement with spot-checks, test mistakes caught, misses, and reliability by rule"),
     failure: asset("", "The failure view showing a mistake the checker missed"),
-    study: asset("", "The study page: plain summary (left) and trust layer (right), same task set"),
+    study: asset("trust-desk-study.png", "The study page: plain summary (left) and trust layer (right), same task set"),
 }
 type ImgKey = keyof typeof IMG
 

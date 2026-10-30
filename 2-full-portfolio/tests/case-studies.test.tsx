@@ -23,11 +23,11 @@ describe("Trust Desk case study", () => {
         expect(screen.getByRole("link", { name: "← Back to portfolio" })).toHaveAttribute("href", "/#trust-desk")
     })
 
-    // No screenshots are in yet, so every visual shows its labelled placeholder rather than an <img>.
-    it("shows labelled placeholders while the images are missing", () => {
+    // Eight screenshots are in; the five slots still waiting show their labelled placeholder rather than an <img>.
+    it("shows the screenshots that exist and labelled placeholders for the rest", () => {
         render(<TrustDesk />)
-        expect(document.querySelectorAll("img").length).toBe(0)
-        expect(screen.getAllByText(/TD-\d\d/).length).toBe(13)
+        expect(document.querySelectorAll("img").length).toBe(8)
+        expect(screen.getAllByText(/TD-\d\d/).length).toBe(5)
     })
 
     it("with reduced motion, falls back to a plain stacked page", () => {

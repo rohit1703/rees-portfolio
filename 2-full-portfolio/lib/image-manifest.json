@@ -527,6 +527,126 @@
       }
     ]
   },
+  "trust-desk-agent-node": {
+    "width": 620,
+    "height": 638,
+    "files": [
+      {
+        "w": 620,
+        "src": "/images/trust-desk-agent-node-620.webp"
+      }
+    ]
+  },
+  "trust-desk-agent-profile": {
+    "width": 840,
+    "height": 1800,
+    "files": [
+      {
+        "w": 800,
+        "src": "/images/trust-desk-agent-profile-800.webp"
+      },
+      {
+        "w": 840,
+        "src": "/images/trust-desk-agent-profile-840.webp"
+      }
+    ]
+  },
+  "trust-desk-before-you-start-stakes": {
+    "width": 1520,
+    "height": 1484,
+    "files": [
+      {
+        "w": 800,
+        "src": "/images/trust-desk-before-you-start-stakes-800.webp"
+      },
+      {
+        "w": 1520,
+        "src": "/images/trust-desk-before-you-start-stakes-1520.webp"
+      }
+    ]
+  },
+  "trust-desk-checker-profile": {
+    "width": 840,
+    "height": 1800,
+    "files": [
+      {
+        "w": 800,
+        "src": "/images/trust-desk-checker-profile-800.webp"
+      },
+      {
+        "w": 840,
+        "src": "/images/trust-desk-checker-profile-840.webp"
+      }
+    ]
+  },
+  "trust-desk-edit-prompt": {
+    "width": 960,
+    "height": 1224,
+    "files": [
+      {
+        "w": 800,
+        "src": "/images/trust-desk-edit-prompt-800.webp"
+      },
+      {
+        "w": 960,
+        "src": "/images/trust-desk-edit-prompt-960.webp"
+      }
+    ]
+  },
+  "trust-desk-return-spot-check": {
+    "width": 2880,
+    "height": 1800,
+    "files": [
+      {
+        "w": 800,
+        "src": "/images/trust-desk-return-spot-check-800.webp"
+      },
+      {
+        "w": 1600,
+        "src": "/images/trust-desk-return-spot-check-1600.webp"
+      },
+      {
+        "w": 2400,
+        "src": "/images/trust-desk-return-spot-check-2400.webp"
+      }
+    ]
+  },
+  "trust-desk-run-finished": {
+    "width": 2880,
+    "height": 1800,
+    "files": [
+      {
+        "w": 800,
+        "src": "/images/trust-desk-run-finished-800.webp"
+      },
+      {
+        "w": 1600,
+        "src": "/images/trust-desk-run-finished-1600.webp"
+      },
+      {
+        "w": 2400,
+        "src": "/images/trust-desk-run-finished-2400.webp"
+      }
+    ]
+  },
+  "trust-desk-study": {
+    "width": 3648,
+    "height": 3000,
+    "files": [
+      {
+        "w": 800,
+        "src": "/images/trust-desk-study-800.webp"
+      },
+      {
+        "w": 1600,
+        "src": "/images/trust-desk-study-1600.webp"
+      },
+      {
+        "w": 2400,
+        "src": "/images/trust-desk-study-2400.webp"
+      }
+    ]
+  },
   "wl0w7ktqXvUlJ98hikO7wVE9IE": {
     "width": 1246,
     "height": 496,

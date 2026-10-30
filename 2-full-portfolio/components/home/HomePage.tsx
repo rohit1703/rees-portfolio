@@ -54,7 +54,7 @@ const DEFAULTS = {
     pet: asset("aTXCKOpYTgCgJhF9lMdHmf1duM.png", "Pet Health Scan Suite: several scan tools across brands"),
     about: asset("sFlsCeS7T4TCJ7kBDTCdz4doSg.jpg", "Reethika smiling, standing beside a large blank poster"),
     // No screenshot yet: the card shows its labelled placeholder until a file name goes here.
-    trust: asset("", "Trust Desk: the return view, with what needs you first"),
+    trust: asset("trust-desk-run-finished.png", "Trust Desk after a run: agent nodes with their badges, the checker, and what needs you"),
 }
 
 const useIso = typeof window !== "undefined" ? useLayoutEffect : useEffect
