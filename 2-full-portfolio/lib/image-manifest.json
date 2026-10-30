@@ -551,6 +551,20 @@
       }
     ]
   },
+  "trust-desk-agent-profile-before": {
+    "width": 1148,
+    "height": 1048,
+    "files": [
+      {
+        "w": 800,
+        "src": "/images/trust-desk-agent-profile-before-800.webp"
+      },
+      {
+        "w": 1148,
+        "src": "/images/trust-desk-agent-profile-before-1148.webp"
+      }
+    ]
+  },
   "trust-desk-before-you-start-stakes": {
     "width": 1520,
     "height": 1484,
@@ -579,6 +593,30 @@
       }
     ]
   },
+  "trust-desk-delegate-after": {
+    "width": 1456,
+    "height": 833,
+    "files": [
+      {
+        "w": 800,
+        "src": "/images/trust-desk-delegate-after-800.webp"
+      },
+      {
+        "w": 1456,
+        "src": "/images/trust-desk-delegate-after-1456.webp"
+      }
+    ]
+  },
+  "trust-desk-delegate-before": {
+    "width": 682,
+    "height": 1568,
+    "files": [
+      {
+        "w": 682,
+        "src": "/images/trust-desk-delegate-before-682.webp"
+      }
+    ]
+  },
   "trust-desk-edit-prompt": {
     "width": 960,
     "height": 1224,
@@ -590,6 +628,34 @@
       {
         "w": 960,
         "src": "/images/trust-desk-edit-prompt-960.webp"
+      }
+    ]
+  },
+  "trust-desk-failure-view": {
+    "width": 1456,
+    "height": 838,
+    "files": [
+      {
+        "w": 800,
+        "src": "/images/trust-desk-failure-view-800.webp"
+      },
+      {
+        "w": 1456,
+        "src": "/images/trust-desk-failure-view-1456.webp"
+      }
+    ]
+  },
+  "trust-desk-notifications": {
+    "width": 1568,
+    "height": 751,
+    "files": [
+      {
+        "w": 800,
+        "src": "/images/trust-desk-notifications-800.webp"
+      },
+      {
+        "w": 1568,
+        "src": "/images/trust-desk-notifications-1568.webp"
       }
     ]
   },

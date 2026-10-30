@@ -23,11 +23,12 @@ describe("Trust Desk case study", () => {
         expect(screen.getByRole("link", { name: "← Back to portfolio" })).toHaveAttribute("href", "/#trust-desk")
     })
 
-    // Eight screenshots are in; the five slots still waiting show their labelled placeholder rather than an <img>.
-    it("shows the screenshots that exist and labelled placeholders for the rest", () => {
+    it("every visual is a real screenshot served from /images", () => {
         render(<TrustDesk />)
-        expect(document.querySelectorAll("img").length).toBe(8)
-        expect(screen.getAllByText(/TD-\d\d/).length).toBe(5)
+        const imgs = Array.from(document.querySelectorAll("img"))
+        expect(imgs.length).toBe(13)
+        expect(imgs.every((i) => i.getAttribute("src")!.startsWith("/images/trust-desk-"))).toBe(true)
+        expect(screen.queryAllByText(/TD-\d\d/).length).toBe(0)
     })
 
     it("with reduced motion, falls back to a plain stacked page", () => {

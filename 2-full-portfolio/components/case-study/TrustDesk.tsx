@@ -1,6 +1,5 @@
 "use client"
 // Trust Desk case study page. Layout, scroll behaviour, type and colour come from CaseStudyKit.
-// Slots whose screenshot is not in yet have an empty file name and show their labelled placeholder.
 import * as React from "react"
 import { CaseStudyShell, C, pickImage, Visual, Eyebrow, H2, H3, P, B, Note, Bullets, Stats, Table, Split, Column, Hero, Rail, Footer } from "./kit"
 import { asset } from "@/lib/images"
@@ -17,15 +16,15 @@ const IMG = {
     hero: asset("trust-desk-run-finished.png", "Trust Desk after a run: the Run finished card, agent nodes with their badges, the checker pill, and Needs you in the side panel"),
     ratingNode: asset("trust-desk-agent-node.png", "Email assistant node: three bars, Well proven, and a hover popover with its autonomy and record"),
     editPrompt: asset("trust-desk-edit-prompt.png", "Edit prompt asking “Why are you changing it?” with two choices"),
-    delegateBefore: asset("", "The first Delegate screen as one long list"),
-    delegateAfter: asset("", "Questions pinned to each agent, and a Before you start card that keeps Start locked"),
+    delegateBefore: asset("trust-desk-delegate-before.png", "The first Delegate screen as one long list"),
+    delegateAfter: asset("trust-desk-delegate-after.png", "Questions pinned to each agent, and a Before you start card that keeps Start locked"),
     stakes: asset("trust-desk-before-you-start-stakes.png", "Before you start at low stakes (left) and high stakes (right)"),
     returnView: asset("trust-desk-return-spot-check.png", "Return view after the Needs you item is handled: counts in the Run finished card and a spot-check card in the side panel"),
-    notifications: asset("", "Five phone notification screens"),
-    profileBefore: asset("", "The first agent profile, a full page of tables"),
+    notifications: asset("trust-desk-notifications.png", "Five phone notification screens"),
+    profileBefore: asset("trust-desk-agent-profile-before.png", "The first agent profile, a full page of tables"),
     profileAfter: asset("trust-desk-agent-profile.png", "Agent profile drawer: autonomy meter, three numbers, reliability by task, autonomy history"),
     checker: asset("trust-desk-checker-profile.png", "Checker profile drawer: agreement with spot-checks, test mistakes caught, misses, and reliability by rule"),
-    failure: asset("", "The failure view showing a mistake the checker missed"),
+    failure: asset("trust-desk-failure-view.png", "The failure view showing a mistake the checker missed"),
     study: asset("trust-desk-study.png", "The study page: plain summary (left) and trust layer (right), same task set"),
 }
 type ImgKey = keyof typeof IMG
