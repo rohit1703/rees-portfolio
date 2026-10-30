@@ -1,16 +1,18 @@
 import type { NextConfig } from "next"
 
-// Security headers are applied to every route. The site loads nothing from other origins,
-// so the content security policy only allows this site (plus mailto: and outbound links).
+// Security headers are applied to every route. The only third party is Google Analytics (gtag.js),
+// so the content security policy allows this site plus Google's tag and analytics hosts.
+const GA_HOSTS = "https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com"
+
 const csp = [
     "default-src 'self'",
-    "img-src 'self' data: blob:",
+    `img-src 'self' data: blob: ${GA_HOSTS}`,
     "media-src 'self' blob:",
     "font-src 'self'",
     "style-src 'self' 'unsafe-inline'",
     // Next.js needs inline scripts for hydration; 'unsafe-eval' only in development (React refresh).
-    `script-src 'self' 'unsafe-inline'${process.env.NODE_ENV === "development" ? " 'unsafe-eval'" : ""}`,
-    "connect-src 'self'",
+    `script-src 'self' 'unsafe-inline' https://www.googletagmanager.com${process.env.NODE_ENV === "development" ? " 'unsafe-eval'" : ""}`,
+    `connect-src 'self' ${GA_HOSTS}`,
     "frame-ancestors 'none'",
     "base-uri 'self'",
     "form-action 'self' mailto:",
