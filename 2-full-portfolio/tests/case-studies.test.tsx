@@ -27,7 +27,7 @@ describe("Trust Desk case study", () => {
     it("shows labelled placeholders while the images are missing", () => {
         render(<TrustDesk />)
         expect(document.querySelectorAll("img").length).toBe(0)
-        expect(screen.getAllByText(/TD-\d\d/).length).toBe(12)
+        expect(screen.getAllByText(/TD-\d\d/).length).toBe(13)
     })
 
     it("with reduced motion, falls back to a plain stacked page", () => {

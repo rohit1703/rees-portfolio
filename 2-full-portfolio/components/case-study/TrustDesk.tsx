@@ -15,18 +15,19 @@ const homeLink = (v: string | undefined) => (!v || v === "/" ? "/#trust-desk" : 
 // Add the file names here once the screenshots exist; until then each slot renders its placeholder.
 // Slot numbers follow the order the images appear in the write-up.
 const IMG = {
-    hero: asset("", "Trust Desk: the return view in the built app"),
-    ratingNode: asset("", "An agent node with its rating and autonomy"),
-    editPrompt: asset("", "The edit prompt asking why the result is being changed"),
+    hero: asset("", "Trust Desk after a run: the Run finished card, agent nodes with their badges, the checker pill, and Needs you in the side panel"),
+    ratingNode: asset("", "Email assistant node: three bars, Well proven, and a hover popover with its autonomy and record"),
+    editPrompt: asset("", "Edit prompt asking “Why are you changing it?” with two choices"),
     delegateBefore: asset("", "The first Delegate screen as one long list"),
-    beforeStart: asset("", "Before you start on the canvas with six agents"),
-    returnView: asset("", "The return view after a six-agent run"),
+    delegateAfter: asset("", "Questions pinned to each agent, and a Before you start card that keeps Start locked"),
+    stakes: asset("", "Before you start at low stakes (left) and high stakes (right)"),
+    returnView: asset("", "Return view after the Needs you item is handled: counts in the Run finished card and a spot-check card in the side panel"),
     notifications: asset("", "Five phone notification screens"),
     profileBefore: asset("", "The first agent profile, a full page of tables"),
-    profileAfter: asset("", "The redesigned agent profile drawer"),
-    checker: asset("", "The checker's profile drawer"),
+    profileAfter: asset("", "Agent profile drawer: autonomy meter, three numbers, reliability by task, autonomy history"),
+    checker: asset("", "Checker profile drawer: agreement with spot-checks, test mistakes caught, misses, and reliability by rule"),
     failure: asset("", "The failure view showing a mistake the checker missed"),
-    study: asset("", "The study page: plain summary and trust layer side by side"),
+    study: asset("", "The study page: plain summary (left) and trust layer (right), same task set"),
 }
 type ImgKey = keyof typeof IMG
 
@@ -110,7 +111,7 @@ export default function TrustDeskCaseStudy(props: Props) {
                     ]}
                     image={img("hero")}
                     label="TD-01 · The return view"
-                    caption="The return view in the built app."
+                    caption="After a run: the Run finished card, agent nodes with their badges, the checker pill, and Needs you in the side panel."
                 />
             ),
         },
@@ -255,7 +256,7 @@ export default function TrustDeskCaseStudy(props: Props) {
             nav: 3,
             panels: [
                 {
-                    w: 0.85,
+                    w: 1,
                     render: (m) => (
                         <Panel
                             m={m}
@@ -267,7 +268,10 @@ export default function TrustDeskCaseStudy(props: Props) {
                                     <H3>1. Questions pinned to agents</H3>
                                 </>
                             }
-                            slots={[{ image: img("delegateBefore"), label: "TD-04 · Delegate, first draft", caption: "Before: the first Delegate screen, one long list of steps and questions." }]}
+                            slots={[
+                                { image: img("delegateBefore"), label: "TD-04 · Delegate, before", caption: "Before: the first Delegate screen, one long list of steps and questions." },
+                                { image: img("delegateAfter"), label: "TD-05 · Delegate, after", caption: "After: questions pinned to each agent, and a “Before you start” card that keeps Start locked until the checks are seen." },
+                            ]}
                         >
                             <P style={{ marginBottom: 0 }}>Of three canvas layouts, I kept the one where each question sits on the agent it's about. People don't have to match a warning in a side panel to its source.</P>
                         </Panel>
@@ -279,7 +283,7 @@ export default function TrustDeskCaseStudy(props: Props) {
                         <Panel
                             m={m}
                             title={<H3>2. A check that scales with the stakes</H3>}
-                            slots={[{ image: img("beforeStart"), label: "TD-05 · Before you start", caption: "After: questions pinned to each agent, and a “Before you start” card that keeps Start locked until the checks are seen." }]}
+                            slots={[{ image: img("stakes"), label: "TD-06 · Low and high stakes", caption: "Low stakes: nothing to check, Start ready. High stakes: every check answered, every rule confirmed, every agent asks first." }]}
                         >
                             <P>Before agents start, a “Before you start” card shows how often similar runs went fine, the agents' guesses, and the rules for “done right”.</P>
                             <Bullets items={["A low-stakes task starts right away.", "A task involving money needs every question answered, and every agent asks first.", "Start sits in the same place either way."]} />
@@ -292,7 +296,7 @@ export default function TrustDeskCaseStudy(props: Props) {
                         <Panel
                             m={m}
                             title={<H3>3. Exceptions first on return</H3>}
-                            slots={[{ image: img("returnView"), label: "TD-06 · The return view", caption: "5 need you, 3 with caveats, 4 routine. Nothing that cannot be undone happened without you." }]}
+                            slots={[{ image: img("returnView"), label: "TD-07 · The return view", caption: "Back from a run: nothing needs you, 1 with caveats, 4 routine, and one routine result offered as a spot-check." }]}
                         >
                             <P style={{ marginBottom: 0 }}>First what needs you, then work done with caveats, then routine work, collapsed. One routine item is offered as a spot-check, so the records don't just reward clicking yes.</P>
                         </Panel>
@@ -304,7 +308,7 @@ export default function TrustDeskCaseStudy(props: Props) {
                         <Panel
                             m={m}
                             title={<H3>4. Alerts only for decisions</H3>}
-                            slots={[{ image: img("notifications"), label: "TD-07 · Notifications", caption: "Bundled alerts. Reversible items can be approved from the notification; irreversible ones need a tap into the app." }]}
+                            slots={[{ image: img("notifications"), label: "TD-08 · Notifications", caption: "Bundled alerts. Reversible items can be approved from the notification; irreversible ones need a tap into the app." }]}
                         >
                             <P style={{ marginBottom: 0 }}>The phone only buzzes for things that can't be undone, or problems found. Everything else waits for a daily email, skipped on quiet days. No time estimates while agents work.</P>
                         </Panel>
@@ -317,8 +321,8 @@ export default function TrustDeskCaseStudy(props: Props) {
                             m={m}
                             title={<H3>5. A profile you can read at a glance</H3>}
                             slots={[
-                                { image: img("profileBefore"), label: "TD-08 · Profile, before", caption: "Before: the first agent profile, a full page of tables and text." },
-                                { image: img("profileAfter"), label: "TD-09 · Profile, after", caption: "After: the redesigned drawer you can read at a glance, with autonomy changed only here." },
+                                { image: img("profileBefore"), label: "TD-09 · Profile, before", caption: "Before: the first agent profile, a full page of tables and text. From the design canvas." },
+                                { image: img("profileAfter"), label: "TD-10 · Profile, after", caption: "After: the redesigned drawer you can read at a glance, with autonomy changed only here." },
                             ]}
                         >
                             <P style={{ marginBottom: 0 }}>My first agent profile was mostly text. I redesigned it around a meter, three numbers and reliability bars for each task. Autonomy can only be changed here, with the level the evidence supports marked “Recommended.”</P>
@@ -352,8 +356,8 @@ export default function TrustDeskCaseStudy(props: Props) {
                         }
                         right={
                             <div style={{ display: "grid", gap: 20 }}>
-                                <Visual image={img("checker")} label="TD-10 · Checker profile" caption="The checker's own record: agreement with spot-checks, planted tests caught, and reliability by rule." style={{ aspectRatio: "16 / 10" }} />
-                                <Visual image={img("failure")} label="TD-11 · Failure view" caption="When it misses something: where the mistake started, what the checker missed, and the agent going back to “Ask first.”" style={{ aspectRatio: "16 / 10" }} />
+                                <Visual image={img("checker")} label="TD-11 · Checker profile" caption="The checker's own record: agreement with spot-checks, planted tests caught, and reliability by rule." style={{ aspectRatio: "16 / 10" }} />
+                                <Visual image={img("failure")} label="TD-12 · Failure view" caption="When it misses something: where the mistake started, what the checker missed, and the agent going back to “Ask first.”" style={{ aspectRatio: "16 / 10" }} />
                             </div>
                         }
                     />
@@ -396,7 +400,7 @@ export default function TrustDeskCaseStudy(props: Props) {
                                 </Note>
                             </>
                         }
-                        right={<Visual image={img("study")} label="TD-12 · The study page" caption="The same kinds of results, shown two ways." style={{ aspectRatio: "4 / 3" }} />}
+                        right={<Visual image={img("study")} label="TD-13 · The study page" caption="The same kinds of results, shown two ways." style={{ aspectRatio: "4 / 3" }} />}
                     />
                 </div>
             ),
