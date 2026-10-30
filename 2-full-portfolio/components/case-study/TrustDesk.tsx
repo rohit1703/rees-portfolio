@@ -13,13 +13,20 @@ const bodyFontOr = (v: KitProps["bodyFont"]) => (v?.fontFamily && !/^\W*Inter\b/
 const homeLink = (v: string | undefined) => (!v || v === "/" ? "/#trust-desk" : v)
 
 // Add the file names here once the screenshots exist; until then each slot renders its placeholder.
+// Slot numbers follow the order the images appear in the write-up.
 const IMG = {
     hero: asset("", "Trust Desk: the return view in the built app"),
-    rating: asset("", "An agent node with its rating, and the edit prompt"),
-    beforeStart: asset("", "Before you start, at low and high stakes"),
-    returnView: asset("", "The return view: what needs you first"),
-    profile: asset("", "Agent profile, before and after"),
-    checker: asset("", "Checker profile"),
+    ratingNode: asset("", "An agent node with its rating and autonomy"),
+    editPrompt: asset("", "The edit prompt asking why the result is being changed"),
+    delegateBefore: asset("", "The first Delegate screen as one long list"),
+    beforeStart: asset("", "Before you start on the canvas with six agents"),
+    returnView: asset("", "The return view after a six-agent run"),
+    notifications: asset("", "Five phone notification screens"),
+    profileBefore: asset("", "The first agent profile, a full page of tables"),
+    profileAfter: asset("", "The redesigned agent profile drawer"),
+    checker: asset("", "The checker's profile drawer"),
+    failure: asset("", "The failure view showing a mistake the checker missed"),
+    study: asset("", "The study page: plain summary and trust layer side by side"),
 }
 type ImgKey = keyof typeof IMG
 
@@ -39,15 +46,24 @@ const Ext = ({ href, children }: { href: string; children: React.ReactNode }) =>
     </a>
 )
 
-/** One panel of a horizontal run: a heading, its story and (optionally) the visual for it, filling the panel's height. */
-function Panel({ m, title, children, image, label, caption }: { m: Mode; title?: React.ReactNode; children: React.ReactNode; image?: ImageValue; label?: string; caption?: string }) {
+type Slot = { image?: ImageValue; label: string; caption: string }
+
+/** One panel of a horizontal run: a heading, its story and the visual(s) for it, filling the panel's height. Two slots sit side by side. */
+function Panel({ m, title, children, slots = [] }: { m: Mode; title?: React.ReactNode; children: React.ReactNode; slots?: Slot[] }) {
+    const pair = slots.length > 1 && !m.narrow
     return (
         <div style={{ display: "flex", flexDirection: "column", height: m.linear ? "auto" : "100%", gap: 16 }}>
             <div>
                 {title}
                 {children}
             </div>
-            {label && <Visual image={image} label={label} caption={caption} style={m.linear ? { aspectRatio: "16 / 10" } : { flex: 1 }} />}
+            {slots.length > 0 && (
+                <div style={{ display: "grid", gridTemplateColumns: pair ? `repeat(${slots.length}, minmax(0, 1fr))` : "1fr", gap: 16, flex: m.linear ? undefined : 1, minHeight: 0 }}>
+                    {slots.map((s) => (
+                        <Visual key={s.label} image={s.image} label={s.label} caption={s.caption} style={m.linear ? { aspectRatio: "16 / 10" } : { minHeight: 0 }} />
+                    ))}
+                </div>
+            )}
         </div>
     )
 }
@@ -85,7 +101,7 @@ export default function TrustDeskCaseStudy(props: Props) {
                     ]}
                     image={img("hero")}
                     label="TD-01 · The return view"
-                    caption="The return view in the built app"
+                    caption="The return view in the built app."
                 />
             ),
         },
@@ -186,9 +202,16 @@ export default function TrustDeskCaseStudy(props: Props) {
                     ),
                 },
                 {
-                    w: 0.85,
+                    w: 1,
                     render: (m) => (
-                        <Panel m={m} title={<H3>What counts as right</H3>} image={img("rating")} label="TD-02 · Rating and edit prompt" caption="An agent node with its rating, and the edit prompt.">
+                        <Panel
+                            m={m}
+                            title={<H3>What counts as right</H3>}
+                            slots={[
+                                { image: img("ratingNode"), label: "TD-02 · Agent node", caption: "Hovering an agent shows its autonomy and its record: “48 of 50 recent results right.”" },
+                                { image: img("editPrompt"), label: "TD-03 · Edit prompt", caption: "Every edit asks why. Only “The agent got it wrong” counts against the agent." },
+                            ]}
+                        >
                             <P style={{ marginBottom: 0 }}>
                                 The hardest part was deciding what counts as right. An edit can mean the agent got it wrong, or that the person changed their mind. So an edit asks once, with one tap. Only “The agent got it wrong” counts against the agent. “I changed what I want” can be saved as a rule instead.
                             </P>
@@ -202,20 +225,31 @@ export default function TrustDeskCaseStudy(props: Props) {
             nav: 3,
             panels: [
                 {
-                    w: 0.75,
+                    w: 0.85,
                     render: (m) => (
-                        <Column m={m}>
-                            <Eyebrow>03</Eyebrow>
-                            <H2 m={m}>Key design decisions</H2>
-                            <H3>Questions pinned to agents</H3>
-                            <P>Of three canvas layouts, I kept the one where each question sits on the agent it's about, so people don't have to match a warning in a side panel to its source.</P>
-                        </Column>
+                        <Panel
+                            m={m}
+                            title={
+                                <>
+                                    <Eyebrow>03</Eyebrow>
+                                    <H2 m={m}>Key design decisions</H2>
+                                    <H3>Questions pinned to agents</H3>
+                                </>
+                            }
+                            slots={[{ image: img("delegateBefore"), label: "TD-04 · Delegate, first draft", caption: "Before: the first Delegate screen, one long list of steps and questions." }]}
+                        >
+                            <P style={{ marginBottom: 0 }}>Of three canvas layouts, I kept the one where each question sits on the agent it's about, so people don't have to match a warning in a side panel to its source.</P>
+                        </Panel>
                     ),
                 },
                 {
                     w: 0.85,
                     render: (m) => (
-                        <Panel m={m} title={<H3>A check that scales with the stakes</H3>} image={img("beforeStart")} label="TD-03 · Before you start" caption="Before you start at low and high stakes.">
+                        <Panel
+                            m={m}
+                            title={<H3>A check that scales with the stakes</H3>}
+                            slots={[{ image: img("beforeStart"), label: "TD-05 · Before you start", caption: "After: questions pinned to each agent, and a “Before you start” card that keeps Start locked until the checks are seen." }]}
+                        >
                             <P style={{ marginBottom: 0 }}>
                                 Before agents start, a “Before you start” card shows how often similar runs went fine, the agents' guesses and the rules for “done right”. A low-stakes task starts right away. A task involving money needs every question answered and every agent asks first. Start sits in the same place either way.
                             </P>
@@ -225,23 +259,38 @@ export default function TrustDeskCaseStudy(props: Props) {
                 {
                     w: 0.85,
                     render: (m) => (
-                        <Panel m={m} title={<H3>Exceptions first on return</H3>} image={img("returnView")} label="TD-04 · The return view" caption="The return view.">
+                        <Panel
+                            m={m}
+                            title={<H3>Exceptions first on return</H3>}
+                            slots={[{ image: img("returnView"), label: "TD-06 · The return view", caption: "Back after a six-agent run: 5 need you, 3 with caveats, 4 routine. Nothing that cannot be undone happened without you." }]}
+                        >
                             <P style={{ marginBottom: 0 }}>People see what needs them first, then work done with caveats, then routine work, collapsed. One routine item is offered as a spot-check, so the records don't just reward clicking yes.</P>
-                        </Panel>
-                    ),
-                },
-                {
-                    w: 0.6,
-                    render: (m) => (
-                        <Panel m={m} title={<H3>Alerts only for decisions</H3>}>
-                            <P style={{ marginBottom: 0 }}>The phone only buzzes for things that can't be undone or problems found. Everything else waits for a daily email, which is skipped on quiet days. There are no time estimates while agents work.</P>
                         </Panel>
                     ),
                 },
                 {
                     w: 0.85,
                     render: (m) => (
-                        <Panel m={m} title={<H3>A profile you can read at a glance</H3>} image={img("profile")} label="TD-05 · Agent profile" caption="Agent profile, before and after.">
+                        <Panel
+                            m={m}
+                            title={<H3>Alerts only for decisions</H3>}
+                            slots={[{ image: img("notifications"), label: "TD-07 · Notifications", caption: "Bundled alerts. Reversible items can be approved from the notification; irreversible ones need a tap into the app." }]}
+                        >
+                            <P style={{ marginBottom: 0 }}>The phone only buzzes for things that can't be undone or problems found. Everything else waits for a daily email, which is skipped on quiet days. There are no time estimates while agents work.</P>
+                        </Panel>
+                    ),
+                },
+                {
+                    w: 1,
+                    render: (m) => (
+                        <Panel
+                            m={m}
+                            title={<H3>A profile you can read at a glance</H3>}
+                            slots={[
+                                { image: img("profileBefore"), label: "TD-08 · Profile, before", caption: "Before: a full page of tables and text." },
+                                { image: img("profileAfter"), label: "TD-09 · Profile, after", caption: "After: a drawer you can read at a glance, with autonomy changed only here." },
+                            ]}
+                        >
                             <P style={{ marginBottom: 0 }}>My first agent profile was mostly text. I redesigned it around a meter, three numbers and reliability bars for each task. Autonomy can only be changed here, with the level the evidence supports marked “Recommended.”</P>
                         </Panel>
                     ),
@@ -264,7 +313,12 @@ export default function TrustDeskCaseStudy(props: Props) {
                                 </P>
                             </>
                         }
-                        right={<Visual image={img("checker")} label="TD-06 · Checker profile" caption="Checker profile." style={{ aspectRatio: "4 / 3" }} />}
+                        right={
+                            <div style={{ display: "grid", gap: 20 }}>
+                                <Visual image={img("checker")} label="TD-10 · Checker profile" caption="The checker's own record: agreement with spot-checks, planted tests caught, and reliability by rule." style={{ aspectRatio: "16 / 10" }} />
+                                <Visual image={img("failure")} label="TD-11 · Failure view" caption="When it misses something: where the mistake started, what the checker missed, and the agent going back to “Ask first.”" style={{ aspectRatio: "16 / 10" }} />
+                            </div>
+                        }
                     />
                 </div>
             ),
@@ -273,24 +327,32 @@ export default function TrustDeskCaseStudy(props: Props) {
             kind: "flow",
             nav: 5,
             node: (m) => (
-                <div style={{ padding: m.linear ? "64px 0" : "12vh 0 10vh", maxWidth: 820 }}>
-                    <Eyebrow>05</Eyebrow>
-                    <H2 m={m}>Building and testing it</H2>
-                    <P>
-                        I briefed Claude Code the way I'd brief a developer, with a spec, screen-by-screen designs and the rules the code had to enforce. The result is a working app with agents for Gmail, Calendar, Docs, Slack and Notion, and a test mode that runs without any accounts.
-                    </P>
-                    <P>To test the main idea, [N] people each reviewed two batches of ten agent results, one shown as a plain summary and one with the trust layer. Each batch had three planted errors.</P>
-                    <Table
-                        small
-                        maxWidth={640}
-                        rows={[
-                            ["", "Plain summary", "Trust layer"],
-                            ["Errors caught", "[x of y]", "[x of y]"],
-                            ["Correct work accepted", "[x of y]", "[x of y]"],
-                        ]}
+                <div style={{ padding: m.linear ? "64px 0" : "12vh 0 10vh" }}>
+                    <Split
+                        m={m}
+                        left={
+                            <>
+                                <Eyebrow>05</Eyebrow>
+                                <H2 m={m}>Building and testing it</H2>
+                                <P>
+                                    I briefed Claude Code the way I'd brief a developer, with a spec, screen-by-screen designs and the rules the code had to enforce. The result is a working app with agents for Gmail, Calendar, Docs, Slack and Notion, and a test mode that runs without any accounts.
+                                </P>
+                                <P>To test the main idea, [N] people each reviewed two batches of ten agent results, one shown as a plain summary and one with the trust layer. Each batch had three planted errors.</P>
+                                <Table
+                                    small
+                                    maxWidth={640}
+                                    rows={[
+                                        ["", "Plain summary", "Trust layer"],
+                                        ["Errors caught", "[x of y]", "[x of y]"],
+                                        ["Correct work accepted", "[x of y]", "[x of y]"],
+                                    ]}
+                                />
+                                <Note>[A quote from a session.]</Note>
+                                <P>With [N] people, this is an early signal, not proof.</P>
+                            </>
+                        }
+                        right={<Visual image={img("study")} label="TD-12 · The study page" caption="The same kinds of results, shown two ways." style={{ aspectRatio: "4 / 3" }} />}
                     />
-                    <Note>[A quote from a session.]</Note>
-                    <P>With [N] people, this is an early signal, not proof.</P>
                 </div>
             ),
         },
