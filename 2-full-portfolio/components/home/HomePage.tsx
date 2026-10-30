@@ -53,6 +53,8 @@ const DEFAULTS = {
     sdk: asset("tcEakss8cGtH8q95eZdTrvcEs.png", "SDK Manager: the SDK overview on a laptop"),
     pet: asset("aTXCKOpYTgCgJhF9lMdHmf1duM.png", "Pet Health Scan Suite: several scan tools across brands"),
     about: asset("sFlsCeS7T4TCJ7kBDTCdz4doSg.jpg", "Reethika smiling, standing beside a large blank poster"),
+    // No screenshot yet: the card shows its labelled placeholder until a file name goes here.
+    trust: asset("", "Trust Desk: the return view, with what needs you first"),
 }
 
 const useIso = typeof window !== "undefined" ? useLayoutEffect : useEffect
@@ -505,9 +507,11 @@ type HomePageProps = {
     aiImage?: Img
     sdkImage?: Img
     petImage?: Img
+    trustImage?: Img
     aiLink?: string
     sdkLink?: string
     petLink?: string
+    trustLink?: string
     email?: string
     linkedin?: string
     resume?: string
@@ -527,6 +531,7 @@ export default function HomePage(props: HomePageProps) {
         aiLink = "/ai-interviewer",
         sdkLink = "/sdk-manager",
         petLink = "/pet-health-scan",
+        trustLink = "/trust-desk",
         email = EMAIL_DEFAULT,
         linkedin = "https://www.linkedin.com/in/reethika-c/",
         resume = "",
@@ -720,6 +725,7 @@ export default function HomePage(props: HomePageProps) {
     const ai = pick(props.aiImage, DEFAULTS.ai)
     const sdk = pick(props.sdkImage, DEFAULTS.sdk)
     const pet = pick(props.petImage, DEFAULTS.pet)
+    const trust = pick(props.trustImage, DEFAULTS.trust)
 
     const label: React.CSSProperties = { fontSize: narrow ? 12.5 : 14, fontWeight: 600, letterSpacing: "0.01em", textTransform: "uppercase", lineHeight: 1.4, color: T.ink }
     const leftLines = ["Product Designer"]
@@ -752,6 +758,15 @@ export default function HomePage(props: HomePageProps) {
             body: ["88% of people who opened the dental scan left before uploading a photo, and nobody knew why. ", "I used funnel data to find where people drop off, then asked why", ", split a ten-outcome result into seven labelled sections, with vet advice first, and set up brand libraries that cut re-skinning a tool from about two days to a couple of minutes."],
             image: pet,
             href: petLink,
+        },
+        {
+            id: "trust-desk",
+            n: "04",
+            chips: ["Self-initiated", "Agentic AI"],
+            title: "Trust Desk",
+            body: ["People stop trusting AI agents after one mistake, or trust them so much they stop checking. ", "I designed a trust layer that shows each agent's track record for the task at hand", ", so people rely on it when the evidence supports it and check when it doesn't. Built as a working app in Claude Code."],
+            image: trust,
+            href: trustLink,
         },
     ]
 
@@ -904,6 +919,7 @@ export default function HomePage(props: HomePageProps) {
                                             ["AI Interviewer", aiLink],
                                             ["SDK Manager", sdkLink],
                                             ["Pet Health Scan Suite", petLink],
+                                            ["Trust Desk", trustLink],
                                         ].map(([t, h]) => (
                                             <a key={t} href={h} style={{ color: T.paper, textDecoration: "underline", textDecorationColor: T.darkLine, textUnderlineOffset: 4 }}>
                                                 {t}
@@ -1026,12 +1042,12 @@ export default function HomePage(props: HomePageProps) {
                         <div style={{ position: "relative" }}>
                             {/* Sized from the component's own width (not vw), so it never runs off a phone frame. */}
                             <Words as="h2" live={motionOn} text="Work" style={{ fontFamily: HEADING, fontWeight: 400, fontSize: narrow ? Math.round(width * 0.2) : Math.min(Math.round(width * 0.13), 190), lineHeight: 0.95, textTransform: "uppercase", color: T.ink, margin: 0 }} />
-                            <span style={{ position: "absolute", left: "100%", top: 0, marginLeft: narrow ? 4 : 10, marginTop: narrow ? 2 : 8, fontFamily: HEADING, fontSize: narrow ? 16 : 28, color: T.accentText }}>(03)</span>
+                            <span style={{ position: "absolute", left: "100%", top: 0, marginLeft: narrow ? 4 : 10, marginTop: narrow ? 2 : 8, fontFamily: HEADING, fontSize: narrow ? 16 : 28, color: T.accentText }}>(0{projects.length})</span>
                         </div>
                     </div>
                     <div style={{ maxWidth: 1380, margin: "0 auto", display: "flex", flexDirection: "column", gap: narrow ? 20 : 28 }}>
                         {projects.map((p, i) => (
-                            <ProjectCard key={p.n} p={p} narrow={narrow} stack={width < 1100} live={motionOn} flip={i === 1} />
+                            <ProjectCard key={p.n} p={p} narrow={narrow} stack={width < 1100} live={motionOn} flip={i % 2 === 1} />
                         ))}
                     </div>
                 </section>

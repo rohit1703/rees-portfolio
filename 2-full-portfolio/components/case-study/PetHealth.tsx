@@ -225,7 +225,7 @@ function BigNumber({ m, n, label, children }: { m: Mode; n: string; label: strin
  */
 export default function PetHealthCaseStudy(props: Props) {
     const img = (k: ImgKey) => pickImage(props[k], IMG[k])
-    const { nextLink = "/ai-interviewer" } = props
+    const { nextLink = "/trust-desk" } = props
     const backLink = homeLink(props.backLink)
     const onLinks = useInternalLinks()
     const pair = (m: Mode): React.CSSProperties => ({ display: "grid", gridTemplateColumns: m.narrow ? "minmax(0,1fr)" : "repeat(2, minmax(0,1fr))", gap: m.narrow ? 20 : 24, height: m.linear ? "auto" : "100%" })
@@ -738,7 +738,7 @@ export default function PetHealthCaseStudy(props: Props) {
                         <ZoomVisual m={m} image={img("specsOne")} label="PH-18 · Specs" caption="Developer specs across breakpoints, mobile to desktop" size={{ aspectRatio: "16 / 10" }} />
                         <ZoomVisual m={m} image={img("specsTwo")} label="PH-19 · Specs" caption="Developer specs" size={{ aspectRatio: "16 / 10" }} />
                     </div>
-                    <Footer m={m} nextLabel="AI Interviewer" nextHref={nextLink} backHref={backLink} />
+                    <Footer m={m} nextLabel="Trust Desk" nextHref={nextLink} backHref={backLink} />
                 </div>
             ),
         },

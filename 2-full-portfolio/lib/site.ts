@@ -25,6 +25,11 @@ export const CASE_STUDIES = [
         title: "Pet Health Scan Suite",
         description: "Case study: finding out why pet owners abandon an AI dental scan, across white-label health-check tools on pet-brand websites.",
     },
+    {
+        slug: "trust-desk",
+        title: "Trust Desk",
+        description: "Case study: a self-initiated app that shows people when they can rely on their AI agents and when to check the work, built with Claude Code.",
+    },
 ] as const
 
 /** The social card drawn by app/opengraph-image.tsx. Pages that set their own openGraph must list it again. */
