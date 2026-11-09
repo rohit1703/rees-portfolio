@@ -2,13 +2,42 @@ import { render, screen, fireEvent } from "@testing-library/react"
 import AIInterviewer from "@/components/case-study/AIInterviewer"
 import SDKManager from "@/components/case-study/SDKManager"
 import PetHealth from "@/components/case-study/PetHealth"
+import TrustDesk from "@/components/case-study/TrustDesk"
 import { setReduceMotion } from "./setup"
 
 const pages = [
     { C: AIInterviewer, title: "AI Interviewer", next: "SDK Manager", nextHref: "/sdk-manager", back: "/#ai-interviewer", nav: "Where AI belonged" },
     { C: SDKManager, title: "SDK Manager", next: "Pet Health Scan Suite", nextHref: "/pet-health-scan", back: "/#sdk-manager", nav: "Tried and dropped" },
-    { C: PetHealth, title: "Pet Health Scan Suite", next: "AI Interviewer", nextHref: "/ai-interviewer", back: "/#pet-health-scan", nav: "Immunity result" },
+    { C: PetHealth, title: "Pet Health Scan Suite", next: "Trust Desk", nextHref: "/trust-desk", back: "/#pet-health-scan", nav: "Immunity result" },
 ]
+
+describe("Trust Desk case study", () => {
+    afterEach(() => setReduceMotion(false))
+
+    it("renders the hero, section nav and footer links (layered layout)", () => {
+        render(<TrustDesk nextLink="/ai-interviewer" />)
+        expect(screen.getByRole("heading", { level: 1, name: "Trust Desk" })).toBeInTheDocument()
+        expect(screen.getByRole("navigation", { name: "Case study sections" })).toBeInTheDocument()
+        expect(screen.getByRole("button", { name: "Who checks the checker" })).toBeInTheDocument()
+        expect(screen.getByRole("link", { name: "Next: AI Interviewer →" })).toHaveAttribute("href", "/ai-interviewer")
+        expect(screen.getByRole("link", { name: "← Back to portfolio" })).toHaveAttribute("href", "/#trust-desk")
+    })
+
+    it("every visual is a real screenshot served from /images", () => {
+        render(<TrustDesk />)
+        const imgs = Array.from(document.querySelectorAll("img"))
+        expect(imgs.length).toBe(13)
+        expect(imgs.every((i) => i.getAttribute("src")!.startsWith("/images/trust-desk-"))).toBe(true)
+        expect(screen.queryAllByText(/TD-\d\d/).length).toBe(0)
+    })
+
+    it("with reduced motion, falls back to a plain stacked page", () => {
+        setReduceMotion(true)
+        render(<TrustDesk />)
+        expect(screen.queryByRole("navigation", { name: "Case study sections" })).not.toBeInTheDocument()
+        expect(screen.getByRole("heading", { level: 1, name: "Trust Desk" })).toBeInTheDocument()
+    })
+})
 
 describe.each(pages)("$title case study", ({ C, title, next, nextHref, back, nav }) => {
     afterEach(() => setReduceMotion(false))

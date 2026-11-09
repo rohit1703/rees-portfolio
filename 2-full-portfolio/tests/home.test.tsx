@@ -19,6 +19,7 @@ describe("Home page", () => {
             ["ai-interviewer", "/ai-interviewer"],
             ["sdk-manager", "/sdk-manager"],
             ["pet-health-scan", "/pet-health-scan"],
+            ["trust-desk", "/trust-desk"],
         ]) {
             const card = document.getElementById(id)!
             expect(card.tagName).toBe("A")

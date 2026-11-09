@@ -4,7 +4,7 @@ import { metadata } from "@/app/layout"
 
 it("sitemap lists the home page and the three case studies", () => {
     const urls = sitemap().map((e) => new URL(e.url).pathname)
-    expect(urls).toEqual(["/", "/ai-interviewer", "/sdk-manager", "/pet-health-scan"])
+    expect(urls).toEqual(["/", "/ai-interviewer", "/sdk-manager", "/pet-health-scan", "/trust-desk"])
 })
 
 it("robots points at the sitemap and hides the theme comparison page", () => {

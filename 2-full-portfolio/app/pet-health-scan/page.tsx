@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default function Page() {
     return (
         <main id="main" tabIndex={-1} style={{ outline: "none" }}>
-            <CaseStudy nextLink="/ai-interviewer" theme="pinterest" smoothness={0.05} stackBelow={900} />
+            <CaseStudy nextLink="/trust-desk" theme="pinterest" smoothness={0.05} stackBelow={900} />
         </main>
     )
 }
