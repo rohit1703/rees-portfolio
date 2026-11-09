@@ -130,8 +130,8 @@ function Enlarge({ m, image, style, children }: { m: Mode; image: ImageValue; st
     )
 }
 
-/** A Visual that opens full screen on click (desktop). `size` is the slot's sizing; the image fills it. */
-function ZoomVisual({ m, image, label, caption, size }: { m: Mode; image: ImageValue; label: string; caption?: string; size: React.CSSProperties }) {
+/** A Visual that opens full screen on click (desktop). `size` is the slot's sizing; the image fills it. Shared with Trust Desk. */
+export function ZoomVisual({ m, image, label, caption, size }: { m: Mode; image: ImageValue; label: string; caption?: string; size: React.CSSProperties }) {
     if (m.linear) return <Visual image={image} label={label} caption={caption} style={size} />
     return (
         <Enlarge m={m} image={image} style={size}>

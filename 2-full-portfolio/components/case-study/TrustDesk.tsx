@@ -1,9 +1,10 @@
 "use client"
 // Trust Desk case study page. Layout, scroll behaviour, type and colour come from CaseStudyKit.
 import * as React from "react"
-import { CaseStudyShell, C, pickImage, Visual, Eyebrow, H2, H3, P, B, Note, Bullets, Stats, Table, Split, Column, Hero, Rail, Footer } from "./kit"
+import { CaseStudyShell, C, pickImage, Eyebrow, H2, H3, P, B, Note, Bullets, Stats, Table, Split, Column, Hero, Rail, Footer } from "./kit"
 import { asset } from "@/lib/images"
 import { useInternalLinks } from "@/lib/useInternalLinks"
+import { ZoomVisual } from "./PetHealth"
 import type { KitProps, Scene, ImageValue, Mode } from "./kit"
 
 // Body font: Instrument Sans (free stand-in for Trivia Sans), self-hosted in /public/fonts.
@@ -54,9 +55,9 @@ const Pt = ({ t, children }: { t: string; children: React.ReactNode }) => (
     </>
 )
 
-type Slot = { image?: ImageValue; label: string; caption: string }
+type Slot = { image: ImageValue; label: string; caption: string }
 
-/** One panel of a horizontal run: a heading, its story and the visual(s) for it, filling the panel's height. Two slots sit side by side. */
+/** One panel of a horizontal run: a heading, its story and the visual(s) for it, filling the panel's height. Two slots sit side by side; each opens full screen. */
 function Panel({ m, title, children, slots = [] }: { m: Mode; title?: React.ReactNode; children: React.ReactNode; slots?: Slot[] }) {
     const pair = slots.length > 1 && !m.narrow
     return (
@@ -68,7 +69,7 @@ function Panel({ m, title, children, slots = [] }: { m: Mode; title?: React.Reac
             {slots.length > 0 && (
                 <div style={{ display: "grid", gridTemplateColumns: pair ? `repeat(${slots.length}, minmax(0, 1fr))` : "1fr", gap: 16, flex: m.linear ? undefined : 1, minHeight: 0 }}>
                     {slots.map((s) => (
-                        <Visual key={s.label} image={s.image} label={s.label} caption={s.caption} style={m.linear ? { aspectRatio: "16 / 10" } : { minHeight: 0 }} />
+                        <ZoomVisual key={s.label} m={m} image={s.image} label={s.label} caption={s.caption} size={m.linear ? { aspectRatio: "16 / 10" } : { minHeight: 0 }} />
                     ))}
                 </div>
             )}
@@ -105,7 +106,7 @@ export default function TrustDeskCaseStudy(props: Props) {
                         ["Problem", "People who hand work to AI agents can't tell when the agents are reliable."],
                         ["My decision", "Show each agent's track record for the task at hand, not its own confidence. Let it earn more freedom over time."],
                         ["Final design", "A trust layer: a check before agents start, alerts only for decisions, and a return view that leads with what needs you."],
-                        ["Result", "A working app built in Claude Code, tested with [N] people using planted errors. [Headline result.]"],
+                        ["Result", "A working app built in Claude Code, and a planted-error study ready to run with users."],
                     ]}
                     image={img("hero")}
                     label="TD-01 · The return view"
@@ -125,7 +126,7 @@ export default function TrustDeskCaseStudy(props: Props) {
                             <Stats
                                 m={m}
                                 items={[
-                                    ["[x of y]", "planted errors caught with the trust layer, vs [x of y] with a plain summary."],
+                                    ["3", "planted errors hidden in each batch of ten results: one flagged, one guessed, one silent."],
                                     ["4", "ratings an agent moves through, earned from its record on each task type."],
                                     ["5", "agents in the working app: Gmail, Calendar, Docs, Slack and Notion."],
                                 ]}
@@ -354,8 +355,8 @@ export default function TrustDeskCaseStudy(props: Props) {
                         }
                         right={
                             <div style={{ display: "grid", gap: 20 }}>
-                                <Visual image={img("checker")} label="TD-11 · Checker profile" caption="The checker's own record: agreement with spot-checks, planted tests caught, and reliability by rule." style={{ aspectRatio: "16 / 10" }} />
-                                <Visual image={img("failure")} label="TD-12 · Failure view" caption="When it misses something: where the mistake started, what the checker missed, and the agent going back to “Ask first.”" style={{ aspectRatio: "16 / 10" }} />
+                                <ZoomVisual m={m} image={img("checker")} label="TD-11 · Checker profile" caption="The checker's own record: agreement with spot-checks, planted tests caught, and reliability by rule." size={{ aspectRatio: "16 / 10" }} />
+                                <ZoomVisual m={m} image={img("failure")} label="TD-12 · Failure view" caption="When it misses something: where the mistake started, what the checker missed, and the agent going back to “Ask first.”" size={{ aspectRatio: "16 / 10" }} />
                             </div>
                         }
                     />
@@ -373,7 +374,7 @@ export default function TrustDeskCaseStudy(props: Props) {
                             <>
                                 <Eyebrow>05</Eyebrow>
                                 <H2 m={m}>Building and testing it</H2>
-                                <Lead>A working app, tested against a plain summary with planted errors.</Lead>
+                                <Lead>A working app, and a planted-error study ready to run.</Lead>
                                 <H3>The build</H3>
                                 <Bullets
                                     items={[
@@ -382,23 +383,18 @@ export default function TrustDeskCaseStudy(props: Props) {
                                     ]}
                                 />
                                 <H3>The test</H3>
-                                <Bullets items={["[N] people each reviewed two batches of ten agent results.", "One batch was shown as a plain summary, the other with the trust layer.", "Each batch had three planted errors."]} />
-                                <Table
-                                    small
-                                    maxWidth={640}
-                                    rows={[
-                                        ["", "Plain summary", "Trust layer"],
-                                        ["Errors caught", "[x of y]", "[x of y]"],
-                                        ["Correct work accepted", "[x of y]", "[x of y]"],
+                                <Bullets
+                                    items={[
+                                        <Pt t="Two batches of ten.">Each person reviews two batches of ten agent results, one shown as a plain summary and one with the trust layer.</Pt>,
+                                        <Pt t="Three planted errors in each.">One the checker flags, one where the agent guessed, and one silent error from a well-proven agent.</Pt>,
+                                        <Pt t="What it counts.">How many errors people catch and how much correct work they accept. If the trust layer works, people catch more errors without rejecting good work.</Pt>,
+                                        <Pt t="The silent error is deliberate.">It shows whether a “Well proven” rating makes people stop checking.</Pt>,
                                     ]}
                                 />
-                                <Note style={{ marginBottom: 12 }}>[A quote from a session.]</Note>
-                                <Note>
-                                    <B>Early signal, not proof.</B> The test had [N] people.
-                                </Note>
+                                <Note>The sessions are next. I'll add the results here.</Note>
                             </>
                         }
-                        right={<Visual image={img("study")} label="TD-13 · The study page" caption="The same kinds of results, shown two ways." style={{ aspectRatio: "4 / 3" }} />}
+                        right={<ZoomVisual m={m} image={img("study")} label="TD-13 · The study page" caption="The same kinds of results, shown two ways." size={{ aspectRatio: "4 / 3" }} />}
                     />
                 </div>
             ),
@@ -420,7 +416,7 @@ export default function TrustDeskCaseStudy(props: Props) {
                     <Bullets
                         items={[
                             <Pt t="Control wasn't the hard part.">I started out designing for control. Most of the decisions that mattered were about what to leave out: the confidence score, the single trust number and the time estimates.</Pt>,
-                            "[One or two lines in your own words about building it with Claude Code.]",
+                            <Pt t="Built with Claude Code.">Building it meant writing down every rule I'd normally explain in a handoff: the rating thresholds, what counts as right, and what must always ask first. Anything I left vague, I had to go back and decide.</Pt>,
                         ]}
                     />
                     <Footer m={m} nextLabel="AI Interviewer" nextHref={nextLink} backHref={backLink} />
