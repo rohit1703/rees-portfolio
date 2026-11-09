@@ -237,7 +237,7 @@ export default function PetHealthCaseStudy(props: Props) {
             node: (m) => (
                 <Hero
                     m={m}
-                    tags={["UX Designer", "Consumer AI / Mobile Web"]}
+                    tags={["Pet Healthcare", "B2C", "White-label", "Mobile web"]}
                     title="Pet Health Scan Suite"
                     subtitle="Finding out why pet owners abandon an AI dental scan, across ~15 white-label health-check tools on ~10 pet-brand websites."
                     cells={[

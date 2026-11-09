@@ -68,7 +68,7 @@ export default function SDKManagerCaseStudy(props: Props) {
             node: (m) => (
                 <Hero
                     m={m}
-                    tags={["Sole Designer", "B2B No-Code Platform"]}
+                    tags={["Developer Tools", "B2B SaaS", "No-code", "Desktop web"]}
                     title="SDK Manager"
                     subtitle="Redesigning how brand SDKs get branded and built, in a no-code desktop web app."
                     cells={[
