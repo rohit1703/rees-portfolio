@@ -58,7 +58,7 @@ export default function AIInterviewerCaseStudy(props: Props) {
             node: (m) => (
                 <Hero
                     m={m}
-                    tags={["Sole Designer", "Internal AI MVP"]}
+                    tags={["HR Tech", "B2B", "AI", "0 → 1"]}
                     title="AI Interviewer"
                     subtitle="An internal web app that runs the first round of technical screening, so engineers don't have to."
                     cells={[

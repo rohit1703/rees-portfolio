@@ -729,13 +729,13 @@ export default function HomePage(props: HomePageProps) {
 
     const label: React.CSSProperties = { fontSize: narrow ? 12.5 : 14, fontWeight: 600, letterSpacing: "0.01em", textTransform: "uppercase", lineHeight: 1.4, color: T.ink }
     const leftLines = ["Product Designer"]
-    const leftLines2 = ["Open to product design roles", "Bangalore / Remote"]
+    const leftLines2 = ["Bangalore / Remote"]
 
     const projects: Project[] = [
         {
             id: "ai-interviewer",
             n: "01",
-            chips: ["Sole Designer", "Internal AI MVP"],
+            chips: ["HR Tech", "B2B", "AI", "0 → 1"],
             title: "AI Interviewer",
             body: ["Engineers were losing hours to first-round technical interviews. I was the only designer on the tool that took them over: the candidate test, the dashboards TA works from, and ", "rebuilt the product after v1 met reality.", ""],
             image: ai,
@@ -744,7 +744,7 @@ export default function HomePage(props: HomePageProps) {
         {
             id: "sdk-manager",
             n: "02",
-            chips: ["Sole Designer", "B2B No-Code Platform"],
+            chips: ["Developer Tools", "B2B SaaS", "No-code", "Desktop web"],
             title: "SDK Manager",
             body: ["A no-code platform the client's brand teams use to build pet health-check tools. ", "Iterating a live platform from how teams actually used it", ". I redesigned how branding gets assigned, so screens stopped getting missed, and pushed for reusable components: a header change is now one edit, not one per screen."],
             image: sdk,
@@ -753,7 +753,7 @@ export default function HomePage(props: HomePageProps) {
         {
             id: "pet-health-scan",
             n: "03",
-            chips: ["UX Designer", "Consumer AI / Mobile Web"],
+            chips: ["Pet Healthcare", "B2C", "White-label", "Mobile web"],
             title: "Pet Health Scan Suite",
             body: ["88% of people who opened the dental scan left before uploading a photo, and nobody knew why. ", "I used funnel data to find where people drop off, then asked why", ", split a ten-outcome result into seven labelled sections, with vet advice first, and set up brand libraries that cut re-skinning a tool from about two days to a couple of minutes."],
             image: pet,
@@ -762,7 +762,7 @@ export default function HomePage(props: HomePageProps) {
         {
             id: "trust-desk",
             n: "04",
-            chips: ["Self-initiated", "Agentic AI"],
+            chips: ["Agentic AI", "Productivity", "SaaS", "Web app"],
             title: "Trust Desk",
             body: ["People stop trusting AI agents after one mistake, or trust them so much they stop checking. ", "I designed a trust layer that shows each agent's track record for the task at hand", ", so people rely on it when the evidence supports it and check when it doesn't. Built as a working app in Claude Code."],
             image: trust,

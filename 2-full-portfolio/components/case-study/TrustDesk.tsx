@@ -93,7 +93,7 @@ export default function TrustDeskCaseStudy(props: Props) {
             node: (m) => (
                 <Hero
                     m={m}
-                    tags={["Self-initiated", "Agentic AI"]}
+                    tags={["Agentic AI", "Productivity", "SaaS", "Web app"]}
                     title="Trust Desk"
                     subtitle="An app that shows people when they can rely on their AI agents, and when they should check the work."
                     cells={[
