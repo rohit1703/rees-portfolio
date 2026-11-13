@@ -1,6 +1,6 @@
 # Deploying rees-portfolio
 
-Two folders, both aimed at the same Vercel project (`rees-portfolio-deploy` in the `rohit1703s-projects` team, live at
+Two folders, both aimed at the same Vercel project (`rees-portfolio` in the `reethikachitithoti-9573` team, live at
 https://reethika-chitithoti.vercel.app):
 
 | Folder | What goes live |
@@ -12,7 +12,7 @@ Whichever you deploy last is what the site shows. Deploying the full portfolio l
 
 ## Before the first deploy (once per computer)
 
-Install Node.js 20 or newer from nodejs.org, then sign in to Vercel:
+Install Node.js 22 from nodejs.org, then sign in to Vercel:
 
 ```bash
 npx vercel login
@@ -22,7 +22,7 @@ npx vercel login
 
 ```bash
 cd 1-holding-page
-npm run deploy:link     # connects the folder to rees-portfolio-deploy (asks nothing)
+npm run deploy:link     # connects the folder to rees-portfolio (asks nothing)
 npm run deploy          # publishes; prints the live URL
 ```
 
@@ -51,4 +51,4 @@ Want to look at it privately first? `npm run deploy:preview` gives a preview URL
 - **"Project not found" on deploy:link**: check you're signed in to the account that owns the
   `rohit1703s-projects` team (`npx vercel whoami`).
 - **A check fails during `npm run deploy`**: nothing was uploaded; the message names the failing check.
-- **Roll back**: Vercel → rees-portfolio-deploy → Deployments → pick an earlier one → "Promote to Production".
+- **Roll back**: Vercel → rees-portfolio → Deployments → pick an earlier one → "Promote to Production".
