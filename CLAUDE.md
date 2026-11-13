@@ -1,8 +1,7 @@
 # rees-portfolio
 
 Ree's (Reethika Chitithoti's) UX portfolio. `1-holding-page/` is the static "More to come" page;
-`2-full-portfolio/` is the Next.js site that is live. Both deploy to the `rees-portfolio-deploy` Vercel project
-(`rohit1703s-projects`), which builds `2-full-portfolio` from `main` on every push. See `DEPLOY.md`.
+`2-full-portfolio/` is the Next.js site that is live. Both deploy to the rees-portfolio Vercel project (reethikachitithoti-9573), which builds `2-full-portfolio` from `main` on every push. See `DEPLOY.md`.
 
 ## Pull requests
 
