@@ -19,7 +19,7 @@
     "deploy:preview": "npm run check && vercel deploy --yes --scope rohit1703s-projects"
   },
   "engines": {
-    "node": ">=20.9"
+    "node": "22.x"
   },
   "dependencies": {
     "motion": "^14.0.0",
